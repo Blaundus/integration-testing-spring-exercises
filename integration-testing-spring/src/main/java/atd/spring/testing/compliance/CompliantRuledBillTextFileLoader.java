@@ -17,8 +17,8 @@ public class CompliantRuledBillTextFileLoader  extends RuledBillTextFileLoader{
   }
   
   @Override
-  public Bill load(String filename) throws IOException {
-    Bill ret = super.load(filename);
+  public Bill loadFromFile(String filename) throws IOException {
+    Bill ret = super.loadFromFile(filename);
     amountTrafficRegulator.registerBill(ret);
     return ret;
   }

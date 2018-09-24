@@ -12,6 +12,14 @@ public class FactorByCurrencyRule implements LineItemRule {
     this.factors = new HashMap<String,Float>(factors);
   }
 
+  public FactorByCurrencyRule() {
+	// TODO: ATD: Fill rates from DB 
+	//		Map<String, Float> factors = new HashMap<>();
+	//		factors.put("CHF", 1.15f);
+	//		factors.put("EUR", 0.9f);
+  }
+  
+  
   @Override
   public float getFactor(LineItem t) {
     Float ret = factors.get(t.getItemPrice().getCurrency());

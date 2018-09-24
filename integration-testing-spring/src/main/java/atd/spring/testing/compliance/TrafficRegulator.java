@@ -6,4 +6,5 @@ import atd.spring.testing.bills.LineItem;
 public interface TrafficRegulator {
   void registerBill(Bill bill);
   void registerLineItem(LineItem item);
+  void apply();
 }

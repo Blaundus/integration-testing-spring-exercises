@@ -4,19 +4,29 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import atd.spring.testing.exceptions.ParsingException;
 
 public class BillTextFileLoader {
-  public Bill load(String filename) throws IOException {
+	
+  public Bill createFromLineItems(List<String> lineItems) {
+	  Bill bill = new Bill();
+	  lineItems.forEach(lineItem->
+		  extractLineItem(lineItem, bill));
+	  
+	  return bill;
+  }
+  
+  public Bill loadFromFile(String filename) throws IOException {
     Bill ret = new Bill();
     BufferedReader br = new BufferedReader(new FileReader(filename));
     try {
       String line;
       while ((line = br.readLine()) !=null) {
-        exctractLineItem(line,ret);
+        extractLineItem(line,ret);
       } 
     }finally {
       br.close();
@@ -24,7 +34,7 @@ public class BillTextFileLoader {
     return ret;
   }
 
-  protected void exctractLineItem(String line,Bill bill) {
+  protected void extractLineItem(String line,Bill bill) {
     Matcher m = getLinePattern().matcher(line);
     if (m.matches()) {
       String desc = m.group(getDescIndex());

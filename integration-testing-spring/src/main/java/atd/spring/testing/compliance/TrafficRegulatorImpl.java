@@ -13,10 +13,14 @@ public class TrafficRegulatorImpl implements TrafficRegulator{
   private List<LineItemTrafficRule> rules = new ArrayList<LineItemTrafficRule>();
   private Bill bill;
   
-  public TrafficRegulatorImpl(List<LineItemTrafficRule> rules, SnowTrafficLog logger) {
+  public TrafficRegulatorImpl() {
     super();
-    this.rules = rules;
-    this.logger = logger;
+	
+    rules = new ArrayList<LineItemTrafficRule>();
+	rules.add(new LogAmountOver(10));
+	rules.add(new LogTotalAmountOver(20));
+
+    this.logger = new LogTrafficToScreen();
   }
 
   @Override
@@ -26,6 +30,11 @@ public class TrafficRegulatorImpl implements TrafficRegulator{
       logger.log(bill);
       logMade=true;
     }
+  }
+  
+  @Override
+  public void apply() {
+	  shouldLog = true;
   }
 
   @Override

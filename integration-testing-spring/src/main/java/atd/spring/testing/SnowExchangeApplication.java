@@ -32,12 +32,13 @@ public class SnowExchangeApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SnowExchangeApplication.class, args);
 		try {
+			// TODO: Clean Up here - remove
 			if (args.length != 3) {
 				help();
 			} else {
 				CentralExchange exchange = new CentralExchange("EUR");
 				RateTextFileLoader rateLoader = new RateTextFileLoader();
-				rateLoader.load(args[0], exchange);
+				rateLoader.loadFromFile(args[0], exchange);
 
 				// V2: Add rules
 				Map<String, Float> factors = new HashMap<>();
@@ -54,12 +55,13 @@ public class SnowExchangeApplication {
 				List<LineItemTrafficRule> complianceRules = new ArrayList<LineItemTrafficRule>();
 				complianceRules.add(new LogAmountOver(10));
 				complianceRules.add(new LogTotalAmountOver(20));
-				TrafficRegulator trafficRegulator = new TrafficRegulatorImpl(complianceRules, complianceLog);
-				BillTextFileLoader billLoader = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
-				Bill bill = billLoader.load(args[1]);
+//				TrafficRegulator trafficRegulator = new TrafficRegulatorImpl(complianceRules, complianceLog);
 
-				Money result = bill.getTotal(exchange, args[2]);
-				System.out.println(result.getCurrency() + " " + result.getAmount());
+//				BillTextFileLoader billLoader = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
+//				Bill bill = billLoader.loadFromFile(args[1]);
+//
+//				Money result = bill.getTotal(exchange, args[2]);
+//				System.out.println(result.getCurrency() + " " + result.getAmount());
 			}
 		} catch (Exception e) {
 			System.out.println("Error:" + e.getMessage());
