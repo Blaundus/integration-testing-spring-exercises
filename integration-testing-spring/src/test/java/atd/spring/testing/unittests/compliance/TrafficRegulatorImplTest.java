@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
@@ -32,19 +32,21 @@ public class TrafficRegulatorImplTest {
     when(neverLog.shouldLog(any(LineItem.class))).thenReturn(false);
   }
   
+  //TODO: Rewrite tests
   @Test
   public void testLogsWhenNeeded() {
     rules.add(alwaysLog);
-    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl(rules, logger);
+    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl();
     theUnit.registerBill(bill);
     theUnit.registerLineItem(item);
+    theUnit.apply();
     verify(logger,times(1)).log(bill);
   }
 
   @Test
   public void testDoesNotLogsWhenNotNeeded() {
     rules.add(neverLog);
-    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl(rules, logger);
+    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl();
     theUnit.registerBill(bill);
     theUnit.registerLineItem(item);
     verify(logger,never()).log(bill);
@@ -53,7 +55,7 @@ public class TrafficRegulatorImplTest {
   @Test
   public void LogsWhenBillSetLate() {
     rules.add(alwaysLog);
-    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl(rules, logger);
+    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl();
     theUnit.registerLineItem(item);
     theUnit.registerBill(bill);
     verify(logger,times(1)).log(bill);
@@ -64,7 +66,7 @@ public class TrafficRegulatorImplTest {
     rules.add(alwaysLog);
     rules.add(alwaysLog);
     rules.add(alwaysLog);
-    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl(rules, logger);
+    TrafficRegulatorImpl theUnit = new TrafficRegulatorImpl();
     theUnit.registerLineItem(item);
     theUnit.registerBill(bill);
     verify(logger,times(1)).log(bill);
