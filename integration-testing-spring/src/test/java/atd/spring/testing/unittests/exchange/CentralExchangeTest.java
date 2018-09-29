@@ -22,7 +22,7 @@ public class CentralExchangeTest {
   }
 
   @Test
-  public void testSameCurrency() {
+  public void sameCurrency_hasRateOfOne() {
     assertEquals(BigDecimal.valueOf(1),
                  centralExchange.getExchangeRate("ILS", "ILS"));
     assertEquals(BigDecimal.valueOf(1),
@@ -30,25 +30,25 @@ public class CentralExchangeTest {
   }
   
   @Test
-  public void testToBaseCurrency() {
+  public void conversionToBaseCurrency_MultiplyByRate() {
     assertEquals(BigDecimal.valueOf(3.8), 
                  centralExchange.getExchangeRate("USD", "ILS"));
   }
 
   @Test
-  public void testFromBaseCurrency() {
+  public void conversionFromBaseCurrency_DivideByRate() {
     assertEquals(BigDecimal.valueOf(1).divide(BigDecimal.valueOf(3.8),MoneyConstants.ROUND_RULES),
                  centralExchange.getExchangeRate("ILS", "USD"));
   }
 
   @Test
-  public void testToBiggerCurrency() {
+  public void conversion_ToHigherValueCurrency() {
     assertEquals(BigDecimal.valueOf(0.5),
                  centralExchange.getExchangeRate("USD", "CHF"));
   }
 
   @Test
-  public void testToSmallerCurrency() {
+  public void conversion_ToLowerValueCurrency() {
     assertEquals(BigDecimal.valueOf(2),
                  centralExchange.getExchangeRate("CHF", "USD"));
   }

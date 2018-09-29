@@ -18,7 +18,7 @@ import atd.spring.testing.compliance.LogTotalAmountOver;
 import atd.spring.testing.compliance.LogTrafficToScreen;
 import atd.spring.testing.compliance.SnowTrafficLog;
 import atd.spring.testing.compliance.TrafficRegulator;
-import atd.spring.testing.compliance.TrafficRegulatorImpl;
+import atd.spring.testing.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.RateTextFileLoader;
 import atd.spring.testing.rules.CompositeLineItemRule;

@@ -6,29 +6,35 @@ import java.util.List;
 import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
 
-public class TrafficRegulatorImpl implements TrafficRegulator{
-  private SnowTrafficLog logger;
+public class TrafficRegulatorLogger implements TrafficRegulator{
+  private SnowTrafficLog log;
   private boolean shouldLog=false;
-  private boolean logMade=false;
+  private boolean wasCreated=false;
   private List<LineItemTrafficRule> rules = new ArrayList<LineItemTrafficRule>();
   private Bill bill;
   
-  public TrafficRegulatorImpl() {
+  public TrafficRegulatorLogger(List<LineItemTrafficRule> rules, SnowTrafficLog logger) {
+	    super();
+	    this.rules = rules;
+	    this.log = logger;
+	  }
+
+  public TrafficRegulatorLogger() {
     super();
 	
     rules = new ArrayList<LineItemTrafficRule>();
 	rules.add(new LogAmountOver(10));
 	rules.add(new LogTotalAmountOver(20));
 
-    this.logger = new LogTrafficToScreen();
+    this.log = new LogTrafficToScreen();
   }
 
   @Override
   public void registerBill(Bill bill) {
     this.bill = bill;
-    if (shouldLog && !logMade) {
-      logger.log(bill);
-      logMade=true;
+    if (shouldLog && !wasCreated) {
+      log.log(bill);
+      wasCreated=true;
     }
   }
   
@@ -44,8 +50,8 @@ public class TrafficRegulatorImpl implements TrafficRegulator{
       if (rule.shouldLog(item)) {
         shouldLog=true;
         if (bill!=null) {
-          logger.log(bill);
-          logMade=true;
+          log.log(bill);
+          wasCreated=true;
         }
       }
     }

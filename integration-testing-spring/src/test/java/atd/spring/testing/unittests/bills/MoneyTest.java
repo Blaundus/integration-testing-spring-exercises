@@ -21,7 +21,7 @@ public class MoneyTest {
   }
 
   @Test
-  public void testAddSameBaseCurrency() {
+  public void calculation_withBaseCurrency() {
     Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
     Money twoILS = new Money(BigDecimal.valueOf(2),"ILS");
     Money threeILS = new Money(BigDecimal.valueOf(3),"ILS");
@@ -29,7 +29,7 @@ public class MoneyTest {
   }
 
   @Test
-  public void testAddSameCurrency() {
+  public void calculation_withSameCurrency() {
     Money oneJND = new Money(BigDecimal.valueOf(1),"JND");
     Money twoJND = new Money(BigDecimal.valueOf(2),"JND");
     Money threeJND = new Money(BigDecimal.valueOf(3),"JND");
@@ -37,7 +37,7 @@ public class MoneyTest {
   }
   
   @Test
-  public void testAddDifferentCurrencies() {
+  public void calculation_withDifferentCurrencies() {
     Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
     Money twoJND = new Money(BigDecimal.valueOf(2),"JND");
     Money fiveILS = new Money(BigDecimal.valueOf(5),"ILS");
@@ -45,7 +45,7 @@ public class MoneyTest {
   }
   
   @Test
-  public void testZeroEqualsZero() {
+  public void zeroMoneyInDifferentCurrencies_areEqual() {
     assertEquals(new Money("ILS"),new Money("JND"));
     assertEquals(new Money("ILS").hashCode(),new Money("JND").hashCode());
   }

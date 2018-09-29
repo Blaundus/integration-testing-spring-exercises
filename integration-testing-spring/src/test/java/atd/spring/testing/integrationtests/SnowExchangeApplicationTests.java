@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SnowExchangeApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void canRunIntegrationTests() {
 	}
-
 }

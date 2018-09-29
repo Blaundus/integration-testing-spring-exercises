@@ -1,14 +1,16 @@
 package atd.spring.testing.unittests.bills;
 
-import atd.spring.testing.bills.*;
-import atd.spring.testing.exchange.*;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
-import org.junit.*;
 
+import org.junit.Before;
+import org.junit.Test;
 
+import atd.spring.testing.bills.Bill;
+import atd.spring.testing.bills.LineItem;
+import atd.spring.testing.bills.Money;
+import atd.spring.testing.exchange.CentralExchange;
 
 public class BillTest extends Bill {
   
@@ -38,27 +40,27 @@ public class BillTest extends Bill {
   }
 
   @Test
-  public void testEmptyBill() {
+  public void emptyBill_hasZeroMoney() {
     Bill bill = new Bill();
     assertEquals(new Money("ILS"),bill.getTotal(centralExchange,"ILS"));
   }
   
   @Test
-  public void testSingleLineBill() {
+  public void singleLineBill_withoutCurrencyChange() {
     Bill bill = new Bill();
     bill.addItem(israeliChair);
     assertEquals(twoILS, bill.getTotal(centralExchange,"ILS"));
   }
 
   @Test
-  public void testSingleLineBillWithCurrencyChange() {
+  public void singleLineBill_withCurrencyChange() {
     Bill bill = new Bill();
     bill.addItem(jordanianChair);
     assertEquals(twoILS, bill.getTotal(centralExchange,"ILS"));
   }
   
   @Test
-  public void testMultiCurrencyBill() {
+  public void multiLineBill_withCurrencyChange() {
     Bill bill = new Bill();
     bill.addItem(sixJordanianChairs);
     bill.addItem(israeliTable);

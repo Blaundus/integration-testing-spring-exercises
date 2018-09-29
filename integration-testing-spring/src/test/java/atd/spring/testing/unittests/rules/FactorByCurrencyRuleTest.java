@@ -14,7 +14,7 @@ import atd.spring.testing.bills.Money;
 import atd.spring.testing.rules.FactorByCurrencyRule;
 
 public class FactorByCurrencyRuleTest {
-  private FactorByCurrencyRule theUnit;
+  private FactorByCurrencyRule lineItemRule;
   
   @Before
   public void setUp() {
@@ -22,17 +22,21 @@ public class FactorByCurrencyRuleTest {
     factors.put("CHF",1.15f);
     factors.put("EUR",0.9f);
     
-    theUnit = new FactorByCurrencyRule(factors);
+    lineItemRule = new FactorByCurrencyRule(factors);
     
   }
 
   @Test
-  public void testFactor() {
-    assertEquals(1.15f,theUnit.getFactor(new LineItem("a",new Money(BigDecimal.ZERO,"CHF"),BigDecimal.ZERO)),0.01);
+  public void calculation_WithFactorRuleApplied() {
+    assertEquals(1.15f,lineItemRule.getFactor(
+    		new LineItem("item",new Money(BigDecimal.ZERO,"CHF")
+    				,BigDecimal.ZERO)),0.01);
   }
 
   @Test
-  public void testNoFactor() {
-    assertEquals(1f,theUnit.getFactor(new LineItem("a",new Money(BigDecimal.ZERO,"JND"),BigDecimal.ZERO)),0.01);
+  public void calculation_WithoutFactorRuleApplied() {
+    assertEquals(1f,lineItemRule.getFactor(
+    		new LineItem("item",new Money(BigDecimal.ZERO,"JND")
+    				,BigDecimal.ZERO)),0.01);
   }
 }

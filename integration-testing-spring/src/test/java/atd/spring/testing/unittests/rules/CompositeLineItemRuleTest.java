@@ -14,24 +14,25 @@ import atd.spring.testing.rules.LineItemRule;
 
 public class CompositeLineItemRuleTest {
   
-  CompositeLineItemRule theUnit;
+  CompositeLineItemRule lineItemRule;
+  
   @Before
   public void setUp() {
     List<LineItemRule> rules = new ArrayList<>();
-    LineItemRule a = new LineItemRule() {
+    LineItemRule factorRule = new LineItemRule() {
       public float getFactor(LineItem t) {
         return 1.1f;
       }
     };
-    rules.add(a);
-    rules.add(a);
+    rules.add(factorRule);
+    rules.add(factorRule);
     
-    theUnit = new CompositeLineItemRule(rules);
+    lineItemRule = new CompositeLineItemRule(rules);
   }
 
   @Test
-  public void test() {
-    assertEquals(1.21f,theUnit.getFactor(null),0.01);
+  public void calculation_multiplyByFactor() {
+    assertEquals(1.21f,lineItemRule.getFactor(null),0.01);
   }
 
 }
