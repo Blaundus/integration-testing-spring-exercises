@@ -15,7 +15,7 @@ import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 
 @Configuration
-public class ExchangeControllerConfiguration {
+public class MinimalConfiguration {
 	
 	@Bean
 	public CompositeLineItemRule compositeLineItemRule() {
