@@ -26,24 +26,12 @@ import atd.spring.testing.rules.CompositeLineItemRule;
 @Controller
 public class ExchangeController {
 
-	@Autowired
-	CompositeLineItemRule ruleManager;
-
-	@Autowired 
-	RateTextFileLoader rateLoader;
-	
+	@Autowired CompositeLineItemRule ruleManager;
+	@Autowired RateTextFileLoader rateLoader;
 	TrafficRegulator trafficRegulator;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "bills/calculate")
-	public Money calculateBill(
-			@RequestBody List<String> items, 
-			@RequestBody String currency) {
-		BillTextFileLoader billLoader = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
-		Bill bill = billLoader.createFromLineItems(items);
-		Money result = bill.getTotal(currency);
-
-		return result;
-	}
+	@Autowired
+	public ExchangeController() {}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
 	public void addRates(@RequestBody List<String> rates) {
@@ -54,6 +42,7 @@ public class ExchangeController {
 	public void addRules(
 			@RequestBody Boolean shouldApplyRules, 
 			@RequestBody Boolean shouldLog) {
+
 		trafficRegulator = new TrafficRegulatorLogger();
 
 		if (shouldApplyRules) {
@@ -64,4 +53,14 @@ public class ExchangeController {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "bills/calculate")
+	public Money calculateBill(
+			@RequestBody List<String> items, 
+			@RequestBody String currency) {
+		BillTextFileLoader billLoader = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
+		Bill bill = billLoader.createFromLineItems(items);
+		Money result = bill.getTotal(currency);
+		
+		return result;
+	}
 }

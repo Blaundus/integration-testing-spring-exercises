@@ -10,6 +10,7 @@ import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.RateTextFileLoader;
 import atd.spring.testing.exchange.SettableExchange;
+import atd.spring.testing.gateway.ExchangeController;
 import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 
@@ -36,6 +37,11 @@ public class ControllerConfiguration {
 	@Bean 
 	public SettableExchange settableExchange() {
 		return new CentralExchange(null);
+	}
+	
+	@Bean
+	public ExchangeController exchangeController() {
+		return new ExchangeController();
 	}
 
 }
