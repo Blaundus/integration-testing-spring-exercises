@@ -13,19 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import atd.spring.testing.exceptions.ParsingException;
 
 // TODO: Rename class
-
+ 
 public class RateTextFileLoader {
   private static Pattern LINE_PATTERN=Pattern.compile("^(...)=(\\d+\\.?\\d*)$");
 
-  @Autowired
-  public SettableExchange exchange;
+  @Autowired 
+  public Exchange exchange;
 
   public void add(List<String> rates)  {
 	  rates.forEach(rate ->
 	  	exctractRateToExchange(rate));
   }
   
-  public void loadFromFile(String filename,SettableExchange exchange) throws IOException {
+  public void loadFromFile(String filename,CentralExchange exchange) throws IOException {
     BufferedReader br = new BufferedReader(new FileReader(filename));
     try {
       String line;
@@ -46,7 +46,7 @@ public class RateTextFileLoader {
    * @param line
    * @param exchange
    */
-  public void exctractRateToExchange(String line,SettableExchange exchange) {
+  public void exctractRateToExchange(String line, Exchange exchange) {
     Matcher m = getLinePattern().matcher(line);
     if (m.matches()) {
       BigDecimal rate = new BigDecimal(m.group(getRateGroup()));

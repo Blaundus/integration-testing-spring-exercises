@@ -9,14 +9,18 @@ import org.junit.Test;
 
 import atd.spring.testing.bills.Money;
 import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.unittests.mocks.MockRateRepository;
 
 public class MoneyTest {
 
   private CentralExchange centralExchange;
+  private MockRateRepository mockRepository;
 
   @Before
   public void setUp() throws Exception {
-    centralExchange=new CentralExchange("ILS");
+	mockRepository = new MockRateRepository(); 
+    centralExchange=new CentralExchange(mockRepository);
+    centralExchange.setBaseRate("ILS");
     centralExchange.setRate("JND", BigDecimal.valueOf(2));
   }
 

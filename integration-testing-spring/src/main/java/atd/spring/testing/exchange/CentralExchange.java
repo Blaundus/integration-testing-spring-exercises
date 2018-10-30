@@ -1,38 +1,45 @@
 package atd.spring.testing.exchange;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import atd.spring.testing.bills.MoneyConstants;
 import atd.spring.testing.exceptions.UnknownCurrencyException;
+import atd.spring.testing.persistence.RateRepository;
 
-public class CentralExchange implements SettableExchange {
-  private String baseCurrency;
-  Map<String,BigDecimal> rates = new HashMap<>();
-  
-  public CentralExchange(String baseCurrency) {
-    this.baseCurrency = baseCurrency;
-    rates.put(baseCurrency, BigDecimal.valueOf(1));
-  }
-  
-  @Override
-  public void setRate(String currency,BigDecimal rate) {
-    if (currency.equalsIgnoreCase(baseCurrency) && rate.longValue()!=1.0) {
-      throw new IllegalArgumentException("Base currency rate cannot differ from 1.0");
-    }
-    rates.put(currency, rate);
-  }
-  
-  
-  @Override
-  public BigDecimal getExchangeRate(String from, String to) {
-    BigDecimal fromRate = rates.get(from);
-    if (fromRate==null) throw new UnknownCurrencyException(from);
-    BigDecimal toRate = rates.get(to);
-    if (toRate==null) throw new UnknownCurrencyException(to);
-    
-    return fromRate.divide(toRate,MoneyConstants.ROUND_RULES);
-  }
+public class CentralExchange implements Exchange {
+	private Rate baseRate;
+	private String baseCurrency;
+
+	RateRepository rates;
+
+	public CentralExchange(RateRepository rates)
+	{
+		this.rates = rates;
+	}
+	
+	public void setBaseRate(String baseCurrency) {
+		baseRate = new Rate(baseCurrency, BigDecimal.valueOf(1));
+		rates.addRate(baseRate);
+	}
+	
+	public void setRate(String currency, BigDecimal value) {
+		if (currency.equalsIgnoreCase(baseCurrency) && value.longValue() != 1.0) {
+			throw new IllegalArgumentException("Base currency rate cannot differ from 1.0");
+		}
+		rates.addRate(new Rate(currency, value));
+	}
+
+	public BigDecimal getExchangeRate(String from, String to) {
+		Rate fromRate = rates.findByCurrency(from);
+		if (fromRate == null)
+			throw new UnknownCurrencyException(from);
+		Rate toRate = rates.findByCurrency(to);
+		if (toRate == null)
+			throw new UnknownCurrencyException(to);
+
+		return fromRate.divide(toRate, MoneyConstants.ROUND_RULES);
+	}
 
 }

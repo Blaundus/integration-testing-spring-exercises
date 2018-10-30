@@ -2,6 +2,8 @@ package atd.spring.testing.bills;
 
 import java.math.BigDecimal;
 
+import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.ExchangeBureau;
 
 /**
@@ -30,7 +32,7 @@ public class Money {
    * @param exchange
    * @return
    */
-  public Money add(Money m, ExchangeBureau exchange) {
+  public Money add(Money m, Exchange exchange) {
     return new Money(
         amount.add(
             m.amount.multiply(
@@ -45,7 +47,7 @@ public class Money {
    * @param exchange
    * @return
    */
-  public Money exchange(String currency,ExchangeBureau exchange) {
+  public Money exchange(String currency,Exchange exchange) {
     return new Money(
         amount.multiply(
             exchange.getExchangeRate(this.currency, currency),

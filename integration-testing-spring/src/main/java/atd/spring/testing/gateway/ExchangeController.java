@@ -1,6 +1,5 @@
 package atd.spring.testing.gateway;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,30 +7,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.BillTextFileLoader;
 import atd.spring.testing.bills.Money;
 import atd.spring.testing.compliance.CompliantRuledBillTextFileLoader;
-import atd.spring.testing.compliance.LineItemTrafficRule;
-import atd.spring.testing.compliance.LogAmountOver;
-import atd.spring.testing.compliance.LogTotalAmountOver;
-import atd.spring.testing.compliance.LogTrafficToScreen;
-import atd.spring.testing.compliance.SnowTrafficLog;
 import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.RateTextFileLoader;
+import atd.spring.testing.persistence.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
 @Controller
 public class ExchangeController {
 
 	@Autowired CompositeLineItemRule ruleManager;
+	
 	@Autowired RateTextFileLoader rateLoader;
+	
+	@Autowired RateRepository rateRepository;
+	
 	TrafficRegulator trafficRegulator;
 	
-	@Autowired
-	public ExchangeController() {}
+	@RequestMapping(method = RequestMethod.GET, value ="rates/currency")
+	public String getRateByCurrency(
+			@RequestParam(value="currency") String currency) {
+		
+		return rateRepository.findByCurrency(currency).toString();
+	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
 	public void addRates(@RequestBody List<String> rates) {

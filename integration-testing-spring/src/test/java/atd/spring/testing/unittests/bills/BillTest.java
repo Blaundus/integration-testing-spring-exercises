@@ -11,6 +11,7 @@ import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.bills.Money;
 import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.unittests.mocks.MockRateRepository;
 
 public class BillTest extends Bill {
   
@@ -18,19 +19,23 @@ public class BillTest extends Bill {
   private LineItem israeliChair;
   private LineItem jordanianChair;
   private LineItem israeliTable;
+  private MockRateRepository mockRepository;
 
   Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
   Money twoILS = new Money(BigDecimal.valueOf(2),"ILS");
   Money tenILS = new Money(BigDecimal.valueOf(10),"ILS");
-
   Money oneJND = new Money(BigDecimal.valueOf(1),"JND");
   Money fiveJND = new Money(BigDecimal.valueOf(5),"JND");
   Money threeJND = new Money(BigDecimal.valueOf(3),"JND");
   private LineItem sixJordanianChairs;
   
+
+  
   @Before
   public void setUp() throws Exception {
-    centralExchange=new CentralExchange("ILS");
+	mockRepository = new MockRateRepository();
+    centralExchange = new CentralExchange(mockRepository);
+    centralExchange.setBaseRate("ILS");
     centralExchange.setRate("JND", BigDecimal.valueOf(2));
     
     israeliChair = new LineItem("chair",twoILS,BigDecimal.ONE);
