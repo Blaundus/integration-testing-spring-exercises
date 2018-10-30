@@ -11,16 +11,17 @@ import org.mockito.MockitoAnnotations;
 
 import atd.spring.testing.exceptions.ParsingException;
 import atd.spring.testing.exchange.CentralExchange;
-import atd.spring.testing.exchange.RateTextFileLoader;
+import atd.spring.testing.exchange.RateLoader;
 
 
-public class RateTextFileLoaderTest {
-  private RateTextFileLoader theUnit;
+
+public class RateLoaderTest {
+  private RateLoader theUnit;
   @Mock private CentralExchange exchangeMock;  
   
   @Before
   public void setUp() {
-    theUnit = new RateTextFileLoader();
+    theUnit = new RateLoader();
     MockitoAnnotations.initMocks(this);
   }
 

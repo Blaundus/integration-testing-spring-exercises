@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.Exchange;
-import atd.spring.testing.exchange.RateTextFileLoader;
+import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
@@ -58,8 +58,8 @@ public class MinimalConfiguration {
 	};
 
 	@Bean 
-	public RateTextFileLoader rateTextFileLoader() {
-		return new RateTextFileLoader();
+	public RateLoader rateLoader() {
+		return new RateLoader();
 	}
 
 	

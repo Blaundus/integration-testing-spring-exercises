@@ -8,9 +8,7 @@ public class Rate {
 	private String currency;
 	private BigDecimal rateValue;
 	
-	public Rate() {
-		
-	}
+	public Rate() {}
 	public Rate(String currency, BigDecimal value) {
 		this.currency = currency;
 		this.rateValue = value;
@@ -34,9 +32,10 @@ public class Rate {
 	
 	@Override
 	public String toString() {
-		String value = NumberFormat.getCurrencyInstance().format(getRateValue());
-		return String.format("Rate: %s = %s", 
-				this.currency, value);
+		String value = NumberFormat.getCurrencyInstance()
+				.format(this.rateValue.setScale(2));
+		return String.format("Rate: %s = %f", 
+				this.currency, this.rateValue);
 	}
 	
 	public BigDecimal divide(Rate toRate, MathContext roundRules) {

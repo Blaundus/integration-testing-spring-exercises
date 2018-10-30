@@ -1,6 +1,6 @@
-create table rates
+CREATE TABLE RATES
 (
    currency varchar(4) not null,
-   rate decimal(1000,3) not null,
+   rateValue decimal(1000,3) not null,
    primary key(currency)
 );

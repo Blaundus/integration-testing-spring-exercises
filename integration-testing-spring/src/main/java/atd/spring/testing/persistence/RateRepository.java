@@ -18,18 +18,20 @@ public class RateRepository {
 	@Autowired JdbcTemplate jdbcTemplate;
 	 
 	public Rate findByCurrency(String currency) {
-		return jdbcTemplate.queryForObject(
+		Rate rate = jdbcTemplate.queryForObject(
 				"select * from rates where currency=?", 
 				new Object[] {currency},
 				new BeanPropertyRowMapper<Rate>(Rate.class)
 				);
+		return rate;
 	}
 	
 	public void addRate(Rate rate) {
 				String currency = rate.getCurrency();
 				BigDecimal rateValue = rate.getRateValue();
-				jdbcTemplate.update(
-				"INSERT INTO rates(currency, rate) VALUES(?,?)"
+				int r = jdbcTemplate.update(
+				"INSERT INTO rates(currency, rateValue) VALUES(?,?)"
 				, currency, rateValue);
+				System.out.printf("Update %d row", r);
 	}
 }

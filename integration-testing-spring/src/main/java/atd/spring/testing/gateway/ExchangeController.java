@@ -15,7 +15,8 @@ import atd.spring.testing.bills.Money;
 import atd.spring.testing.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;
-import atd.spring.testing.exchange.RateTextFileLoader;
+import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
@@ -23,12 +24,12 @@ import atd.spring.testing.rules.CompositeLineItemRule;
 public class ExchangeController {
 
 	@Autowired CompositeLineItemRule ruleManager;
-	
-	@Autowired RateTextFileLoader rateLoader;
-	
+	@Autowired RateLoader rateLoader;
 	@Autowired RateRepository rateRepository;
+	@Autowired CentralExchange exchange;
 	
 	TrafficRegulator trafficRegulator;
+	boolean isInitialized = false;
 	
 	@RequestMapping(method = RequestMethod.GET, value ="rates/currency")
 	public String getRateByCurrency(
@@ -40,6 +41,10 @@ public class ExchangeController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
 	public void addRates(@RequestBody List<String> rates) {
+		if (!isInitialized) {
+			rateLoader.setBaseRate("EUR");
+			isInitialized = true;
+		}
 		rateLoader.add(rates);
 	}
 	

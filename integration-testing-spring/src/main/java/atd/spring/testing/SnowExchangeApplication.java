@@ -1,26 +1,10 @@
 package atd.spring.testing;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import atd.spring.testing.compliance.LineItemTrafficRule;
-import atd.spring.testing.compliance.LogAmountOver;
-import atd.spring.testing.compliance.LogTotalAmountOver;
-import atd.spring.testing.compliance.LogTrafficToScreen;
-import atd.spring.testing.compliance.SnowTrafficLog;
 import atd.spring.testing.configuration.MinimalConfiguration;
-import atd.spring.testing.exchange.CentralExchange;
-import atd.spring.testing.exchange.RateTextFileLoader;
-import atd.spring.testing.rules.CompositeLineItemRule;
-import atd.spring.testing.rules.FactorByCurrencyRule;
-import atd.spring.testing.rules.GratisOnStarRule;
-import atd.spring.testing.rules.LineItemRule;
 
 @SpringBootApplication
 @Import({MinimalConfiguration.class})

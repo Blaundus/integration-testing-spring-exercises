@@ -6,7 +6,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import atd.spring.testing.exchange.CentralExchange;
-import atd.spring.testing.exchange.ExchangeBureau;
 
 public class Bill {
   Set<LineItem> items = new HashSet<>();

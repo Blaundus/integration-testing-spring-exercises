@@ -18,8 +18,6 @@ import atd.spring.testing.persistence.RateRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes= {MinimalConfiguration.class})
-//@Sql(scripts = "classpath:schema.sql, data.sql", 
-//executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 public class EmptyTest {
 
 	@Autowired JdbcTemplate jdbcTemplate;
