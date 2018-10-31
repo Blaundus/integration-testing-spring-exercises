@@ -27,9 +27,9 @@ public class ExchangeController {
 	@Autowired RateLoader rateLoader;
 	@Autowired RateRepository rateRepository;
 	@Autowired CentralExchange exchange;
+	@Autowired StatusMonitor monitor;
 	
 	TrafficRegulator trafficRegulator;
-	boolean isInitialized = false;
 	
 	@RequestMapping(method = RequestMethod.GET, value ="rates/currency")
 	public String getRateByCurrency(
@@ -41,9 +41,9 @@ public class ExchangeController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
 	public void addRates(@RequestBody List<String> rates) {
-		if (!isInitialized) {
+		if (!monitor.isOk()) {
 			rateLoader.setBaseRate("EUR");
-			isInitialized = true;
+			monitor.start();
 		}
 		rateLoader.add(rates);
 	}

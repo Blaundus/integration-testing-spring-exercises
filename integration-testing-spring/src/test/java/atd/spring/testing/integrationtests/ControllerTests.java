@@ -34,6 +34,7 @@ public class ControllerTests {
 		assertNotNull(repository);
 	}
 	
+	
 	@Test
 	public void ratesAreAdded_withBaseRate_EUR_1() {
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");

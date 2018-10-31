@@ -9,38 +9,25 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.RateLoader;
+import atd.spring.testing.gateway.StatusMonitor;
 import atd.spring.testing.persistence.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 
 @Configuration
+@Import(DataConfiguration.class)
 public class MinimalConfiguration {
 	
 	@Bean
 	public RateRepository rateRepository() {
 		return new RateRepository();
-	}
-	
-	@Bean
-	public JdbcTemplate jdbcTemplate(DataSource datasource ) {
-		return new JdbcTemplate(dataSource());
-	}
-	
-	@Bean
-	@ConfigurationProperties(prefix="spring.datasource")
-	public DataSource dataSource() {
-		return DataSourceBuilder.create()
-				.driverClassName("org.h2.Driver")
-				.url("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1")
-				.username("sa")
-				.password("sa")
-				.build();
 	}
 	
 
@@ -68,5 +55,8 @@ public class MinimalConfiguration {
 		return new CentralExchange(rateRepository());
 	}
 	
-
+	@Bean 
+	public StatusMonitor statusMonitor() {
+		return new StatusMonitor();
+	}
 }

@@ -32,6 +32,5 @@ public class RateRepository {
 				int r = jdbcTemplate.update(
 				"INSERT INTO rates(currency, rateValue) VALUES(?,?)"
 				, currency, rateValue);
-				System.out.printf("Update %d row", r);
 	}
 }
