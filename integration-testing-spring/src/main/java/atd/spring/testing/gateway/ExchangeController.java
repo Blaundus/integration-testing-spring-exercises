@@ -18,7 +18,7 @@ import atd.spring.testing.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.exchange.RateLoader;
-import atd.spring.testing.persistence.RateRepository;
+import atd.spring.testing.persistence.jdbc.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
 @Controller
@@ -27,6 +27,8 @@ public class ExchangeController {
 	@Autowired CompositeLineItemRule ruleManager;
 	@Autowired RateLoader rateLoader;
 	@Autowired RateRepository rateRepository;
+ 
+   
 	@Autowired CentralExchange exchange;
 	@Autowired StatusMonitor monitor;
 	
@@ -39,15 +41,7 @@ public class ExchangeController {
 		return rateRepository.findByCurrency(currency).toString();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value ="rates")
-	public String getRates() {
-		if (monitor.isOk()) {
-			List<Rate> currentRates = rateRepository.getRates();
-			return formatRatesAsString(currentRates);
-		} else {
-			return "Error";
-		}
-	}
+	
 	
 	
 
@@ -95,7 +89,9 @@ public class ExchangeController {
 		return result;
 	}
 	
-	private String formatRatesAsString(List<Rate> currentRates) {
-		return "Coming soon...";
+
+	
+	public void Reset() {
+		this.monitor.shutdown();
 	}
 }

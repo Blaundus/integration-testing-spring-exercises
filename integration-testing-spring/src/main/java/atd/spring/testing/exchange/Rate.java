@@ -4,11 +4,19 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.text.NumberFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 public class Rate {
 	private String currency;
 	private BigDecimal rateValue;
 	
+	// For data injection only
 	public Rate() {}
+	
 	public Rate(String currency, BigDecimal value) {
 		this.currency = currency;
 		this.rateValue = value;
@@ -34,7 +42,7 @@ public class Rate {
 	public String toString() {
 		String value = NumberFormat.getCurrencyInstance()
 				.format(this.rateValue.setScale(2));
-		return String.format("Rate: %s = %f", 
+		return String.format("%s = %f", 
 				this.currency, this.rateValue);
 	}
 	

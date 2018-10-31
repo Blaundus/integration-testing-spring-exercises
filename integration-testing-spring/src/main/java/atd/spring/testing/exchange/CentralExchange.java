@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import atd.spring.testing.bills.MoneyConstants;
 import atd.spring.testing.exceptions.UnknownCurrencyException;
-import atd.spring.testing.persistence.RateRepository;
+import atd.spring.testing.persistence.jdbc.RateRepository;
 
 public class CentralExchange implements Exchange {
 	private Rate baseRate;

@@ -1,4 +1,4 @@
-package atd.spring.testing.persistence;
+package atd.spring.testing.persistence.jdbc;
 
 import java.io.Console;
 import java.math.BigDecimal;
@@ -35,7 +35,7 @@ public class RateRepository {
 				, currency, rateValue);
 	}
 
-	public List<Rate> getRates() {
-		return null;
-	}
+//	public List<Rate> getRates() {
+//		return null;
+//	}
 }

@@ -17,12 +17,11 @@ import atd.spring.testing.exchange.CentralExchange;
 import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.gateway.StatusMonitor;
-import atd.spring.testing.persistence.RateRepository;
+import atd.spring.testing.persistence.jdbc.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 
 @Configuration
-@Import(DataConfiguration.class)
 public class MinimalConfiguration {
 	
 	@Bean
@@ -53,6 +52,7 @@ public class MinimalConfiguration {
 	@Bean 
 	public Exchange exchange() {
 		return new CentralExchange(rateRepository());
+		
 	}
 	
 	@Bean 

@@ -12,22 +12,26 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import atd.spring.testing.configuration.JdbcDataConfiguration;
 import atd.spring.testing.configuration.MinimalConfiguration;
-import atd.spring.testing.persistence.RateRepository;
+import atd.spring.testing.persistence.jdbc.RateRepository;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes= {MinimalConfiguration.class})
+@ContextConfiguration(classes= {MinimalConfiguration.class, 
+		JdbcDataConfiguration.class })
 public class EmptyTest {
 
 	@Autowired JdbcTemplate jdbcTemplate;
 	@Autowired RateRepository rates;
-	
+//	@Autowired RateJpaRepository jpaRates;
 	
 	@Test
 	public void canRunIntegrationTests() {
-		assertNotNull(rates);
+		assertNotNull(rates); 
 		assertNotNull(jdbcTemplate);
+//		assertNotNull(jpaRates);
 	}
 
 }

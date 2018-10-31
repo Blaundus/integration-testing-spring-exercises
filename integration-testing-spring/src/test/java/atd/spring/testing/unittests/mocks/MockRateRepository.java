@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import atd.spring.testing.exchange.Rate;
-import atd.spring.testing.persistence.RateRepository;
+import atd.spring.testing.persistence.jdbc.RateRepository;
 
 public class MockRateRepository extends RateRepository {
 	HashMap<String,Rate> rates;

@@ -10,9 +10,10 @@ import atd.spring.testing.gateway.StatusMonitor;
 import atd.spring.testing.helpers.LoggingMonitor;
 
 
+
 @Configuration
-@Import(MinimalConfiguration.class)
-public class ControllerConfiguration {
+@Import({MinimalConfiguration.class, JdbcDataConfiguration.class})
+public class ExchangeControllerConfiguration {
 	
 	@Bean
 	public ExchangeController exchangeController() {
@@ -24,4 +25,5 @@ public class ControllerConfiguration {
 	public StatusMonitor loggingMonitor() {
 		return new LoggingMonitor();
 	}
+	
 }
