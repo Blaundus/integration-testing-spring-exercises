@@ -1,4 +1,4 @@
-package atd.spring.testing.integrationtests;
+package atd.spring.testing.helpers;
 
 import atd.spring.testing.gateway.StatusMonitor;
 

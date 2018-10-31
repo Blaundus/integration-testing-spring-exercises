@@ -2,6 +2,7 @@ package atd.spring.testing.persistence;
 
 import java.io.Console;
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -32,5 +33,9 @@ public class RateRepository {
 				int r = jdbcTemplate.update(
 				"INSERT INTO rates(currency, rateValue) VALUES(?,?)"
 				, currency, rateValue);
+	}
+
+	public List<Rate> getRates() {
+		return null;
 	}
 }

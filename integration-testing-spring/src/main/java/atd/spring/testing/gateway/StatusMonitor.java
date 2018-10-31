@@ -2,9 +2,13 @@ package atd.spring.testing.gateway;
 
 public class StatusMonitor {
 	boolean isInitalized = false;
-	
+	boolean isOk = true;
 	
 	public boolean isOk() {
+		return isOk;
+	}
+	
+	public boolean isInitialized() {
 		return isInitalized;
 	}
 	

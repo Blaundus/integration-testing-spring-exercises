@@ -16,6 +16,7 @@ import atd.spring.testing.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
@@ -38,14 +39,34 @@ public class ExchangeController {
 		return rateRepository.findByCurrency(currency).toString();
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value ="rates")
+	public String getRates() {
+		if (monitor.isOk()) {
+			List<Rate> currentRates = rateRepository.getRates();
+			return formatRatesAsString(currentRates);
+		} else {
+			return "Error";
+		}
+	}
 	
+	
+
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
 	public void addRates(@RequestBody List<String> rates) {
-		if (!monitor.isOk()) {
-			rateLoader.setBaseRate("EUR");
+		boolean isFirstTime = true;
+		if (monitor.isInitialized()) {
+			isFirstTime = false;
+		}
+		else
+		{
 			monitor.start();
 		}
-		rateLoader.add(rates);
+		
+		if (monitor.isOk()) {
+			if (isFirstTime)
+				rateLoader.setBaseRate("EUR");
+			rateLoader.add(rates);
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "rules/add")
@@ -72,5 +93,9 @@ public class ExchangeController {
 		Money result = bill.getTotal(currency);
 		
 		return result;
+	}
+	
+	private String formatRatesAsString(List<Rate> currentRates) {
+		return "Coming soon...";
 	}
 }
