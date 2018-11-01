@@ -25,7 +25,7 @@ public class RateLoader {
 		rates.forEach(rate -> exctractRateToExchange(rate));
 	}
 
-	public void loadFromFile(String filename, CentralExchange exchange) throws IOException {
+	public void loadFromFile(String filename, CheeseExchange exchange) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(filename));
 		try {
 			String line;

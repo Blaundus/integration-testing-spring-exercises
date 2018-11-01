@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import atd.spring.testing.configuration.ExchangeControllerConfiguration;
-import atd.spring.testing.gateway.ExchangeController;
+import atd.spring.testing.gateway.CheeseExchangeController;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +26,7 @@ import atd.spring.testing.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class ControllerJdbcTests {
 	
-	@Autowired ExchangeController controller;
+	@Autowired CheeseExchangeController controller;
 	@Autowired RateRepository repository;
 	
 	@Test

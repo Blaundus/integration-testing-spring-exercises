@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import atd.spring.testing.gateway.CheeseController;
+import atd.spring.testing.gateway.CheeseCatalogController;
 
 
 @Configuration
@@ -14,7 +14,7 @@ import atd.spring.testing.gateway.CheeseController;
 public class CheeseControllerConfiguration {
 
 	@Bean 
-	CheeseController cheeseController() {
-		return new CheeseController();
+	CheeseCatalogController cheeseController() {
+		return new CheeseCatalogController();
 	}
 }

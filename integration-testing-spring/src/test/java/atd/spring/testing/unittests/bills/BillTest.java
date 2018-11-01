@@ -10,12 +10,12 @@ import org.junit.Test;
 import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.bills.Money;
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.unittests.mocks.MockRateRepository;
 
 public class BillTest extends Bill {
   
-  private CentralExchange centralExchange;
+  private CheeseExchange centralExchange;
   private LineItem israeliChair;
   private LineItem jordanianChair;
   private LineItem israeliTable;
@@ -34,7 +34,7 @@ public class BillTest extends Bill {
   @Before
   public void setUp() throws Exception {
 	mockRepository = new MockRateRepository();
-    centralExchange = new CentralExchange(mockRepository);
+    centralExchange = new CheeseExchange(mockRepository);
     centralExchange.setBaseRate("ILS");
     centralExchange.setRate("JND", BigDecimal.valueOf(2));
     

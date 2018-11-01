@@ -10,14 +10,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import atd.spring.testing.exceptions.ParsingException;
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.RateLoader;
 
 
 
 public class RateLoaderTest {
   private RateLoader theUnit;
-  @Mock private CentralExchange exchangeMock;  
+  @Mock private CheeseExchange exchangeMock;  
   
   @Before
   public void setUp() {

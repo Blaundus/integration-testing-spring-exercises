@@ -13,13 +13,13 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.testing.configuration.JdbcDataConfiguration;
-import atd.spring.testing.configuration.MinimalConfiguration;
+import atd.spring.testing.configuration.AppConfiguration;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes= {MinimalConfiguration.class, 
+@ContextConfiguration(classes= {AppConfiguration.class, 
 		JdbcDataConfiguration.class })
 public class EmptyTest {
 

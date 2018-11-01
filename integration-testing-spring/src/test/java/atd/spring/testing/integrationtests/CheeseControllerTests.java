@@ -20,8 +20,8 @@ import atd.spring.testing.configuration.CheeseControllerConfiguration;
 import atd.spring.testing.configuration.ExchangeControllerConfiguration;
 import atd.spring.testing.exchange.Cheese;
 import atd.spring.testing.exchange.Rate;
-import atd.spring.testing.gateway.CheeseController;
-import atd.spring.testing.gateway.ExchangeController;
+import atd.spring.testing.gateway.CheeseCatalogController;
+import atd.spring.testing.gateway.CheeseExchangeController;
 
 
 @RunWith(SpringRunner.class)
@@ -30,7 +30,7 @@ import atd.spring.testing.gateway.ExchangeController;
 @DataJpaTest
 public class CheeseControllerTests {
 	
-	@Autowired CheeseController controller;
+	@Autowired CheeseCatalogController controller;
 	@Autowired TestEntityManager entityManager;
 
 	@Test

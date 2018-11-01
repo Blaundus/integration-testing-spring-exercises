@@ -12,7 +12,7 @@ import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.persistence.jpa.CheeseRepository;
 
 @Controller
-public class CheeseController {
+public class CheeseCatalogController {
 
 	@Autowired CheeseRepository cheeseRepository;
 	

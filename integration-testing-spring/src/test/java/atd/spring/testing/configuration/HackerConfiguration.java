@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import atd.spring.testing.gateway.ExchangeController;
+import atd.spring.testing.gateway.CheeseExchangeController;
 import atd.spring.testing.gateway.StatusMonitor;
 import atd.spring.testing.helpers.FaultyMonitor;
 
@@ -21,8 +21,8 @@ public class HackerConfiguration {
 	}
 	
 	@Bean
-	public ExchangeController exchangeController() {
-		return new ExchangeController();
+	public CheeseExchangeController exchangeController() {
+		return new CheeseExchangeController();
 	}
 	
 

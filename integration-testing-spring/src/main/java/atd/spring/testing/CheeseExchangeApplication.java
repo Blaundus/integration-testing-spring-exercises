@@ -4,14 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import atd.spring.testing.configuration.MinimalConfiguration;
+import atd.spring.testing.configuration.AppConfiguration;
 
 @SpringBootApplication
-@Import({MinimalConfiguration.class})
-public class SnowExchangeApplication {
+@Import({AppConfiguration.class})
+public class CheeseExchangeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SnowExchangeApplication.class, args);
+		SpringApplication.run(CheeseExchangeApplication.class, args);
  	}
 
 	private static void testMethod(String[] args) {

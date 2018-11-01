@@ -17,18 +17,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 import atd.spring.testing.configuration.ExchangeControllerConfiguration;
 import atd.spring.testing.configuration.HackerConfiguration;
 import atd.spring.testing.configuration.JdbcDataConfiguration;
-import atd.spring.testing.configuration.MinimalConfiguration;
-import atd.spring.testing.gateway.ExchangeController;
+import atd.spring.testing.configuration.AppConfiguration;
+import atd.spring.testing.gateway.CheeseExchangeController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes= {HackerConfiguration.class, 
-		MinimalConfiguration.class,
+		AppConfiguration.class,
 		JdbcDataConfiguration.class})
 @ActiveProfiles("hacker")
 public class HackingTests {
 	
-	@Autowired ExchangeController controller;
+	@Autowired CheeseExchangeController controller;
 	
 	@Before
 	public void setup() {

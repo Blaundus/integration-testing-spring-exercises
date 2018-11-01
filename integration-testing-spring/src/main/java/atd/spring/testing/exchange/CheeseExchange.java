@@ -8,13 +8,13 @@ import atd.spring.testing.bills.MoneyConstants;
 import atd.spring.testing.exceptions.UnknownCurrencyException;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
-public class CentralExchange implements Exchange {
+public class CheeseExchange implements Exchange {
 	private Rate baseRate;
 	private String baseCurrency;
 
 	RateRepository rates;
 
-	public CentralExchange(RateRepository rates)
+	public CheeseExchange(RateRepository rates)
 	{
 		this.rates = rates;
 	}

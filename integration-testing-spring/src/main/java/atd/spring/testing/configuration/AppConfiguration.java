@@ -13,7 +13,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import atd.spring.testing.bills.LineItem;
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.compliance.TrafficRegulator;
+import atd.spring.testing.compliance.TrafficRegulatorLogger;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.gateway.StatusMonitor;
@@ -22,7 +24,7 @@ import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 
 @Configuration
-public class MinimalConfiguration {
+public class AppConfiguration {
 	
 	@Bean
 	public RateRepository rateRepository() {
@@ -51,12 +53,17 @@ public class MinimalConfiguration {
 	
 	@Bean 
 	public Exchange exchange() {
-		return new CentralExchange(rateRepository());
+		return new CheeseExchange(rateRepository());
 		
 	}
 	
 	@Bean 
 	public StatusMonitor statusMonitor() {
 		return new StatusMonitor();
+	}
+	
+	@Bean
+	public TrafficRegulator trafficLogger( ) {
+		return new TrafficRegulatorLogger();
 	}
 }

@@ -8,18 +8,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import atd.spring.testing.bills.MoneyConstants;
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.unittests.mocks.MockRateRepository;
 
 public class CentralExchangeTest {
   
-  private CentralExchange centralExchange;
+  private CheeseExchange centralExchange;
   private MockRateRepository mockRepository;
 
   @Before
   public void setUp() {
 	mockRepository = new MockRateRepository();
-    centralExchange=new CentralExchange(mockRepository);
+    centralExchange=new CheeseExchange(mockRepository);
     centralExchange.setBaseRate("ILS");
     centralExchange.setRate("USD", BigDecimal.valueOf(3.8));
     centralExchange.setRate("CHF", BigDecimal.valueOf(7.6));

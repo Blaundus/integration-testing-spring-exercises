@@ -15,24 +15,22 @@ import atd.spring.testing.bills.Money;
 import atd.spring.testing.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
 @Controller
-public class ExchangeController {
+public class CheeseExchangeController {
 
 	@Autowired CompositeLineItemRule ruleManager;
 	@Autowired RateLoader rateLoader;
 	@Autowired RateRepository rateRepository;
- 
-   
-	@Autowired CentralExchange exchange;
+ 	@Autowired CheeseExchange exchange;
 	@Autowired StatusMonitor monitor;
+	@Autowired TrafficRegulator trafficRegulator;
 	
-	TrafficRegulator trafficRegulator;
 	
 	@RequestMapping(method = RequestMethod.GET, value ="rates/currency")
 	public String getRateByCurrency(
@@ -40,9 +38,6 @@ public class ExchangeController {
 		
 		return rateRepository.findByCurrency(currency).toString();
 	}
-	
-	
-	
 	
 
 	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
@@ -63,20 +58,7 @@ public class ExchangeController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "rules/add")
-	public void addRules(
-			@RequestBody Boolean shouldApplyRules, 
-			@RequestBody Boolean shouldLog) {
 
-		trafficRegulator = new TrafficRegulatorLogger();
-
-		if (shouldApplyRules) {
-			ruleManager.addRules();
-		}
-		if (shouldLog) {
-			trafficRegulator.apply();
-		}
-	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "bills/calculate")
 	public Money calculateBill(
@@ -88,8 +70,6 @@ public class ExchangeController {
 		
 		return result;
 	}
-	
-
 	
 	public void Reset() {
 		this.monitor.shutdown();

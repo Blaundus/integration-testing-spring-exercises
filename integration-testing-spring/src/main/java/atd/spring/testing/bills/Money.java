@@ -2,7 +2,7 @@ package atd.spring.testing.bills;
 
 import java.math.BigDecimal;
 
-import atd.spring.testing.exchange.CentralExchange;
+import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Exchange;
 
 
