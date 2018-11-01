@@ -35,7 +35,5 @@ public class RateRepository {
 				, currency, rateValue);
 	}
 
-//	public List<Rate> getRates() {
-//		return null;
-//	}
+
 }

@@ -12,13 +12,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
 import atd.spring.testing.compliance.LineItemTrafficRule;
-import atd.spring.testing.compliance.SnowTrafficLog;
+import atd.spring.testing.compliance.TrafficLog;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;
 
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class TrafficRegulatorLogTest {
-  @Mock private SnowTrafficLog log;
+  @Mock private TrafficLog log;
   @Mock private LineItemTrafficRule alwaysLog;
   @Mock private LineItemTrafficRule neverLog;
   @Mock private Bill bill;

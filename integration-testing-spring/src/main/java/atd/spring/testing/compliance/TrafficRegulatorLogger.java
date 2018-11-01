@@ -7,13 +7,13 @@ import atd.spring.testing.bills.Bill;
 import atd.spring.testing.bills.LineItem;
 
 public class TrafficRegulatorLogger implements TrafficRegulator{
-  private SnowTrafficLog log;
+  private TrafficLog log;
   private boolean shouldLog=false;
   private boolean wasCreated=false;
   private List<LineItemTrafficRule> rules = new ArrayList<LineItemTrafficRule>();
   private Bill bill;
   
-  public TrafficRegulatorLogger(List<LineItemTrafficRule> rules, SnowTrafficLog logger) {
+  public TrafficRegulatorLogger(List<LineItemTrafficRule> rules, TrafficLog logger) {
 	    super();
 	    this.rules = rules;
 	    this.log = logger;
@@ -26,7 +26,7 @@ public class TrafficRegulatorLogger implements TrafficRegulator{
 	rules.add(new LogAmountOver(10));
 	rules.add(new LogTotalAmountOver(20));
 
-    this.log = new LogTrafficToScreen();
+    this.log = new CheeseTrafficLog();
   }
 
   @Override
@@ -55,5 +55,10 @@ public class TrafficRegulatorLogger implements TrafficRegulator{
         }
       }
     }
+  }
+  
+  @Override
+  public TrafficLog getLog() {
+	  return log;
   }
 }

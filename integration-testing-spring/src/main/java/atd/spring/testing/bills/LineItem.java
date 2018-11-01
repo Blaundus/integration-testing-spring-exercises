@@ -1,6 +1,7 @@
 package atd.spring.testing.bills;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 public class LineItem {
 
@@ -32,4 +33,16 @@ public class LineItem {
     return itemAmount;
   }
   
+  @Override
+  public String toString() {
+	  StringBuilder sb = new StringBuilder();
+	  sb.append(description);
+	  sb.append(":");
+	  sb.append(itemPrice.getCurrency());
+	  sb.append(":");
+	  sb.append(sb.append(NumberFormat.getCurrencyInstance()
+			  .format(itemAmount.setScale(2))));
+	  sb.append(";");
+	  return sb.toString();
+  }
 }

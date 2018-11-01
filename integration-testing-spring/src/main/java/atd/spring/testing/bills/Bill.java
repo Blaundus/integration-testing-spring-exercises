@@ -29,4 +29,12 @@ public class Bill {
   public Money getTotal(String currency) {
 	  return getTotal(this.exchange, currency);
   }
+  
+  @Override 
+  public String toString() {
+	  StringBuilder sb = new StringBuilder();
+	  items.forEach(item -> sb.append(item.toString()));
+	  return sb.toString();
+  }
+  
 }

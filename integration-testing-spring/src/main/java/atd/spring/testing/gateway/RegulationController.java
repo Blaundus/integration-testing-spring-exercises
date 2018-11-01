@@ -21,4 +21,14 @@ public class RegulationController {
 			trafficRegulator.apply();
 		}
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "rules/log")
+	public String getLog() {
+		if (RegulationMonitor.getRegulator().shouldMonitor()){
+			return trafficRegulator.getLog().getAll();
+		}
+		else
+			return "Monitoring is offline";
+	}
+	
 }

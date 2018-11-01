@@ -7,4 +7,5 @@ public interface TrafficRegulator {
   void registerBill(Bill bill);
   void registerLineItem(LineItem item);
   void apply();
+  TrafficLog getLog();
 }

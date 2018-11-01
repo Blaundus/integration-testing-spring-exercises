@@ -52,8 +52,5 @@ public class CheeseControllerTests {
 				controller.getAllCheeses());
 	}
 	
-	@Before
-	public void setup() {
-		
-	}
+	
 }
