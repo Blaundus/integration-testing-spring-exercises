@@ -24,7 +24,7 @@ import atd.spring.testing.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class ControllerJdbcTests {
+public class CheeseExchangeControllerTests {
 	
 	@Autowired CheeseExchangeController controller;
 	@Autowired RateRepository repository;
@@ -44,11 +44,11 @@ public class ControllerJdbcTests {
 	public void ratesAreAdded_withBaseRate() {
 		
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");
-		controller.addRates(rates);
+		controller.addRates_direct(rates);
 		
-		assertEquals("EUR = 1.000000", controller.getRateByCurrency("EUR"));
-		assertEquals("ILS = 2.500000", controller.getRateByCurrency("ILS"));
-		assertEquals("USD = 3.800000", controller.getRateByCurrency("USD"));
+		assertEquals("EUR = 1.000000", controller.getRateByCurrency("EUR").getBody());
+		assertEquals("ILS = 2.500000", controller.getRateByCurrency("ILS").getBody());
+		assertEquals("USD = 3.800000", controller.getRateByCurrency("USD").getBody());
 	}
 
 }
