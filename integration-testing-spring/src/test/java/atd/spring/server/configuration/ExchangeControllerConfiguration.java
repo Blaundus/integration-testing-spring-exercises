@@ -1,4 +1,4 @@
-package atd.spring.testing.configuration;
+package atd.spring.server.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
 import atd.spring.server.helpers.LoggingMonitor;
+import atd.spring.testing.configuration.AppConfiguration;
+import atd.spring.testing.configuration.JdbcDataConfiguration;
 import atd.spring.testing.gateway.CheeseExchangeController;
 import atd.spring.testing.gateway.StatusMonitor;
 

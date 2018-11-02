@@ -21,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
 
 import atd.spring.client.ClientApp;
 import atd.spring.client.configuration.ClientConfiguration;
-import atd.spring.testing.configuration.ExchangeControllerConfiguration;
+import atd.spring.server.configuration.ExchangeControllerConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
