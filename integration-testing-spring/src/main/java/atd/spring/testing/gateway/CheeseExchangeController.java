@@ -1,11 +1,14 @@
 package atd.spring.testing.gateway;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,10 +25,11 @@ import atd.spring.testing.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.exchange.RateLoader;
+import atd.spring.testing.exchange.Rates;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
-@RestController
+@RestController()
 public class CheeseExchangeController {
 
 	@Autowired CompositeLineItemRule ruleManager;
@@ -36,9 +40,10 @@ public class CheeseExchangeController {
 	@Autowired TrafficRegulator trafficRegulator;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value ="rates/currency")
+	@RequestMapping(method = RequestMethod.GET, 
+					value ="rates/currency")
 	public ResponseEntity<String> getRateByCurrency(
-			@RequestParam(value="currency") String currency) {
+			@RequestParam(value="name") String currency) {
 		try {
 			String result =rateRepository.findByCurrency(currency).toString();
 			return new ResponseEntity<>(result, HttpStatus.OK); 
@@ -48,8 +53,8 @@ public class CheeseExchangeController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "rates/add")
-	public void addRates_direct(@RequestBody List<String> rates) {
+	@PostMapping(value = "rates/add1")
+	public void addRates_direct(@RequestParam List<String> rates) {
 		boolean isFirstTime = true;
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
@@ -64,6 +69,7 @@ public class CheeseExchangeController {
 				rateLoader.setBaseRate("EUR");
 			rateLoader.add(rates);
 		}
+		
 	}
 	
 
@@ -75,10 +81,12 @@ public class CheeseExchangeController {
 		return response; 
 	}
 
-	@RequestMapping(method = RequestMethod.POST, 
-			value = "rates/rest/add",
-			consumes = "application/json")
-	public ResponseEntity addRates_Rest(@RequestBody List<String> rates) {
+	@PostMapping(value = "/rates/add",
+			headers = "Accept=application/json") 
+	public ResponseEntity<?> addRate_Rest(@RequestBody String rate) {
+
+		Rates rates = new Rates();
+		rates.add(rate);
 		boolean isFirstTime = true;
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
@@ -91,7 +99,31 @@ public class CheeseExchangeController {
 		if (monitor.isOk()) {
 			if (isFirstTime)
 				rateLoader.setBaseRate("EUR");
-			rateLoader.add(rates);
+			rateLoader.add(rates.getRates());
+		}
+		
+		return new ResponseEntity(HttpStatus.OK);
+		
+	}
+		
+		@PostMapping(value = "/rates/addmany",
+			headers = "Accept=application/json") 
+	public ResponseEntity<?> addRates_Rest(
+			@RequestBody Rates rates) {
+		
+		boolean isFirstTime = true;
+		if (monitor.isInitialized()) {
+			isFirstTime = false;
+		}
+		else
+		{
+			monitor.start();
+		}
+		
+		if (monitor.isOk()) {
+			if (isFirstTime)
+				rateLoader.setBaseRate("EUR");
+			rateLoader.add(rates.getRates());
 		}
 		
 		return new ResponseEntity(HttpStatus.OK);
