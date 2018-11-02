@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import atd.spring.testing.compliance.RegulationMonitor;
-import atd.spring.testing.compliance.TrafficRegulator;
-import atd.spring.testing.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.RegulationMonitor;
+import atd.spring.server.compliance.TrafficRegulator;
+import atd.spring.server.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.rules.CompositeLineItemRule;
 
 @Controller

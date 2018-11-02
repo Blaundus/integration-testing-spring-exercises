@@ -15,9 +15,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import atd.spring.server.compliance.RegulationMonitor;
+import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
-import atd.spring.testing.compliance.RegulationMonitor;
-import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.gateway.RegulationController;
 
 

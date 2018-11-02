@@ -11,9 +11,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
-import atd.spring.testing.compliance.LineItemTrafficRule;
-import atd.spring.testing.compliance.TrafficLog;
-import atd.spring.testing.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.LineItemTrafficRule;
+import atd.spring.server.compliance.TrafficLog;
+import atd.spring.server.compliance.TrafficRegulatorLogger;
 
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)

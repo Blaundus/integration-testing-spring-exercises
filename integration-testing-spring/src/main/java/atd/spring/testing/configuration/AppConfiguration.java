@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import atd.spring.server.bills.LineItem;
-import atd.spring.testing.compliance.TrafficRegulator;
-import atd.spring.testing.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.TrafficRegulator;
+import atd.spring.server.compliance.TrafficRegulatorLogger;
 import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.RateLoader;

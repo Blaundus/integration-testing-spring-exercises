@@ -1,4 +1,4 @@
-package atd.spring.testing.compliance;
+package atd.spring.server.compliance;
 
 import java.io.IOException;
 import java.math.BigDecimal;
