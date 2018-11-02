@@ -1,4 +1,4 @@
-package atd.spring.testing.unittests.compliance;
+package atd.spring.server.unittests.compliance;
 
 import java.util.ArrayList;
 import java.util.List;

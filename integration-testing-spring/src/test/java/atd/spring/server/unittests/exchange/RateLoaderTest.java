@@ -1,4 +1,4 @@
-package atd.spring.testing.unittests.exchange;
+package atd.spring.server.unittests.exchange;
 
 import static org.mockito.Mockito.verify;
 

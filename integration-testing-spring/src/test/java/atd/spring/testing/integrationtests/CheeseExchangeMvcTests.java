@@ -108,7 +108,6 @@ public class CheeseExchangeMvcTests {
 				post("/rates/add")
 				.content(asJsonString(rate1))
 				.contentType("application/json"))
-	    .andDo(print())
 	    		.andExpect(status().isOk());
 	    mockMvc.perform(
 	    		post("/rates/add")
@@ -117,7 +116,6 @@ public class CheeseExchangeMvcTests {
 				.andExpect(status().isOk());
 
 	    result =  mockMvc.perform(get("/rates/currency/?name=EUR"))
-	    .andDo(print())		
 	    	.andExpect(status().isOk())
 	    	.andReturn();
 	    

@@ -1,4 +1,4 @@
-package atd.spring.testing.unittests.rules;
+package atd.spring.server.unittests.rules;
 
 import static org.junit.Assert.*;
 

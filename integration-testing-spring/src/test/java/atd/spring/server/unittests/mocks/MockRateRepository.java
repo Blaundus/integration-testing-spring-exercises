@@ -1,4 +1,4 @@
-package atd.spring.testing.unittests.mocks;
+package atd.spring.server.unittests.mocks;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

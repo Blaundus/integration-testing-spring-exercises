@@ -1,4 +1,4 @@
-package atd.spring.testing.integrationtests;
+package atd.spring.client.integrationtests;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -40,7 +40,7 @@ public class ClientTests {
 	}
 	
 	@Test
-	public void get() {
+	public void get_ServerCalledCorrectly() {
 		mockServer.expect(once(), requestTo("/rates/currency/?name=EUR"))
 				.andRespond(
 						withSuccess("EUR = 1.000000", MediaType.TEXT_PLAIN));
@@ -49,7 +49,7 @@ public class ClientTests {
 	}
 	
 	@Test (expected = RuntimeException.class)
-	public void addWithError() {
+	public void add_ThrowsOnError() {
 		mockServer.expect(once(), requestTo("/rates/add"))
 			.andRespond(withBadRequest());
 		client.addRate("Invalid");
