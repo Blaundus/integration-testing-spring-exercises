@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,10 +39,11 @@ public class CheeseExchangeController {
  	@Autowired CheeseExchange exchange;
 	@Autowired StatusMonitor monitor;
 	@Autowired TrafficRegulator trafficRegulator;
+	private boolean isFirstTime;
 	
 	
 	@RequestMapping(method = RequestMethod.GET, 
-					value ="rates/currency")
+					value ="/rates/currency")
 	public ResponseEntity<String> getRateByCurrency(
 			@RequestParam(value="name") String currency) {
 		try {
@@ -73,7 +75,7 @@ public class CheeseExchangeController {
 	}
 	
 
-	@RequestMapping(method = RequestMethod.GET, value ="rates/rest/currency")
+	@GetMapping(value ="/rates/currency1")
 	public ResponseEntity<String> getRateByCurrency_Rest(
 			@RequestParam(value="currency") String currency) {
 		String resultBody =rateRepository.findByCurrency(currency).toString();
@@ -81,13 +83,12 @@ public class CheeseExchangeController {
 		return response; 
 	}
 
-	@PostMapping(value = "/rates/add",
-			headers = "Accept=application/json") 
+	@PostMapping(value = "/rates/add") 
 	public ResponseEntity<?> addRate_Rest(@RequestBody String rate) {
 
 		Rates rates = new Rates();
 		rates.add(rate);
-		boolean isFirstTime = true;
+		isFirstTime = true;
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
 		}

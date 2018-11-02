@@ -19,7 +19,7 @@ public class Rates {
 	}
 
 	private String removeQuotes(String rate) {
-		return rate.substring(1, rate.length()-2);
+		return rate.substring(1, rate.length()-1);
 	}
 
 	public List<String> getRates() {
