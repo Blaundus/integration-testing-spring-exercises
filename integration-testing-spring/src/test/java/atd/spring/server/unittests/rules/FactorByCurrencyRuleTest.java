@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.Money;
-import atd.spring.testing.rules.FactorByCurrencyRule;
+import atd.spring.server.rules.FactorByCurrencyRule;
 
 public class FactorByCurrencyRuleTest {
   private FactorByCurrencyRule lineItemRule;

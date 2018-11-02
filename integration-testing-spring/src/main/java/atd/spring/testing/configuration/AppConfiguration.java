@@ -16,12 +16,12 @@ import atd.spring.server.bills.LineItem;
 import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.compliance.TrafficRegulatorLogger;
 import atd.spring.server.gateway.StatusMonitor;
+import atd.spring.server.rules.CompositeLineItemRule;
+import atd.spring.server.rules.LineItemRule;
 import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.Exchange;
 import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.jdbc.RateRepository;
-import atd.spring.testing.rules.CompositeLineItemRule;
-import atd.spring.testing.rules.LineItemRule;
 
 @Configuration
 public class AppConfiguration {

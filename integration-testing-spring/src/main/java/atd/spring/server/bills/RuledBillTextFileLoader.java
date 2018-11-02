@@ -2,7 +2,7 @@ package atd.spring.server.bills;
 
 import java.math.BigDecimal;
 
-import atd.spring.testing.rules.LineItemRule;
+import atd.spring.server.rules.LineItemRule;
 
 public class RuledBillTextFileLoader extends BillTextFileLoader {
   LineItemRule rules; 

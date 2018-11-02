@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.RuledBillTextFileLoader;
-import atd.spring.testing.rules.LineItemRule;
+import atd.spring.server.rules.LineItemRule;
 
 public class CompliantRuledBillTextFileLoader  extends RuledBillTextFileLoader{
   private TrafficRegulator amountTrafficRegulator;

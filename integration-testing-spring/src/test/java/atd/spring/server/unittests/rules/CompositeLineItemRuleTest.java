@@ -9,8 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import atd.spring.server.bills.LineItem;
-import atd.spring.testing.rules.CompositeLineItemRule;
-import atd.spring.testing.rules.LineItemRule;
+import atd.spring.server.rules.CompositeLineItemRule;
+import atd.spring.server.rules.LineItemRule;
 
 public class CompositeLineItemRuleTest {
   

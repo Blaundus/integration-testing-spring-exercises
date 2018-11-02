@@ -1,4 +1,4 @@
-package atd.spring.testing.rules;
+package atd.spring.server.rules;
 
 import atd.spring.server.bills.LineItem;
 

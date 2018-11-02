@@ -1,4 +1,4 @@
-package atd.spring.testing.rules;
+package atd.spring.server.rules;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import atd.spring.server.compliance.RegulationMonitor;
 import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.compliance.TrafficRegulatorLogger;
-import atd.spring.testing.rules.CompositeLineItemRule;
+import atd.spring.server.rules.CompositeLineItemRule;
 
 @Controller
 public class RegulationController {
