@@ -1,4 +1,4 @@
-package atd.spring.testing.persistence.jpa;
+package atd.spring.server.persistence.jpa;
 
 import java.util.List;
 

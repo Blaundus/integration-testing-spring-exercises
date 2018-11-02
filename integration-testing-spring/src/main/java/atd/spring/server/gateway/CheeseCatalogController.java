@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import atd.spring.server.exchange.Rate;
+import atd.spring.server.persistence.jpa.CheeseRepository;
 import atd.spring.testing.exchange.Cheese;
-import atd.spring.testing.persistence.jpa.CheeseRepository;
 
 @Controller
 public class CheeseCatalogController {
