@@ -1,4 +1,4 @@
-package atd.spring.testing.gateway;
+package atd.spring.server.gateway;
 
 public class StatusMonitor {
 	boolean isInitalized = false;

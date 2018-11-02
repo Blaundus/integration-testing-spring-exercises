@@ -1,4 +1,4 @@
-package atd.spring.testing.gateway;
+package atd.spring.server.gateway;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

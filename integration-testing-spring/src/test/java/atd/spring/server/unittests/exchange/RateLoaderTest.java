@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import atd.spring.testing.exceptions.ParsingException;
+import atd.spring.server.exceptions.ParsingException;
 import atd.spring.testing.exchange.CheeseExchange;
 import atd.spring.testing.exchange.RateLoader;
 

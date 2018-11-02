@@ -1,7 +1,7 @@
 package atd.spring.server.helpers;
 
-import atd.spring.testing.exceptions.MonitorNotInitializedException;
-import atd.spring.testing.gateway.StatusMonitor;
+import atd.spring.server.exceptions.MonitorNotInitializedException;
+import atd.spring.server.gateway.StatusMonitor;
 
 public class FaultyMonitor extends StatusMonitor{
 	@Override

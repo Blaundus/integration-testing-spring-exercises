@@ -1,6 +1,6 @@
 package atd.spring.server.helpers;
 
-import atd.spring.testing.gateway.StatusMonitor;
+import atd.spring.server.gateway.StatusMonitor;
 
 public class LoggingMonitor extends StatusMonitor {
 

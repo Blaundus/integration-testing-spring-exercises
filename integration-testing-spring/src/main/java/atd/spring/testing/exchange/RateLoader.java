@@ -9,7 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import atd.spring.testing.exceptions.ParsingException;
+
+import atd.spring.server.exceptions.ParsingException;
 
 public class RateLoader {
 	private static Pattern LINE_PATTERN = Pattern.compile("^(...)=(\\d+\\.?\\d*)$");

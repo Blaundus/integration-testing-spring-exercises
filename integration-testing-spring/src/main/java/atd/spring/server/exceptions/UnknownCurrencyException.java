@@ -1,4 +1,4 @@
-package atd.spring.testing.exceptions;
+package atd.spring.server.exceptions;
 
 public class UnknownCurrencyException extends RuntimeException {
 

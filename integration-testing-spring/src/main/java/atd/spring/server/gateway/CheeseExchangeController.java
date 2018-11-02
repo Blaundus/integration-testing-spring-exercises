@@ -1,4 +1,4 @@
-package atd.spring.testing.gateway;
+package atd.spring.server.gateway;
 
 import java.util.ArrayList;
 import java.util.Arrays;

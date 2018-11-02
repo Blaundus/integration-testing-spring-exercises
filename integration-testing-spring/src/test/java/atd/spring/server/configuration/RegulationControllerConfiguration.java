@@ -3,7 +3,7 @@ package atd.spring.server.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import atd.spring.testing.gateway.RegulationController;
+import atd.spring.server.gateway.RegulationController;
 
 @Configuration
 public class RegulationControllerConfiguration {

@@ -17,8 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import atd.spring.testing.configuration.JdbcDataConfiguration;
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
 import atd.spring.server.configuration.HackerConfiguration;
+import atd.spring.server.gateway.CheeseExchangeController;
 import atd.spring.testing.configuration.AppConfiguration;
-import atd.spring.testing.gateway.CheeseExchangeController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
