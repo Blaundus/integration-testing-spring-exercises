@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.deser.impl.BeanPropertyMap;
 
-import atd.spring.testing.exchange.Rate;
+import atd.spring.server.exchange.Rate;
 
 @Repository
 public class RateRepository {

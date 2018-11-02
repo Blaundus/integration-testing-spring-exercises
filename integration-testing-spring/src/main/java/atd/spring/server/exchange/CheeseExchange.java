@@ -1,4 +1,4 @@
-package atd.spring.testing.exchange;
+package atd.spring.server.exchange;
 
 import java.math.BigDecimal;
 

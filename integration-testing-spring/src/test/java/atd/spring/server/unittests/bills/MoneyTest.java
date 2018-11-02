@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import atd.spring.server.bills.Money;
+import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.unittests.mocks.MockRateRepository;
-import atd.spring.testing.exchange.CheeseExchange;
 
 public class MoneyTest {
 

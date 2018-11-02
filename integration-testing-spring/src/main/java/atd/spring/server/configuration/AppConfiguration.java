@@ -15,12 +15,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.exchange.CheeseExchange;
+import atd.spring.server.exchange.Exchange;
+import atd.spring.server.exchange.RateLoader;
 import atd.spring.server.gateway.StatusMonitor;
 import atd.spring.server.rules.CompositeLineItemRule;
 import atd.spring.server.rules.LineItemRule;
-import atd.spring.testing.exchange.CheeseExchange;
-import atd.spring.testing.exchange.Exchange;
-import atd.spring.testing.exchange.RateLoader;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @Configuration

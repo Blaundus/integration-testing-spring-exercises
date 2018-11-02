@@ -34,8 +34,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
+import atd.spring.server.exchange.Rates;
 import atd.spring.server.gateway.CheeseExchangeController;
-import atd.spring.testing.exchange.Rates;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @RunWith(SpringRunner.class)

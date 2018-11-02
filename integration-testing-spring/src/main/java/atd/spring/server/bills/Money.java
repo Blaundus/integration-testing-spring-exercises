@@ -2,8 +2,8 @@ package atd.spring.server.bills;
 
 import java.math.BigDecimal;
 
-import atd.spring.testing.exchange.CheeseExchange;
-import atd.spring.testing.exchange.Exchange;
+import atd.spring.server.exchange.CheeseExchange;
+import atd.spring.server.exchange.Exchange;
 
 
 /**

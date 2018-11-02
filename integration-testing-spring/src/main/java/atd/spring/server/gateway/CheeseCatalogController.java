@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import atd.spring.server.exchange.Rate;
 import atd.spring.testing.exchange.Cheese;
-import atd.spring.testing.exchange.Rate;
 import atd.spring.testing.persistence.jpa.CheeseRepository;
 
 @Controller

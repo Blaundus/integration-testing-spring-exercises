@@ -10,8 +10,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import atd.spring.server.exceptions.ParsingException;
-import atd.spring.testing.exchange.CheeseExchange;
-import atd.spring.testing.exchange.RateLoader;
+import atd.spring.server.exchange.CheeseExchange;
+import atd.spring.server.exchange.RateLoader;
 
 
 

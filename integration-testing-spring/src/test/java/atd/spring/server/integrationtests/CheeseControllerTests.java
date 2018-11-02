@@ -18,10 +18,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.configuration.CheeseControllerConfiguration;
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
+import atd.spring.server.exchange.Rate;
 import atd.spring.server.gateway.CheeseCatalogController;
 import atd.spring.server.gateway.CheeseExchangeController;
 import atd.spring.testing.exchange.Cheese;
-import atd.spring.testing.exchange.Rate;
 
 
 @RunWith(SpringRunner.class)

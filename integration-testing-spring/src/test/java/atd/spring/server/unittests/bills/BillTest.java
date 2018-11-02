@@ -10,8 +10,8 @@ import org.junit.Test;
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.Money;
+import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.unittests.mocks.MockRateRepository;
-import atd.spring.testing.exchange.CheeseExchange;
 
 public class BillTest extends Bill {
   

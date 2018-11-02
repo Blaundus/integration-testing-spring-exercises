@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import atd.spring.testing.exchange.CheeseExchange;
+import atd.spring.server.exchange.CheeseExchange;
 
 public class Bill {
   Set<LineItem> items = new HashSet<>();

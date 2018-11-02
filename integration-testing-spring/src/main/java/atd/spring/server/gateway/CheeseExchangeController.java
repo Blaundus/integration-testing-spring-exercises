@@ -23,11 +23,11 @@ import atd.spring.server.bills.Money;
 import atd.spring.server.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.exchange.CheeseExchange;
+import atd.spring.server.exchange.Rate;
+import atd.spring.server.exchange.RateLoader;
+import atd.spring.server.exchange.Rates;
 import atd.spring.server.rules.CompositeLineItemRule;
-import atd.spring.testing.exchange.CheeseExchange;
-import atd.spring.testing.exchange.Rate;
-import atd.spring.testing.exchange.RateLoader;
-import atd.spring.testing.exchange.Rates;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @RestController()

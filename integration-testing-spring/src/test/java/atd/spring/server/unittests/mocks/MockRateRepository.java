@@ -3,7 +3,7 @@ package atd.spring.server.unittests.mocks;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
-import atd.spring.testing.exchange.Rate;
+import atd.spring.server.exchange.Rate;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 
 public class MockRateRepository extends RateRepository {
