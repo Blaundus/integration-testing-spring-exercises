@@ -1,4 +1,4 @@
-package atd.spring.testing.integrationtests;
+package atd.spring.server.integrationtests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
