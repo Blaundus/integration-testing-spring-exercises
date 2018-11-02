@@ -14,11 +14,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import atd.spring.testing.configuration.JdbcDataConfiguration;
+import atd.spring.server.configuration.AppConfiguration;
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
 import atd.spring.server.configuration.HackerConfiguration;
+import atd.spring.server.configuration.JdbcDataConfiguration;
 import atd.spring.server.gateway.CheeseExchangeController;
-import atd.spring.testing.configuration.AppConfiguration;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

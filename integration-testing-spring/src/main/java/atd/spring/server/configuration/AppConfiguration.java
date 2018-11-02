@@ -1,4 +1,4 @@
-package atd.spring.testing.configuration;
+package atd.spring.server.configuration;
 
 import java.util.ArrayList;
 import java.util.List;

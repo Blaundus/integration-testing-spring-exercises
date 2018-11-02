@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import atd.spring.testing.configuration.AppConfiguration;
+import atd.spring.server.configuration.AppConfiguration;
 
 @SpringBootApplication
 @Import({AppConfiguration.class})

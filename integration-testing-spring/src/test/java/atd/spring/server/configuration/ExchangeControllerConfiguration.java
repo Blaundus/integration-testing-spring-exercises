@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Primary;
 import atd.spring.server.gateway.CheeseExchangeController;
 import atd.spring.server.gateway.StatusMonitor;
 import atd.spring.server.helpers.LoggingMonitor;
-import atd.spring.testing.configuration.AppConfiguration;
-import atd.spring.testing.configuration.JdbcDataConfiguration;
 
 
 
