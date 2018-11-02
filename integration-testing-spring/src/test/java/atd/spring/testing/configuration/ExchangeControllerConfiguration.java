@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
+import atd.spring.server.helpers.LoggingMonitor;
 import atd.spring.testing.gateway.CheeseExchangeController;
 import atd.spring.testing.gateway.StatusMonitor;
-import atd.spring.testing.helpers.LoggingMonitor;
 
 
 

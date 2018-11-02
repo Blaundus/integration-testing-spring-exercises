@@ -1,4 +1,4 @@
-package atd.spring.testing.helpers;
+package atd.spring.server.helpers;
 
 import atd.spring.testing.gateway.StatusMonitor;
 
