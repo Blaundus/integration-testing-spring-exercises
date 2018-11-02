@@ -10,7 +10,7 @@ import atd.spring.server.gateway.CheeseCatalogController;
 
 @Configuration
 @Import(JpaDataConfiguration.class)
-@EnableJpaRepositories(basePackages = "atd.spring.testing")
+@EnableJpaRepositories(basePackages = "atd.spring")
 public class CheeseControllerConfiguration {
 
 	@Bean 

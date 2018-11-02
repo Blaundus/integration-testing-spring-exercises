@@ -14,7 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@EnableJpaRepositories(basePackages ="atd.spring.testing")
+@EnableJpaRepositories(basePackages ="atd.spring")
 public class JpaDataConfiguration {
 
 	@Bean
@@ -22,7 +22,7 @@ public class JpaDataConfiguration {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("atd.spring.testing");
+        entityManagerFactoryBean.setPackagesToScan("atd.spring");
  
         Properties jpaProperties = new Properties();
      
