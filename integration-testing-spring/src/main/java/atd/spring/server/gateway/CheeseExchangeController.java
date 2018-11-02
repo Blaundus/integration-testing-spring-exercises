@@ -27,8 +27,8 @@ import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Rate;
 import atd.spring.server.exchange.RateLoader;
 import atd.spring.server.exchange.Rates;
+import atd.spring.server.persistence.jdbc.RateRepository;
 import atd.spring.server.rules.CompositeLineItemRule;
-import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @RestController()
 public class CheeseExchangeController {

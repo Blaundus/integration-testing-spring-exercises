@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.configuration.AppConfiguration;
 import atd.spring.server.configuration.JdbcDataConfiguration;
-import atd.spring.testing.persistence.jdbc.RateRepository;
+import atd.spring.server.persistence.jdbc.RateRepository;
 
 
 @RunWith(SpringRunner.class)

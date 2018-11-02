@@ -1,4 +1,4 @@
-package atd.spring.testing.persistence.jdbc;
+package atd.spring.server.persistence.jdbc;
 
 import java.io.Console;
 import java.math.BigDecimal;

@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
 import atd.spring.server.gateway.CheeseExchangeController;
-import atd.spring.testing.persistence.jdbc.RateRepository;
+import atd.spring.server.persistence.jdbc.RateRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

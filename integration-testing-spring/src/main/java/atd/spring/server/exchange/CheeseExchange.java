@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import atd.spring.server.bills.MoneyConstants;
 import atd.spring.server.exceptions.UnknownCurrencyException;
-import atd.spring.testing.persistence.jdbc.RateRepository;
+import atd.spring.server.persistence.jdbc.RateRepository;
 
 public class CheeseExchange implements Exchange {
 	private Rate baseRate;

@@ -19,9 +19,9 @@ import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Exchange;
 import atd.spring.server.exchange.RateLoader;
 import atd.spring.server.gateway.StatusMonitor;
+import atd.spring.server.persistence.jdbc.RateRepository;
 import atd.spring.server.rules.CompositeLineItemRule;
 import atd.spring.server.rules.LineItemRule;
-import atd.spring.testing.persistence.jdbc.RateRepository;
 
 @Configuration
 public class AppConfiguration {

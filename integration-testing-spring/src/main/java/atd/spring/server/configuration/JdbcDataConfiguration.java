@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import atd.spring.testing.persistence.jdbc.RateRepository;
+import atd.spring.server.persistence.jdbc.RateRepository;
 
 @Configuration
 public class JdbcDataConfiguration {
