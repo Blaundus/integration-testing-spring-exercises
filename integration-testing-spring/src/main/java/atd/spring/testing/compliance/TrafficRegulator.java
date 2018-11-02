@@ -1,7 +1,7 @@
 package atd.spring.testing.compliance;
 
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.LineItem;
 
 public interface TrafficRegulator {
   void registerBill(Bill bill);

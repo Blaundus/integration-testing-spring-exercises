@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.BillTextFileLoader;
-import atd.spring.testing.bills.Money;
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.BillTextFileLoader;
+import atd.spring.server.bills.Money;
 import atd.spring.testing.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.testing.compliance.TrafficRegulator;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;

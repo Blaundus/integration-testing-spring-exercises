@@ -9,8 +9,8 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import atd.spring.testing.bills.LineItem;
-import atd.spring.testing.bills.Money;
+import atd.spring.server.bills.LineItem;
+import atd.spring.server.bills.Money;
 import atd.spring.testing.rules.FactorByCurrencyRule;
 
 public class FactorByCurrencyRuleTest {

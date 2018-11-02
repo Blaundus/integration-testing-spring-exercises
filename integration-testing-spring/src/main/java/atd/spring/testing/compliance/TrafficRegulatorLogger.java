@@ -3,8 +3,8 @@ package atd.spring.testing.compliance;
 import java.util.ArrayList;
 import java.util.List;
 
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.LineItem;
 
 public class TrafficRegulatorLogger implements TrafficRegulator{
   private TrafficLog log;

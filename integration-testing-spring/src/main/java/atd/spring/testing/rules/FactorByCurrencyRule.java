@@ -3,7 +3,7 @@ package atd.spring.testing.rules;
 import java.util.HashMap;
 import java.util.Map;
 
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.LineItem;
 
 public class FactorByCurrencyRule implements LineItemRule {
   Map<String, Float> factors;

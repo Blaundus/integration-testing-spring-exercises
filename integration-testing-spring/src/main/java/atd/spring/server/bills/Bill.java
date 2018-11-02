@@ -1,4 +1,4 @@
-package atd.spring.testing.bills;
+package atd.spring.server.bills;
 
 import java.util.HashSet;
 import java.util.Set;

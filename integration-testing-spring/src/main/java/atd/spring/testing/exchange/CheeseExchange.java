@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import atd.spring.testing.bills.MoneyConstants;
+import atd.spring.server.bills.MoneyConstants;
 import atd.spring.testing.exceptions.UnknownCurrencyException;
 import atd.spring.testing.persistence.jdbc.RateRepository;
 

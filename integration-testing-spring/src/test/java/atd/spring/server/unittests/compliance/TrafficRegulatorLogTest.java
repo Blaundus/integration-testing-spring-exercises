@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.LineItem;
 import atd.spring.testing.compliance.LineItemTrafficRule;
 import atd.spring.testing.compliance.TrafficLog;
 import atd.spring.testing.compliance.TrafficRegulatorLogger;

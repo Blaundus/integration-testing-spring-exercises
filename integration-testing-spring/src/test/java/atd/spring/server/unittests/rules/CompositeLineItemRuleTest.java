@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.LineItem;
 import atd.spring.testing.rules.CompositeLineItemRule;
 import atd.spring.testing.rules.LineItemRule;
 

@@ -7,10 +7,10 @@ import java.math.BigDecimal;
 import org.junit.Before;
 import org.junit.Test;
 
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.LineItem;
+import atd.spring.server.bills.Money;
 import atd.spring.server.unittests.mocks.MockRateRepository;
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.LineItem;
-import atd.spring.testing.bills.Money;
 import atd.spring.testing.exchange.CheeseExchange;
 
 public class BillTest extends Bill {

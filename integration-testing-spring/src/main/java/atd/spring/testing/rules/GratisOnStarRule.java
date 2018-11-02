@@ -1,6 +1,6 @@
 package atd.spring.testing.rules;
 
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.LineItem;
 
 public class GratisOnStarRule implements LineItemRule {
 

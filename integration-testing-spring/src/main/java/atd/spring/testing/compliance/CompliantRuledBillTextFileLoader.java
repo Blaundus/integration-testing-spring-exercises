@@ -3,9 +3,9 @@ package atd.spring.testing.compliance;
 import java.io.IOException;
 import java.math.BigDecimal;
 
-import atd.spring.testing.bills.Bill;
-import atd.spring.testing.bills.LineItem;
-import atd.spring.testing.bills.RuledBillTextFileLoader;
+import atd.spring.server.bills.Bill;
+import atd.spring.server.bills.LineItem;
+import atd.spring.server.bills.RuledBillTextFileLoader;
 import atd.spring.testing.rules.LineItemRule;
 
 public class CompliantRuledBillTextFileLoader  extends RuledBillTextFileLoader{

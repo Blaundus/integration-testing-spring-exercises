@@ -3,7 +3,7 @@ package atd.spring.testing.rules;
 import java.util.ArrayList;
 import java.util.List;
 
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.LineItem;
 
 public class CompositeLineItemRule implements LineItemRule {
   List<LineItemRule> rules;

@@ -1,6 +1,6 @@
 package atd.spring.testing.compliance;
 
-import atd.spring.testing.bills.LineItem;
+import atd.spring.server.bills.LineItem;
 
 public class LogAmountOver implements LineItemTrafficRule{
 
