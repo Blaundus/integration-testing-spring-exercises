@@ -45,7 +45,7 @@ import atd.spring.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchangeMvcTests {
+public class CheeseExchange_MvcTests {
 	
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),                        

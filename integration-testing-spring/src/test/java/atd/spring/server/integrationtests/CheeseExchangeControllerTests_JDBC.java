@@ -25,7 +25,7 @@ import atd.spring.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchangeControllerTests {
+public class CheeseExchangeControllerTests_JDBC {
 	
 	@Autowired CheeseExchangeController controller;
 	@Autowired RateRepository repository;
