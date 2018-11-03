@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.configuration.CheeseControllerConfiguration;
 import atd.spring.server.configuration.ExchangeControllerConfiguration;
-import atd.spring.server.exchange.Cheese;
+import atd.spring.server.entities.Cheese;
 import atd.spring.server.exchange.Rate;
 import atd.spring.server.gateway.CheeseCatalogController;
 import atd.spring.server.gateway.CheeseExchangeController;

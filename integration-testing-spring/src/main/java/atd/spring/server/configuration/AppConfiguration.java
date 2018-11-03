@@ -17,7 +17,7 @@ import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Exchange;
-import atd.spring.server.exchange.RateLoader;
+import atd.spring.server.exchange.RateParser;
 import atd.spring.server.gateway.StatusMonitor;
 import atd.spring.server.persistence.jdbc.RateRepository;
 import atd.spring.server.rules.CompositeLineItemRule;
@@ -30,7 +30,6 @@ public class AppConfiguration {
 	public RateRepository rateRepository() {
 		return new RateRepository();
 	}
-	
 
 	@Bean
 	public CompositeLineItemRule compositeLineItemRule() {
@@ -46,8 +45,8 @@ public class AppConfiguration {
 	};
 
 	@Bean 
-	public RateLoader rateLoader() {
-		return new RateLoader();
+	public RateParser rateLoader() {
+		return new RateParser();
 	}
 
 	

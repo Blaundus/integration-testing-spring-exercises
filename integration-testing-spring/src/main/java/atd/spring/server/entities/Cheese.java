@@ -1,6 +1,4 @@
-package atd.spring.server.exchange;
-
-import java.text.NumberFormat;
+package atd.spring.server.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

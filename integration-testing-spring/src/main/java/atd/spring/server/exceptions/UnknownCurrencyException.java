@@ -2,7 +2,7 @@ package atd.spring.server.exceptions;
 
 public class UnknownCurrencyException extends RuntimeException {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 3L;
 
   public UnknownCurrencyException(String currency) {
     super("Unknown currency "+currency);

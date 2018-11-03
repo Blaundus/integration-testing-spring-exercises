@@ -14,7 +14,6 @@ public class Rates {
 	}
 	
 	public void add(String rate) {
-		
 		rates.add(removeQuotes(rate));
 	}
 

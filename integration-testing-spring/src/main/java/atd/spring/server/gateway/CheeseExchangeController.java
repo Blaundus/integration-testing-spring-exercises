@@ -25,7 +25,7 @@ import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Rate;
-import atd.spring.server.exchange.RateLoader;
+import atd.spring.server.exchange.RateParser;
 import atd.spring.server.exchange.Rates;
 import atd.spring.server.persistence.jdbc.RateRepository;
 import atd.spring.server.rules.CompositeLineItemRule;
@@ -34,7 +34,7 @@ import atd.spring.server.rules.CompositeLineItemRule;
 public class CheeseExchangeController {
 
 	@Autowired CompositeLineItemRule ruleManager;
-	@Autowired RateLoader rateLoader;
+	@Autowired RateParser rateLoader;
 	@Autowired RateRepository rateRepository;
  	@Autowired CheeseExchange exchange;
 	@Autowired StatusMonitor monitor;
@@ -73,7 +73,7 @@ public class CheeseExchangeController {
 		if (monitor.isOk()) {
 			if (isFirstTime)
 				rateLoader.setBaseRate("EUR");
-			rateLoader.add(rates);
+			rateLoader.parse(rates);
 		}
 		
 	}
@@ -104,7 +104,7 @@ public class CheeseExchangeController {
 		if (monitor.isOk()) {
 			if (isFirstTime)
 				rateLoader.setBaseRate("EUR");
-			rateLoader.add(rates.getRates());
+			rateLoader.parse(rates.getRates());
 		}
 		
 		return new ResponseEntity(HttpStatus.OK);
@@ -128,7 +128,7 @@ public class CheeseExchangeController {
 		if (monitor.isOk()) {
 			if (isFirstTime)
 				rateLoader.setBaseRate("EUR");
-			rateLoader.add(rates.getRates());
+			rateLoader.parse(rates.getRates());
 		}
 		
 		return new ResponseEntity(HttpStatus.OK);
