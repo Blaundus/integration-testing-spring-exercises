@@ -22,13 +22,13 @@ import atd.spring.server.compliance.ComplianceMonitor;
 import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
-import atd.spring.server.gateway.RegulationController;
+import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RegulationControllerTests_NestedConfiguration{
 	@Autowired
-	RegulationController controller;
+	ComplianceController controller;
 
 	@Configuration
 	@Import(RegulationControllerConfiguration.class)
@@ -50,7 +50,7 @@ public class RegulationControllerTests_NestedConfiguration{
 			ComplianceMonitor.getRegulator().StartMonitoring();
 		} else
 			ComplianceMonitor.getRegulator().StopMonitoring();
-		String log = controller.getLog();
+		String log = controller.getTrafficLog();
 		if (monitoringStatus == "on") {
 			assertTrue(!log.contains("offline"));
 		} else {

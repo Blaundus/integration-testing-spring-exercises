@@ -1,6 +1,6 @@
 package atd.spring.server.gateway;
 
-public class StatusMonitor {
+public class ExchangeStatus {
 	boolean isInitalized = false;
 	boolean isOk = true;
 	
@@ -12,11 +12,11 @@ public class StatusMonitor {
 		return isInitalized;
 	}
 	
-	public void start() {
+	public void startMonitoring() {
 		isInitalized = true;
 	}
 	
-	public void shutdown() {
+	public void stopMonitoring() {
 		isInitalized = false;
 	}
 }

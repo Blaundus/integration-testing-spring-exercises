@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 
 import atd.spring.server.gateway.CheeseExchangeController;
-import atd.spring.server.gateway.StatusMonitor;
+import atd.spring.server.gateway.ExchangeStatus;
 import atd.spring.server.helpers.LoggingMonitor;
 
 
@@ -22,7 +22,7 @@ public class ExchangeControllerConfiguration {
 	
 	@Primary
 	@Bean
-	public StatusMonitor loggingMonitor() {
+	public ExchangeStatus loggingMonitor() {
 		return new LoggingMonitor();
 	}
 	

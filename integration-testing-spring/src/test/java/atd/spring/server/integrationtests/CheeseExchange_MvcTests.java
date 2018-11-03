@@ -99,7 +99,7 @@ public class CheeseExchange_MvcTests {
 	}
 	
 	@Test
-	public void ratesAreAdded_withBaseRate() throws Exception {
+	public void ratesAreAddedOneByOne_withBaseRate() throws Exception {
 		MvcResult result;
 		String rate1 = "ILS=2.5";
 		String rate2 = "USD=3.8";

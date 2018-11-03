@@ -37,17 +37,11 @@ public class CheeseExchangeController {
 	@Autowired RateParser rateLoader;
 	@Autowired RateRepository rateRepository;
  	@Autowired CheeseExchange exchange;
-	@Autowired StatusMonitor monitor;
+	@Autowired ExchangeStatus monitor;
 	@Autowired Registrar trafficRegulator;
 	private boolean isFirstTime;
 	
-//	@GetMapping(value = "/rates/all")
-//	public ResponseEntity<Rates> getAllRates() {
-//		Rates = rateRepository.
-//	}
-	
-	@RequestMapping(method = RequestMethod.GET, 
-					value ="/rates/currency")
+	@GetMapping(value ="/rates/currency")
 	public ResponseEntity<String> getRateByCurrency(
 			@RequestParam(value="name") String currency) {
 		try {
@@ -58,16 +52,17 @@ public class CheeseExchangeController {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 	
-	@PostMapping(value = "rates/add1")
-	public void addRates_direct(@RequestParam List<String> rates) {
+	@PostMapping(value = "/rates/addmany")
+	public void addRates(@RequestParam List<String> rates) {
 		boolean isFirstTime = true;
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
 		}
 		else
 		{
-			monitor.start();
+			monitor.startMonitoring();
 		}
 		
 		if (monitor.isOk()) {
@@ -77,19 +72,11 @@ public class CheeseExchangeController {
 		}
 		
 	}
+
 	
-
-	@GetMapping(value ="/rates/currency1")
-	public ResponseEntity<String> getRateByCurrency_Rest(
-			@RequestParam(value="currency") String currency) {
-		String resultBody =rateRepository.findByCurrency(currency).toString();
-		ResponseEntity<String> response = new ResponseEntity(resultBody, HttpStatus.OK); 
-		return response; 
-	}
-
 	@PostMapping(value = "/rates/add") 
 	public ResponseEntity<?> addRate_Rest(@RequestBody String rate) {
-
+		
 		Rates rates = new Rates();
 		rates.add(rate);
 		isFirstTime = true;
@@ -98,7 +85,7 @@ public class CheeseExchangeController {
 		}
 		else
 		{
-			monitor.start();
+			monitor.startMonitoring();
 		}
 		
 		if (monitor.isOk()) {
@@ -110,29 +97,9 @@ public class CheeseExchangeController {
 		return new ResponseEntity(HttpStatus.OK);
 		
 	}
-		
-		@PostMapping(value = "/rates/addmany",
-			headers = "Accept=application/json") 
-	public ResponseEntity<?> addRates_Rest(
-			@RequestBody Rates rates) {
-		
-		boolean isFirstTime = true;
-		if (monitor.isInitialized()) {
-			isFirstTime = false;
-		}
-		else
-		{
-			monitor.start();
-		}
-		
-		if (monitor.isOk()) {
-			if (isFirstTime)
-				rateLoader.setBaseRate("EUR");
-			rateLoader.parse(rates.getRates());
-		}
-		
-		return new ResponseEntity(HttpStatus.OK);
-	}
+	
+
+
 
 	@RequestMapping(method = RequestMethod.POST, value = "bills/calculate")
 	public Money calculateBill(
@@ -146,6 +113,6 @@ public class CheeseExchangeController {
 	}
 	
 	public void Reset() {
-		this.monitor.shutdown();
+		this.monitor.stopMonitoring();
 	}
 }

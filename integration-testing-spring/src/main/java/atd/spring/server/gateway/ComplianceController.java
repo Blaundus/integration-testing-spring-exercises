@@ -12,20 +12,20 @@ import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.rules.CompositeLineItemRule;
 
 @Controller
-public class RegulationController {
-	@Autowired Registrar trafficRegulator;
+public class ComplianceController {
+	@Autowired Registrar trafficRegistrar;
 
 	@RequestMapping(method = RequestMethod.POST, value = "rules/apply")
-	public void applyRules() {
+	public void applyComplianceRules() {
 		if (ComplianceMonitor.getRegulator().shouldMonitor()) {
-			trafficRegulator.startLog();
+			trafficRegistrar.start();
 		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "rules/log")
-	public String getLog() {
+	public String getTrafficLog() {
 		if (ComplianceMonitor.getRegulator().shouldMonitor()){
-			return trafficRegulator.getLog().getAllAsString();
+			return trafficRegistrar.getLog().getAllAsString();
 		}
 		else
 			return "Monitoring is offline";

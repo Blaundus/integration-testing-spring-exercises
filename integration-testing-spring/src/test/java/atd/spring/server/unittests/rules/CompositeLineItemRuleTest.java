@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.rules.CompositeLineItemRule;
-import atd.spring.server.rules.LineItemRule;
+import atd.spring.server.rules.CalculationRule;
 
 public class CompositeLineItemRuleTest {
   
@@ -18,9 +18,9 @@ public class CompositeLineItemRuleTest {
   
   @Before
   public void setUp() {
-    List<LineItemRule> rules = new ArrayList<>();
-    LineItemRule factorRule = new LineItemRule() {
-      public float getFactor(LineItem t) {
+    List<CalculationRule> rules = new ArrayList<>();
+    CalculationRule factorRule = new CalculationRule() {
+      public float getMultiplier(LineItem t) {
         return 1.1f;
       }
     };
@@ -32,7 +32,7 @@ public class CompositeLineItemRuleTest {
 
   @Test
   public void calculation_multiplyByFactor() {
-    assertEquals(1.21f,lineItemRule.getFactor(null),0.01);
+    assertEquals(1.21f,lineItemRule.getMultiplier(null),0.01);
   }
 
 }

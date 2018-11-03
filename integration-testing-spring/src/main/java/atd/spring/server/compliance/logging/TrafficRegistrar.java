@@ -42,7 +42,7 @@ public class TrafficRegistrar implements Registrar{
   }
   
   @Override
-  public void startLog() {
+  public void start() {
 	  shouldLog = true;
   }
 

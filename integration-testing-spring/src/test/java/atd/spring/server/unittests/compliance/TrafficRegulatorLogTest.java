@@ -39,7 +39,7 @@ private TrafficRegistrar theUnit;
     theUnit = new TrafficRegistrar(rules,log);
     theUnit.documentBill(bill);
     theUnit.documentLineItem(item);
-    theUnit.startLog();
+    theUnit.start();
     verify(log,times(1)).log(bill);
   }
 

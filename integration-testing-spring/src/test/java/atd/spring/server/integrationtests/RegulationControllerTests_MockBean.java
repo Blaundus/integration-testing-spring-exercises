@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import atd.spring.server.compliance.ComplianceMonitor;
 import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
-import atd.spring.server.gateway.RegulationController;
+import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,7 +24,7 @@ import atd.spring.server.gateway.RegulationController;
 public class RegulationControllerTests_MockBean {
 
 	@Autowired
-	RegulationController controller;
+	ComplianceController controller;
 	@MockBean
 	Registrar mockRegulator;
 
@@ -32,15 +32,15 @@ public class RegulationControllerTests_MockBean {
 	@Test
 	public void whenMonitorIsOn_RulesAreApplied() {
 		ComplianceMonitor.getRegulator().StartMonitoring();
-		controller.applyRules();
-		verify(mockRegulator).startLog();
+		controller.applyComplianceRules();
+		verify(mockRegulator).start();
 	}
 
 	@Test
 	public void whenMonitorIsOff_RulesAreNotApplied() {
 		ComplianceMonitor.getRegulator().StopMonitoring();
-		controller.applyRules();
-		verify(mockRegulator, never()).startLog();
+		controller.applyComplianceRules();
+		verify(mockRegulator, never()).start();
 	}
 
 }

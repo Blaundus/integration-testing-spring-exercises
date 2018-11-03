@@ -2,7 +2,7 @@ package atd.spring.server.rules;
 
 import atd.spring.server.bills.LineItem;
 
-public interface LineItemRule {
-  float getFactor(LineItem t);
+public interface CalculationRule {
+  float getMultiplier(LineItem t);
 
 }

@@ -19,10 +19,6 @@ public class CheeseCatalogController {
 	@RequestMapping(method = RequestMethod.GET, value ="products/all")
 	public String getAllCheeses() {
 		List<Cheese> products = cheeseRepository.findAll();
-		return formatAsString(products);
-	}
-	
-	private String formatAsString(List<Cheese> products) {
 		if (products.size() == 0)
 			return ("{}");
 		

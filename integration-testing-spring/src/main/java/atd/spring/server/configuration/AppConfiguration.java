@@ -18,10 +18,10 @@ import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Exchange;
 import atd.spring.server.exchange.RateParser;
-import atd.spring.server.gateway.StatusMonitor;
+import atd.spring.server.gateway.ExchangeStatus;
 import atd.spring.server.persistence.jdbc.RateRepository;
 import atd.spring.server.rules.CompositeLineItemRule;
-import atd.spring.server.rules.LineItemRule;
+import atd.spring.server.rules.CalculationRule;
 
 @Configuration
 public class AppConfiguration {
@@ -33,9 +33,9 @@ public class AppConfiguration {
 
 	@Bean
 	public CompositeLineItemRule compositeLineItemRule() {
-		List<LineItemRule> rules = new ArrayList<>();
-	    LineItemRule factorRule = new LineItemRule() {
-	      public float getFactor(LineItem t) {
+		List<CalculationRule> rules = new ArrayList<>();
+	    CalculationRule factorRule = new CalculationRule() {
+	      public float getMultiplier(LineItem t) {
 	        return 1.1f;
 	      }
 	    };
@@ -57,8 +57,8 @@ public class AppConfiguration {
 	}
 	
 	@Bean 
-	public StatusMonitor statusMonitor() {
-		return new StatusMonitor();
+	public ExchangeStatus statusMonitor() {
+		return new ExchangeStatus();
 	}
 	
 	@Bean

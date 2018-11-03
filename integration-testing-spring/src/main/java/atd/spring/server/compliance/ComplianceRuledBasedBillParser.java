@@ -8,7 +8,7 @@ import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.RuleBasedBillParser;
 import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.rules.CompositeLineItemRule;
-import atd.spring.server.rules.LineItemRule;
+import atd.spring.server.rules.CalculationRule;
 
 public class ComplianceRuledBasedBillParser  extends RuleBasedBillParser{
   private Registrar registrar;

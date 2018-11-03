@@ -42,7 +42,7 @@ public class HackingTests {
 	@Test
 	public void CannotAddRates_withFaultyMonitor() {
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");
-		controller.addRates_direct(rates);
+		controller.addRates(rates);
 		//assertEquals("Error", controller.getRates());
 	}
 }

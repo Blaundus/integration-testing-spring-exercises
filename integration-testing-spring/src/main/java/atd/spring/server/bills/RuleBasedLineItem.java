@@ -2,12 +2,12 @@ package atd.spring.server.bills;
 
 import java.math.BigDecimal;
 
-import atd.spring.server.rules.LineItemRule;
+import atd.spring.server.rules.CalculationRule;
 
 public class RuleBasedLineItem extends LineItem {
-  LineItemRule rules; 
+  CalculationRule rules; 
 
-  public RuleBasedLineItem(String description, Money itemPrice, BigDecimal itemAmount, LineItemRule rules) {
+  public RuleBasedLineItem(String description, Money itemPrice, BigDecimal itemAmount, CalculationRule rules) {
     super(description, itemPrice, itemAmount);
     this.rules = rules;
   }
@@ -16,7 +16,7 @@ public class RuleBasedLineItem extends LineItem {
   public Money getTotalAmount() {
     float price = getItemPrice().getAmount().floatValue();
     float amount = getItemAmount().floatValue();
-    float factor = rules.getFactor(this);
+    float factor = rules.getMultiplier(this);
     float ret = price*amount*factor;
     
     return new Money(BigDecimal.valueOf(ret),getItemPrice().getCurrency());

@@ -11,10 +11,10 @@ import org.junit.Test;
 
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.Money;
-import atd.spring.server.rules.FactorByCurrencyRule;
+import atd.spring.server.rules.CurrencyRule;
 
 public class FactorByCurrencyRuleTest {
-  private FactorByCurrencyRule lineItemRule;
+  private CurrencyRule lineItemRule;
   
   @Before
   public void setUp() {
@@ -22,20 +22,20 @@ public class FactorByCurrencyRuleTest {
     factors.put("CHF",1.15f);
     factors.put("EUR",0.9f);
     
-    lineItemRule = new FactorByCurrencyRule(factors);
+    lineItemRule = new CurrencyRule(factors);
     
   }
 
   @Test
   public void calculation_WithFactorRuleApplied() {
-    assertEquals(1.15f,lineItemRule.getFactor(
+    assertEquals(1.15f,lineItemRule.getMultiplier(
     		new LineItem("item",new Money(BigDecimal.ZERO,"CHF")
     				,BigDecimal.ZERO)),0.01);
   }
 
   @Test
   public void calculation_WithoutFactorRuleApplied() {
-    assertEquals(1f,lineItemRule.getFactor(
+    assertEquals(1f,lineItemRule.getMultiplier(
     		new LineItem("item",new Money(BigDecimal.ZERO,"JND")
     				,BigDecimal.ZERO)),0.01);
   }

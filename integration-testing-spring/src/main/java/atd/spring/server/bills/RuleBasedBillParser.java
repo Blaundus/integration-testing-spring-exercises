@@ -2,12 +2,12 @@ package atd.spring.server.bills;
 
 import java.math.BigDecimal;
 
-import atd.spring.server.rules.LineItemRule;
+import atd.spring.server.rules.CalculationRule;
 
 public class RuleBasedBillParser extends BillParser {
-  LineItemRule rules; 
+  CalculationRule rules; 
   
-  public RuleBasedBillParser (LineItemRule rules) {
+  public RuleBasedBillParser (CalculationRule rules) {
     this.rules = rules;
   }
   

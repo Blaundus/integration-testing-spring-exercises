@@ -5,26 +5,26 @@ import java.util.List;
 
 import atd.spring.server.bills.LineItem;
 
-public class CompositeLineItemRule implements LineItemRule {
-  List<LineItemRule> rules;
+public class CompositeLineItemRule implements CalculationRule {
+  List<CalculationRule> rules;
   
   
-  public CompositeLineItemRule(List<LineItemRule> rules) {
-    this.rules = new ArrayList<LineItemRule>(rules);
+  public CompositeLineItemRule(List<CalculationRule> rules) {
+    this.rules = new ArrayList<CalculationRule>(rules);
   }
   
   public void addRules() {
-	this.rules = new ArrayList<LineItemRule>();
+	this.rules = new ArrayList<CalculationRule>();
 	rules.add(new GratisOnStarRule());
-	rules.add(new FactorByCurrencyRule());
+	rules.add(new CurrencyRule());
   }
 
   @Override
-  public float getFactor(LineItem t) {
+  public float getMultiplier(LineItem t) {
     
     float factor = 1.0f;
-    for (LineItemRule rule : rules) {
-      factor*=rule.getFactor(t);
+    for (CalculationRule rule : rules) {
+      factor*=rule.getMultiplier(t);
     }
     return factor;
   }

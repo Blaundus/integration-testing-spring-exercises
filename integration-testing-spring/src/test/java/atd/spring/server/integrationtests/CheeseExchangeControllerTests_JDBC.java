@@ -45,7 +45,7 @@ public class CheeseExchangeControllerTests_JDBC {
 	public void ratesAreAdded_withBaseRate() {
 		
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");
-		controller.addRates_direct(rates);
+		controller.addRates(rates);
 		
 		assertEquals("EUR = 1.000000", controller.getRateByCurrency("EUR").getBody());
 		assertEquals("ILS = 2.500000", controller.getRateByCurrency("ILS").getBody());
