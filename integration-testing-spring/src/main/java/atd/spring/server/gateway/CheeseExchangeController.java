@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import atd.spring.server.bills.Bill;
-import atd.spring.server.bills.BillTextFileLoader;
+import atd.spring.server.bills.BillParser;
 import atd.spring.server.bills.Money;
 import atd.spring.server.compliance.CompliantRuledBillTextFileLoader;
 import atd.spring.server.compliance.TrafficRegulator;
@@ -138,8 +138,8 @@ public class CheeseExchangeController {
 	public Money calculateBill(
 			@RequestBody List<String> items, 
 			@RequestBody String currency) {
-		BillTextFileLoader billLoader = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
-		Bill bill = billLoader.createFromLineItems(items);
+		BillParser parser = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
+		Bill bill = parser.createFromLineItems(items);
 		Money result = bill.getTotal(currency);
 		
 		return result;
