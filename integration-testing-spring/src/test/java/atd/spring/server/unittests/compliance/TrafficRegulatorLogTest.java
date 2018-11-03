@@ -11,20 +11,20 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
-import atd.spring.server.compliance.LineItemTrafficRule;
-import atd.spring.server.compliance.TrafficLog;
-import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.logging.BillLog;
+import atd.spring.server.compliance.logging.TrafficRegistrar;
+import atd.spring.server.compliance.rules.LoggableRule;
 
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class TrafficRegulatorLogTest {
-  @Mock private TrafficLog log;
-  @Mock private LineItemTrafficRule alwaysLog;
-  @Mock private LineItemTrafficRule neverLog;
+  @Mock private BillLog log;
+  @Mock private LoggableRule alwaysLog;
+  @Mock private LoggableRule neverLog;
   @Mock private Bill bill;
   @Mock private LineItem item;
-  private List<LineItemTrafficRule> rules = new ArrayList<LineItemTrafficRule>();
-private TrafficRegulatorLogger theUnit;
+  private List<LoggableRule> rules = new ArrayList<LoggableRule>();
+private TrafficRegistrar theUnit;
   
   @Before
   public void setUp() {
@@ -36,28 +36,28 @@ private TrafficRegulatorLogger theUnit;
   @Test
   public void testLogsWhenNeeded() {
     rules.add(alwaysLog);
-    theUnit = new TrafficRegulatorLogger(rules,log);
-    theUnit.registerBill(bill);
-    theUnit.registerLineItem(item);
-    theUnit.apply();
+    theUnit = new TrafficRegistrar(rules,log);
+    theUnit.documentBill(bill);
+    theUnit.documentLineItem(item);
+    theUnit.startLog();
     verify(log,times(1)).log(bill);
   }
 
   @Test
   public void testDoesNotLogsWhenNotNeeded() {
     rules.add(neverLog);
-    theUnit = new TrafficRegulatorLogger(rules,log);
-    theUnit.registerBill(bill);
-    theUnit.registerLineItem(item);
+    theUnit = new TrafficRegistrar(rules,log);
+    theUnit.documentBill(bill);
+    theUnit.documentLineItem(item);
     verify(log,never()).log(bill);
   }
 
   @Test
   public void LogsWhenBillSetLate() {
     rules.add(alwaysLog);
-    theUnit = new TrafficRegulatorLogger(rules,log);
-    theUnit.registerLineItem(item);
-    theUnit.registerBill(bill);
+    theUnit = new TrafficRegistrar(rules,log);
+    theUnit.documentLineItem(item);
+    theUnit.documentBill(bill);
     verify(log,times(1)).log(bill);
   }
 
@@ -66,9 +66,9 @@ private TrafficRegulatorLogger theUnit;
     rules.add(alwaysLog);
     rules.add(alwaysLog);
     rules.add(alwaysLog);
-    theUnit = new TrafficRegulatorLogger(rules,log);
-    theUnit.registerLineItem(item);
-    theUnit.registerBill(bill);
+    theUnit = new TrafficRegistrar(rules,log);
+    theUnit.documentLineItem(item);
+    theUnit.documentBill(bill);
     verify(log,times(1)).log(bill);
   }
 }

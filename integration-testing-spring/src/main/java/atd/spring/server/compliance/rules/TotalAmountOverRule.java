@@ -1,13 +1,13 @@
-package atd.spring.server.compliance;
+package atd.spring.server.compliance.rules;
 
 import atd.spring.server.bills.LineItem;
 
-public class LogTotalAmountOver implements LineItemTrafficRule{
+public class TotalAmountOverRule implements LoggableRule{
 
   private double threshold;
   private double totalAmount=0;
 
-  public LogTotalAmountOver(double threshold) {
+  public TotalAmountOverRule(double threshold) {
     this.threshold = threshold;
   }
 

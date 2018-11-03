@@ -6,29 +6,31 @@ import java.math.BigDecimal;
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.RuleBasedBillParser;
+import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.rules.CompositeLineItemRule;
 import atd.spring.server.rules.LineItemRule;
 
-public class CompliantRuledBillTextFileLoader  extends RuleBasedBillParser{
-  private TrafficRegulator amountTrafficRegulator;
+public class ComplianceRuledBasedBillParser  extends RuleBasedBillParser{
+  private Registrar registrar;
   
-  public CompliantRuledBillTextFileLoader(CompositeLineItemRule ruleManager, TrafficRegulator amountTrafficRegulator) {
+  public ComplianceRuledBasedBillParser(CompositeLineItemRule ruleManager, Registrar trafficRegulator) {
     super(ruleManager);
-    this.amountTrafficRegulator = amountTrafficRegulator;
+    this.registrar = trafficRegulator;
   }
   
   @Override
   public Bill loadFromFile(String filename) throws IOException {
-    Bill ret = super.loadFromFile(filename);
-    amountTrafficRegulator.registerBill(ret);
-    return ret;
+    Bill bill = super.loadFromFile(filename);
+    registrar.documentBill(bill);
+    return bill;
   }
-  
-  @Override
+
+	@Override
   protected LineItem createRuleBasedLineItem(String desc, BigDecimal amount, 
       BigDecimal price, String currency) {
     LineItem ret = super.createRuleBasedLineItem(desc, amount, price, currency);
-    amountTrafficRegulator.registerLineItem(ret);
+    registrar.documentLineItem(ret);
     return ret;
   }
+  
 }

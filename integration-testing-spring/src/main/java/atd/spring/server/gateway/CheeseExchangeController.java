@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.BillParser;
 import atd.spring.server.bills.Money;
-import atd.spring.server.compliance.CompliantRuledBillTextFileLoader;
-import atd.spring.server.compliance.TrafficRegulator;
-import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.ComplianceRuledBasedBillParser;
+import atd.spring.server.compliance.logging.Registrar;
+import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Rate;
 import atd.spring.server.exchange.RateLoader;
@@ -38,7 +38,7 @@ public class CheeseExchangeController {
 	@Autowired RateRepository rateRepository;
  	@Autowired CheeseExchange exchange;
 	@Autowired StatusMonitor monitor;
-	@Autowired TrafficRegulator trafficRegulator;
+	@Autowired Registrar trafficRegulator;
 	private boolean isFirstTime;
 	
 //	@GetMapping(value = "/rates/all")
@@ -138,7 +138,7 @@ public class CheeseExchangeController {
 	public Money calculateBill(
 			@RequestBody List<String> items, 
 			@RequestBody String currency) {
-		BillParser parser = new CompliantRuledBillTextFileLoader(ruleManager, trafficRegulator);
+		BillParser parser = new ComplianceRuledBasedBillParser(ruleManager, trafficRegulator);
 		Bill bill = parser.createFromLineItems(items);
 		Money result = bill.getTotal(currency);
 		

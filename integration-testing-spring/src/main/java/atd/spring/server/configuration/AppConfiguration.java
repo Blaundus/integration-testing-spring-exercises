@@ -13,8 +13,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import atd.spring.server.bills.LineItem;
-import atd.spring.server.compliance.TrafficRegulator;
-import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.logging.Registrar;
+import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.Exchange;
 import atd.spring.server.exchange.RateLoader;
@@ -63,7 +63,7 @@ public class AppConfiguration {
 	}
 	
 	@Bean
-	public TrafficRegulator trafficLogger( ) {
-		return new TrafficRegulatorLogger();
+	public Registrar trafficLogger( ) {
+		return new TrafficRegistrar();
 	}
 }

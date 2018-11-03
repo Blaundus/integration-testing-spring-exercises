@@ -1,19 +1,19 @@
 package atd.spring.server.compliance;
 
-public class RegulationMonitor {
+public class ComplianceMonitor {
 	
 	private boolean shouldMonitor;
-	private static RegulationMonitor theRegulator;
+	private static ComplianceMonitor theMonitor;
 	
-	public static RegulationMonitor getRegulator() {
-		if (theRegulator == null) {
-			theRegulator = new RegulationMonitor(true);
+	public static ComplianceMonitor getRegulator() {
+		if (theMonitor == null) {
+			theMonitor = new ComplianceMonitor(true);
 		}
-		return theRegulator;
+		return theMonitor;
 	}
 
 	
-	public RegulationMonitor(boolean shouldMonitor) {
+	public ComplianceMonitor(boolean shouldMonitor) {
 		this.shouldMonitor = shouldMonitor;
 	}
 	

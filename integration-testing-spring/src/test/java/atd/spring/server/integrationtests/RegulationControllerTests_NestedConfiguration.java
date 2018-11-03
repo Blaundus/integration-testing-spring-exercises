@@ -18,9 +18,9 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import atd.spring.server.compliance.RegulationMonitor;
-import atd.spring.server.compliance.TrafficRegulator;
-import atd.spring.server.compliance.TrafficRegulatorLogger;
+import atd.spring.server.compliance.ComplianceMonitor;
+import atd.spring.server.compliance.logging.Registrar;
+import atd.spring.server.compliance.logging.TrafficRegistrar;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
 import atd.spring.server.gateway.RegulationController;
 
@@ -35,8 +35,8 @@ public class RegulationControllerTests_NestedConfiguration{
 	static class NestedConfiguration {
 		
 		@Bean
-		public TrafficRegulator trafficRegulator() {
-			return Mockito.mock(TrafficRegulator.class);
+		public Registrar trafficRegulator() {
+			return Mockito.mock(Registrar.class);
 		}
 	}
 
@@ -47,9 +47,9 @@ public class RegulationControllerTests_NestedConfiguration{
 	@Test
 	public void whenSettingMonitoring_LogContentChange() {
 		if (monitoringStatus == "on") {
-			RegulationMonitor.getRegulator().StartMonitoring();
+			ComplianceMonitor.getRegulator().StartMonitoring();
 		} else
-			RegulationMonitor.getRegulator().StopMonitoring();
+			ComplianceMonitor.getRegulator().StopMonitoring();
 		String log = controller.getLog();
 		if (monitoringStatus == "on") {
 			assertTrue(!log.contains("offline"));

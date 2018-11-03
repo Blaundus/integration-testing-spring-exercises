@@ -1,8 +1,7 @@
-package atd.spring.server.compliance;
+package atd.spring.server.compliance.rules;
 
 import atd.spring.server.bills.LineItem;
 
-public interface LineItemTrafficRule {
+public interface LoggableRule {
   boolean shouldLog(LineItem item);
-
 }

@@ -13,8 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import atd.spring.server.compliance.RegulationMonitor;
-import atd.spring.server.compliance.TrafficRegulator;
+import atd.spring.server.compliance.ComplianceMonitor;
+import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
 import atd.spring.server.gateway.RegulationController;
 
@@ -26,21 +26,21 @@ public class RegulationControllerTests_MockBean {
 	@Autowired
 	RegulationController controller;
 	@MockBean
-	TrafficRegulator mockRegulator;
+	Registrar mockRegulator;
 
 
 	@Test
 	public void whenMonitorIsOn_RulesAreApplied() {
-		RegulationMonitor.getRegulator().StartMonitoring();
+		ComplianceMonitor.getRegulator().StartMonitoring();
 		controller.applyRules();
-		verify(mockRegulator).apply();
+		verify(mockRegulator).startLog();
 	}
 
 	@Test
 	public void whenMonitorIsOff_RulesAreNotApplied() {
-		RegulationMonitor.getRegulator().StopMonitoring();
+		ComplianceMonitor.getRegulator().StopMonitoring();
 		controller.applyRules();
-		verify(mockRegulator, never()).apply();
+		verify(mockRegulator, never()).startLog();
 	}
 
 }
