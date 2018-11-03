@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import atd.spring.server.bills.Bill;
 import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.RuledBillTextFileLoader;
+import atd.spring.server.rules.CompositeLineItemRule;
 import atd.spring.server.rules.LineItemRule;
 
 public class CompliantRuledBillTextFileLoader  extends RuledBillTextFileLoader{
   private TrafficRegulator amountTrafficRegulator;
   
-  public CompliantRuledBillTextFileLoader(LineItemRule rules, TrafficRegulator amountTrafficRegulator) {
-    super(rules);
+  public CompliantRuledBillTextFileLoader(CompositeLineItemRule ruleManager, TrafficRegulator amountTrafficRegulator) {
+    super(ruleManager);
     this.amountTrafficRegulator = amountTrafficRegulator;
   }
   

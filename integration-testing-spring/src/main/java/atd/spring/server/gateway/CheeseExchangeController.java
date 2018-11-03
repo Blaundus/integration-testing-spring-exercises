@@ -41,6 +41,10 @@ public class CheeseExchangeController {
 	@Autowired TrafficRegulator trafficRegulator;
 	private boolean isFirstTime;
 	
+//	@GetMapping(value = "/rates/all")
+//	public ResponseEntity<Rates> getAllRates() {
+//		Rates = rateRepository.
+//	}
 	
 	@RequestMapping(method = RequestMethod.GET, 
 					value ="/rates/currency")

@@ -1,7 +1,5 @@
 package atd.spring.server.integrationtests;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -20,26 +18,24 @@ import atd.spring.server.compliance.TrafficRegulator;
 import atd.spring.server.configuration.RegulationControllerConfiguration;
 import atd.spring.server.gateway.RegulationController;
 
-
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes= {RegulationControllerConfiguration.class})
-public class RegulationControllerTests {
+@ContextConfiguration(classes = { RegulationControllerConfiguration.class })
+public class RegulationControllerTests_MockBean {
 
-	@Autowired 	RegulationController controller;
-	@MockBean 	TrafficRegulator mockRegulator;
-	
-	@Value(value = "${monitoring.status}") 		
-	String		monitoringStatus;
-	
+	@Autowired
+	RegulationController controller;
+	@MockBean
+	TrafficRegulator mockRegulator;
+
+
 	@Test
 	public void whenMonitorIsOn_RulesAreApplied() {
 		RegulationMonitor.getRegulator().StartMonitoring();
 		controller.applyRules();
 		verify(mockRegulator).apply();
 	}
-	
+
 	@Test
 	public void whenMonitorIsOff_RulesAreNotApplied() {
 		RegulationMonitor.getRegulator().StopMonitoring();
@@ -47,23 +43,4 @@ public class RegulationControllerTests {
 		verify(mockRegulator, never()).apply();
 	}
 
-	@Test
-	public void whenSettingMonitoring_LogContentChange() {
-		if (monitoringStatus == "on") {
-			RegulationMonitor.getRegulator().StartMonitoring();
-		}
-		else
-			RegulationMonitor.getRegulator().StopMonitoring();
-		String log = controller.getLog();
-		if (monitoringStatus == "on") {
-			assertTrue(!log.contains("offline"));
-		}
-		else {
-			assertTrue(log.contains("offline"));
-		}
-			
-			
-			
-	}
-	
 }

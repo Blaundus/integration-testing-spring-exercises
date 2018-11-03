@@ -14,24 +14,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.configuration.AppConfiguration;
 import atd.spring.server.configuration.JdbcDataConfiguration;
+import atd.spring.server.configuration.JpaDataConfiguration;
 import atd.spring.server.persistence.jdbc.RateRepository;
+import atd.spring.server.persistence.jpa.CheeseRepository;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes= {AppConfiguration.class, 
-		JdbcDataConfiguration.class })
+@ContextConfiguration(classes= {
+		AppConfiguration.class, 
+		JdbcDataConfiguration.class,
+		JpaDataConfiguration.class})
 public class EmptyTest {
 
 	@Autowired JdbcTemplate jdbcTemplate;
 	@Autowired RateRepository rates;
-//	@Autowired RateJpaRepository jpaRates;
+	@Autowired CheeseRepository cheeses;
 	
 	@Test
 	public void canRunIntegrationTests() {
 		assertNotNull(rates); 
 		assertNotNull(jdbcTemplate);
-//		assertNotNull(jpaRates);
+		assertNotNull(cheeses);
 	}
 
 }
