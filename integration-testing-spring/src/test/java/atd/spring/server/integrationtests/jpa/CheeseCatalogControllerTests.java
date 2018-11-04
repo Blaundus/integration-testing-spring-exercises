@@ -28,7 +28,7 @@ import atd.spring.server.gateway.CheeseExchangeController;
 @SpringBootTest
 @ContextConfiguration(classes= {CheeseControllerConfiguration.class })
 @DataJpaTest
-public class CheeseControllerTests{
+public class CheeseCatalogControllerTests{
 	
 	@Autowired CheeseCatalogController controller;
 	@Autowired TestEntityManager entityManager;
