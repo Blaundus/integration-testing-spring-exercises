@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 
 import atd.spring.server.gateway.CheeseExchangeController;
 import atd.spring.server.gateway.ExchangeStatus;
-import atd.spring.server.helpers.FaultyMonitor;
+import atd.spring.server.helpers.FaultyStatus;
 
 @Profile("hacker")
 @Configuration
@@ -15,9 +15,8 @@ public class HackerConfiguration {
 
 	@Primary
 	@Bean
-	public ExchangeStatus faultyMonitor() {
-		System.out.println("Got a faulty one here");
-		return new FaultyMonitor();
+	public ExchangeStatus faultyStatus() {
+		return new FaultyStatus();
 	}
 	
 	@Bean

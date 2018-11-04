@@ -45,7 +45,7 @@ public class AppConfiguration {
 	};
 
 	@Bean 
-	public RateParser rateLoader() {
+	public RateParser rateParser() {
 		return new RateParser();
 	}
 

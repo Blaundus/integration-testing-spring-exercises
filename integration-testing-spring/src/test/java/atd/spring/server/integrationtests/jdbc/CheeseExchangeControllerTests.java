@@ -31,7 +31,7 @@ public class CheeseExchangeControllerTests{
 	@Autowired RateRepository repository;
 	
 	@Test
-	public void canRunControllerTests() {
+	public void canRunIntegrationTests() {
 		assertNotNull(controller);
 		assertNotNull(repository);
 	}

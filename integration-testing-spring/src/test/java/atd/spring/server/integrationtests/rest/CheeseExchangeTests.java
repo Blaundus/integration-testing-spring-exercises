@@ -61,7 +61,7 @@ public class CheeseExchangeTests {
 	}
 
 	@Test
-	public void canRunControllerTests() {
+	public void canRunIntegrationTests() {
 		assertNotNull(controller);
 		assertNotNull(repository);
 
