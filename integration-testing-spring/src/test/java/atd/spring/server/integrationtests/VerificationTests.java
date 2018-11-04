@@ -25,7 +25,7 @@ import atd.spring.server.persistence.jpa.CheeseRepository;
 		AppConfiguration.class, 
 		JdbcDataConfiguration.class,
 		JpaDataConfiguration.class})
-public class EmptyTest {
+public class VerificationTests {
 
 	@Autowired JdbcTemplate jdbcTemplate;
 	@Autowired RateRepository rates;
