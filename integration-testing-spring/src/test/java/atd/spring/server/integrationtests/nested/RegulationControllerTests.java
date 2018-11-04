@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.nested;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
@@ -26,7 +26,7 @@ import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class RegulationControllerTests_NestedConfiguration{
+public class RegulationControllerTests{
 	@Autowired
 	ComplianceController controller;
 

@@ -70,12 +70,11 @@ public class CheeseExchangeController {
 				rateLoader.setBaseRate("EUR");
 			rateLoader.parse(rates);
 		}
-		
 	}
 
 	
 	@PostMapping(value = "/rates/add") 
-	public ResponseEntity<?> addRate_Rest(@RequestBody String rate) {
+	public ResponseEntity<?> addRate(@RequestBody String rate) {
 		
 		Rates rates = new Rates();
 		rates.add(rate);
@@ -101,7 +100,7 @@ public class CheeseExchangeController {
 
 
 
-	@RequestMapping(method = RequestMethod.POST, value = "bills/calculate")
+	@PostMapping(value = "bills/calculate")
 	public Money calculateBill(
 			@RequestBody List<String> items, 
 			@RequestBody String currency) {

@@ -54,5 +54,4 @@ public class ClientTests {
 			.andRespond(withBadRequest());
 		client.addRate("Invalid");
 	}
-
 }

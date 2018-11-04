@@ -17,14 +17,14 @@ import atd.spring.server.compliance.rules.LoggableRule;
 
 import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
-public class TrafficRegulatorLogTest {
+public class TrafficRegistrarTests {
   @Mock private BillLog log;
   @Mock private LoggableRule alwaysLog;
   @Mock private LoggableRule neverLog;
   @Mock private Bill bill;
   @Mock private LineItem item;
   private List<LoggableRule> rules = new ArrayList<LoggableRule>();
-private TrafficRegistrar theUnit;
+  private TrafficRegistrar registrar;
   
   @Before
   public void setUp() {
@@ -32,43 +32,42 @@ private TrafficRegistrar theUnit;
     when(neverLog.shouldLog(any(LineItem.class))).thenReturn(false);
   }
   
-  //TODO: Rewrite tests
   @Test
-  public void testLogsWhenNeeded() {
+  public void logsBillAndLineItems_WhenNeeded() {
     rules.add(alwaysLog);
-    theUnit = new TrafficRegistrar(rules,log);
-    theUnit.documentBill(bill);
-    theUnit.documentLineItem(item);
-    theUnit.start();
+    registrar = new TrafficRegistrar(rules,log);
+    registrar.documentBill(bill);
+    registrar.documentLineItem(item);
+    registrar.start();
     verify(log,times(1)).log(bill);
   }
 
   @Test
-  public void testDoesNotLogsWhenNotNeeded() {
+  public void doesNotLogs_WhenNotNeeded() {
     rules.add(neverLog);
-    theUnit = new TrafficRegistrar(rules,log);
-    theUnit.documentBill(bill);
-    theUnit.documentLineItem(item);
+    registrar = new TrafficRegistrar(rules,log);
+    registrar.documentBill(bill);
+    registrar.documentLineItem(item);
     verify(log,never()).log(bill);
   }
 
   @Test
-  public void LogsWhenBillSetLate() {
+  public void logsWhenBillSetLate() {
     rules.add(alwaysLog);
-    theUnit = new TrafficRegistrar(rules,log);
-    theUnit.documentLineItem(item);
-    theUnit.documentBill(bill);
+    registrar = new TrafficRegistrar(rules,log);
+    registrar.documentLineItem(item);
+    registrar.documentBill(bill);
     verify(log,times(1)).log(bill);
   }
 
   @Test
-  public void testLogsOnlyOnce() {
+  public void logsOnlyOnce_onMultipleAlwaysRules() {
     rules.add(alwaysLog);
     rules.add(alwaysLog);
     rules.add(alwaysLog);
-    theUnit = new TrafficRegistrar(rules,log);
-    theUnit.documentLineItem(item);
-    theUnit.documentBill(bill);
+    registrar = new TrafficRegistrar(rules,log);
+    registrar.documentLineItem(item);
+    registrar.documentBill(bill);
     verify(log,times(1)).log(bill);
   }
 }

@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.profiles;
 
 import static org.junit.Assert.assertEquals;
 

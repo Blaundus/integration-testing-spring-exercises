@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.mocking;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.never;
@@ -21,7 +21,7 @@ import atd.spring.server.gateway.ComplianceController;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = { RegulationControllerConfiguration.class })
-public class RegulationControllerTests_MockBean {
+public class RegulationControllerTests{
 
 	@Autowired
 	ComplianceController controller;

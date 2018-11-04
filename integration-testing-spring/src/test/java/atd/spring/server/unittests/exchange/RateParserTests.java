@@ -13,39 +13,37 @@ import atd.spring.server.exceptions.ParsingException;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.exchange.RateParser;
 
-
-
-public class RateLoaderTest {
-  private RateParser theUnit;
-  @Mock private CheeseExchange exchangeMock;  
+public class RateParserTests {
+  private RateParser parser;
+  @Mock private CheeseExchange mockExchange;  
   
   @Before
   public void setUp() {
-    theUnit = new RateParser();
+    parser = new RateParser();
     MockitoAnnotations.initMocks(this);
   }
 
   @Test
   public void testIntegerRate() {
-    theUnit.setExchangeRate("USD=2",exchangeMock);
-    verify(exchangeMock).setRate("USD", BigDecimal.valueOf(2));
+    parser.setExchangeRate("USD=2",mockExchange);
+    verify(mockExchange).setRate("USD", BigDecimal.valueOf(2));
   }
 
   @Test
   public void testFractionRate() {
-    theUnit.setExchangeRate("USD=0.5",exchangeMock);
-    verify(exchangeMock).setRate("USD", BigDecimal.valueOf(0.5));
+    parser.setExchangeRate("USD=0.5",mockExchange);
+    verify(mockExchange).setRate("USD", BigDecimal.valueOf(0.5));
   }
   
   @Test
   public void testFloatRate() {
-    theUnit.setExchangeRate("USD=2.5",exchangeMock);
-    verify(exchangeMock).setRate("USD", BigDecimal.valueOf(2.5));
+    parser.setExchangeRate("USD=2.5",mockExchange);
+    verify(mockExchange).setRate("USD", BigDecimal.valueOf(2.5));
   }
   
   @Test(expected=ParsingException.class)
   public void testBadLinesIgnored() {
-    theUnit.setExchangeRate("USDX=2.5",exchangeMock);
+    parser.setExchangeRate("USDX=2.5",mockExchange);
   }
   
 }

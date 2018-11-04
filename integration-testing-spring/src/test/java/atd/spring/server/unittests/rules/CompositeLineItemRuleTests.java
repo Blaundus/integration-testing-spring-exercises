@@ -12,7 +12,7 @@ import atd.spring.server.bills.LineItem;
 import atd.spring.server.rules.CompositeLineItemRule;
 import atd.spring.server.rules.CalculationRule;
 
-public class CompositeLineItemRuleTest {
+public class CompositeLineItemRuleTests {
   
   CompositeLineItemRule lineItemRule;
   

@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.jpa;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,7 +28,7 @@ import atd.spring.server.gateway.CheeseExchangeController;
 @SpringBootTest
 @ContextConfiguration(classes= {CheeseControllerConfiguration.class })
 @DataJpaTest
-public class CheeseControllerTests_JPA {
+public class CheeseControllerTests{
 	
 	@Autowired CheeseCatalogController controller;
 	@Autowired TestEntityManager entityManager;

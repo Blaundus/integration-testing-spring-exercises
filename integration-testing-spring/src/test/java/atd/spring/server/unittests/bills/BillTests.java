@@ -13,12 +13,12 @@ import atd.spring.server.bills.Money;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.unittests.mocks.MockRateRepository;
 
-public class BillTest extends Bill {
+public class BillTests extends Bill {
   
-  private CheeseExchange centralExchange;
-  private LineItem israeliChair;
-  private LineItem jordanianChair;
-  private LineItem israeliTable;
+  private CheeseExchange cheeseExchange;
+  private LineItem feta;
+  private LineItem gouda;
+  private LineItem parmagiane;
   private MockRateRepository mockRepository;
 
   Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
@@ -27,50 +27,50 @@ public class BillTest extends Bill {
   Money oneJND = new Money(BigDecimal.valueOf(1),"JND");
   Money fiveJND = new Money(BigDecimal.valueOf(5),"JND");
   Money threeJND = new Money(BigDecimal.valueOf(3),"JND");
-  private LineItem sixJordanianChairs;
+  private LineItem sixManchego;
   
 
   
   @Before
   public void setUp() throws Exception {
 	mockRepository = new MockRateRepository();
-    centralExchange = new CheeseExchange(mockRepository);
-    centralExchange.setBaseRate("ILS");
-    centralExchange.setRate("JND", BigDecimal.valueOf(2));
+    cheeseExchange = new CheeseExchange(mockRepository);
+    cheeseExchange.setBaseRate("ILS");
+    cheeseExchange.setRate("JND", BigDecimal.valueOf(2));
     
-    israeliChair = new LineItem("chair",twoILS,BigDecimal.ONE);
-    jordanianChair = new LineItem("chair",oneJND,BigDecimal.ONE);
-    sixJordanianChairs = new LineItem("chair",oneJND,BigDecimal.valueOf(6));
-    israeliTable = new LineItem("table",tenILS,BigDecimal.ONE);
+    feta = new LineItem("feta",twoILS,BigDecimal.ONE);
+    gouda = new LineItem("gouda",oneJND,BigDecimal.ONE);
+    sixManchego = new LineItem("manchego",oneJND,BigDecimal.valueOf(6));
+    parmagiane = new LineItem("parmagiane",tenILS,BigDecimal.ONE);
   }
 
   @Test
   public void emptyBill_hasZeroMoney() {
     Bill bill = new Bill();
-    assertEquals(new Money("ILS"),bill.getTotal(centralExchange,"ILS"));
+    assertEquals(new Money("ILS"),bill.getTotal(cheeseExchange,"ILS"));
   }
   
   @Test
   public void singleLineBill_withoutCurrencyChange() {
     Bill bill = new Bill();
-    bill.addItem(israeliChair);
-    assertEquals(twoILS, bill.getTotal(centralExchange,"ILS"));
+    bill.addItem(feta);
+    assertEquals(twoILS, bill.getTotal(cheeseExchange,"ILS"));
   }
 
   @Test
   public void singleLineBill_withCurrencyChange() {
     Bill bill = new Bill();
-    bill.addItem(jordanianChair);
-    assertEquals(twoILS, bill.getTotal(centralExchange,"ILS"));
+    bill.addItem(gouda);
+    assertEquals(twoILS, bill.getTotal(cheeseExchange,"ILS"));
   }
   
   @Test
   public void multiLineBill_withCurrencyChange() {
     Bill bill = new Bill();
-    bill.addItem(sixJordanianChairs);
-    bill.addItem(israeliTable);
+    bill.addItem(sixManchego);
+    bill.addItem(parmagiane);
     assertEquals(new Money(BigDecimal.valueOf(22),"ILS"), 
-        bill.getTotal(centralExchange,"ILS"));
+        bill.getTotal(cheeseExchange,"ILS"));
   }
 
 }

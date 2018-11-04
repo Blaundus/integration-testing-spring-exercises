@@ -11,17 +11,17 @@ import atd.spring.server.bills.Money;
 import atd.spring.server.exchange.CheeseExchange;
 import atd.spring.server.unittests.mocks.MockRateRepository;
 
-public class MoneyTest {
+public class MoneyTests {
 
-  private CheeseExchange centralExchange;
+  private CheeseExchange exchange;
   private MockRateRepository mockRepository;
 
   @Before
   public void setUp() throws Exception {
 	mockRepository = new MockRateRepository(); 
-    centralExchange=new CheeseExchange(mockRepository);
-    centralExchange.setBaseRate("ILS");
-    centralExchange.setRate("JND", BigDecimal.valueOf(2));
+    exchange=new CheeseExchange(mockRepository);
+    exchange.setBaseRate("ILS");
+    exchange.setRate("JND", BigDecimal.valueOf(2));
   }
 
   @Test
@@ -29,7 +29,7 @@ public class MoneyTest {
     Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
     Money twoILS = new Money(BigDecimal.valueOf(2),"ILS");
     Money threeILS = new Money(BigDecimal.valueOf(3),"ILS");
-    assertEquals(threeILS,oneILS.add(twoILS, centralExchange));
+    assertEquals(threeILS,oneILS.add(twoILS, exchange));
   }
 
   @Test
@@ -37,7 +37,7 @@ public class MoneyTest {
     Money oneJND = new Money(BigDecimal.valueOf(1),"JND");
     Money twoJND = new Money(BigDecimal.valueOf(2),"JND");
     Money threeJND = new Money(BigDecimal.valueOf(3),"JND");
-    assertEquals(threeJND,oneJND.add(twoJND, centralExchange));
+    assertEquals(threeJND,oneJND.add(twoJND, exchange));
   }
   
   @Test
@@ -45,7 +45,7 @@ public class MoneyTest {
     Money oneILS = new Money(BigDecimal.valueOf(1),"ILS");
     Money twoJND = new Money(BigDecimal.valueOf(2),"JND");
     Money fiveILS = new Money(BigDecimal.valueOf(5),"ILS");
-    assertEquals(fiveILS,oneILS.add(twoJND, centralExchange));
+    assertEquals(fiveILS,oneILS.add(twoJND, exchange));
   }
   
   @Test

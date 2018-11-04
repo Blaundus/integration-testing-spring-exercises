@@ -13,7 +13,7 @@ import atd.spring.server.bills.LineItem;
 import atd.spring.server.bills.Money;
 import atd.spring.server.rules.CurrencyRule;
 
-public class FactorByCurrencyRuleTest {
+public class FactorByCurrencyRuleTests {
   private CurrencyRule lineItemRule;
   
   @Before

@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.rest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -45,24 +45,13 @@ import atd.spring.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchange_MvcTests {
-	
-	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON.getType(),
-            MediaType.APPLICATION_JSON.getSubtype(),                        
-            Charset.forName("utf8")                     
-            );
+public class CheeseExchangeTests {
 	
 	@Autowired CheeseExchangeController controller;
 	@Autowired RateRepository repository;
-	@Autowired private WebApplicationContext wac;
+	@Autowired WebApplicationContext wac;
 	
 	private MockMvc mockMvc;
-	
-	@Test
-	public void canRunControllerTests() {
-		assertNotNull(controller);
-		assertNotNull(repository);
-	}
 	
 	@Before
 	public void setup() {
@@ -70,26 +59,27 @@ public class CheeseExchange_MvcTests {
 				.build();
 		controller.Reset();
 	}
-	
+
 	@Test
-	public void controllerBean_Loads() {
-	    ServletContext servletContext = wac.getServletContext();
-	     
-	    assertNotNull(servletContext);
-	    assertTrue(servletContext instanceof MockServletContext);
-	    assertNotNull(wac.getBean("exchangeController"));
+	public void canRunControllerTests() {
+		assertNotNull(controller);
+		assertNotNull(repository);
+
+		ServletContext servletContext = wac.getServletContext();
+		assertNotNull(servletContext);
+		assertTrue(servletContext instanceof MockServletContext);
+		assertNotNull(wac.getBean("exchangeController"));
 	}
 	
 	@Test
-	public void whenNoRates_ReturnAnErrorCode() throws Exception {
+	public void whenNoRatesAvailable_thenGetReturnsAnErrorCode() throws Exception {
 		this.mockMvc.perform(get("/rates/currency/?name=EUR"))
     	.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void rateIsAddedCorrectly() throws Exception {
-		String rate = "ILS=2.5";
-		String jsonRates = asJsonString(rate);
+	public void whenRateIsAdded_thenReturnsOk() throws Exception {
+		String jsonRates = asJsonString("ILS=2.5");
 
 	    this.mockMvc.perform(post("/rates/add")
 	    					.content(jsonRates)
@@ -100,39 +90,32 @@ public class CheeseExchange_MvcTests {
 	
 	@Test
 	public void ratesAreAddedOneByOne_withBaseRate() throws Exception {
-		MvcResult result;
-		String rate1 = "ILS=2.5";
-		String rate2 = "USD=3.8";
-	    
-	    mockMvc.perform(
+		
+		mockMvc.perform(
 				post("/rates/add")
-				.content(asJsonString(rate1))
+				.content(asJsonString("ILS=2.5"))
 				.contentType("application/json"))
 	    		.andExpect(status().isOk());
 	    mockMvc.perform(
 	    		post("/rates/add")
-	    		.content(asJsonString(rate2))
+	    		.content(asJsonString("USD=3.8"))
 				.contentType("application/json"))
 				.andExpect(status().isOk());
 
-	    result =  mockMvc.perform(get("/rates/currency/?name=EUR"))
+	    MvcResult result =  mockMvc.perform(get("/rates/currency/?name=EUR"))
 	    	.andExpect(status().isOk())
 	    	.andReturn();
-	    
 	    assertEquals("EUR = 1.000000",result.getResponse().getContentAsString());
     
 	    result =  mockMvc.perform(get("/rates/currency/?name=ILS"))
 		    .andExpect(status().isOk())
 		    .andReturn();
-
 	    assertEquals("ILS = 2.500000",result.getResponse().getContentAsString());
 	    
 	    result = mockMvc.perform(get("/rates/currency/?name=USD"))
 	    	.andExpect(status().isOk())
 	        .andReturn();
-    
 	    assertEquals("USD = 3.800000",result.getResponse().getContentAsString());
-	
 	}
 
 	private String asJsonString(Object obj) {

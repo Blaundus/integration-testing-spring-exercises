@@ -1,4 +1,4 @@
-package atd.spring.server.integrationtests;
+package atd.spring.server.integrationtests.jdbc;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -25,7 +25,7 @@ import atd.spring.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchangeControllerTests_JDBC {
+public class CheeseExchangeControllerTests{
 	
 	@Autowired CheeseExchangeController controller;
 	@Autowired RateRepository repository;
