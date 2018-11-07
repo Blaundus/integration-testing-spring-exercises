@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
     <logger name="atd.spring" level="error" />
-    <logger name="o.s.jdbc.datasource" level="error" />
+    <logger name="o.s.jdbc.datasource.init.ScriptUtils" level="error" />
     <logger name="com.zaxxer.hikari" level="error" />
     <logger name="org.springframework.core " level="error" />
     <logger name="org.springframework.beans" level="error" />
