@@ -18,12 +18,7 @@ public class ComplianceRuledBasedBillParser  extends RuleBasedBillParser{
     this.registrar = trafficRegulator;
   }
   
-  @Override
-  public Bill loadFromFile(String filename) throws IOException {
-    Bill bill = super.loadFromFile(filename);
-    registrar.documentBill(bill);
-    return bill;
-  }
+
 
 	@Override
   protected LineItem createRuleBasedLineItem(String desc, BigDecimal amount, 

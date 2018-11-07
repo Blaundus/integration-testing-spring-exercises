@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import atd.spring.server.exceptions.ParsingException;
-import atd.spring.server.unused.BillTextFileLoader_u;
+
 
 public class BillParser {
 
@@ -58,15 +58,5 @@ public class BillParser {
 		return 4;
 	}
 	
-	BillTextFileLoader_u tempLoader = new BillTextFileLoader_u();
-	/**
-	 * @deprecated Use
-	 *             {@link atd.spring.server.unused.BillTextFileLoader_u#loadFromFile(atd.spring.server.bills.BillParser,String)}
-	 *             instead
-	 */
-	public Bill loadFromFile(String filename) throws IOException {
-		return tempLoader.loadFromFile(this, filename);
-	}
-
 
 }

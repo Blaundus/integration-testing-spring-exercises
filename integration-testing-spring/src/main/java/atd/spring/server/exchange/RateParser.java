@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import atd.spring.server.exceptions.ParsingException;
-import atd.spring.server.unused.RateLoader_u;
+
 
 public class RateParser {
 	
