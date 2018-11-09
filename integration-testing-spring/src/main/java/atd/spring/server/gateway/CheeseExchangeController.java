@@ -53,6 +53,13 @@ public class CheeseExchangeController {
 		}
 	}
 
+	@GetMapping(value ="/rates/all")
+	public ResponseEntity<String> getAllRates() {
+		if (!monitor.isOk())
+			return new ResponseEntity("Error", HttpStatus.SERVICE_UNAVAILABLE);
+		else
+			return new ResponseEntity<String> ("Not implemented",HttpStatus.NOT_IMPLEMENTED);
+	}
 	
 	@PostMapping(value = "/rates/addmany")
 	public void addRates(@RequestParam List<String> rates) {
@@ -95,20 +102,6 @@ public class CheeseExchangeController {
 		
 		return new ResponseEntity(HttpStatus.OK);
 		
-	}
-	
-
-
-
-	@PostMapping(value = "bills/calculate")
-	public Money calculateBill(
-			@RequestBody List<String> items, 
-			@RequestBody String currency) {
-		BillParser parser = new ComplianceRuledBasedBillParser(ruleManager, trafficRegulator);
-		Bill bill = parser.createFromLineItems(items);
-		Money result = bill.getTotal(currency);
-		
-		return result;
 	}
 	
 	public void Reset() {

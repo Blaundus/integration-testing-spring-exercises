@@ -36,13 +36,10 @@ public class HackingTests {
 		controller.Reset();
 	}
 	
-	
-	// TODO: Fix this
-	@Ignore
 	@Test
 	public void CannotAddRates_withFaultyMonitor() {
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");
 		controller.addRates(rates);
-		//assertEquals("Error", controller.getRates());
+		assertEquals("Error", controller.getAllRates().getBody());
 	}
 }
