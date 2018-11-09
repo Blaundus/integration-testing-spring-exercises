@@ -11,12 +11,14 @@ public class ClientApp {
 	@Autowired RestTemplate template;
 	
 	public String getRateByName(String name) {
-		ResponseEntity<String> result =  template.getForEntity("/rates/currency/?name=EUR", String.class);
+		ResponseEntity<String> result =  
+				template.getForEntity("/rates/currency/?name=EUR", String.class);
 		return result.getBody();
 	}
 	
 	public void addRate(String newRate) {
-		ResponseEntity result = template.postForEntity("/rates/add", newRate, String.class);
+		ResponseEntity result = 
+				template.postForEntity("/rates/add", newRate, String.class);
 		if (result.getStatusCode() != HttpStatus.OK)
 			throw new RuntimeException();
 	}

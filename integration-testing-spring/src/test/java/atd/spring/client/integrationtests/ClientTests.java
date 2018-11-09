@@ -41,7 +41,8 @@ public class ClientTests {
 	
 	@Test
 	public void get_ServerCalledCorrectly() {
-		mockServer.expect(once(), requestTo("/rates/currency/?name=EUR"))
+		mockServer
+				.expect(once(), requestTo("/rates/currency/?name=EUR"))
 				.andRespond(
 						withSuccess("EUR = 1.000000", MediaType.TEXT_PLAIN));
 		client.getRateByName("EUR");

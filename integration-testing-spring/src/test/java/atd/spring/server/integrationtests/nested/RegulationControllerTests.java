@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import atd.spring.server.compliance.ComplianceMonitor;
 import atd.spring.server.compliance.logging.Registrar;
 import atd.spring.server.compliance.logging.TrafficRegistrar;
-import atd.spring.server.configuration.RegulationControllerConfiguration;
+import atd.spring.server.configuration.ComplianceControllerConfiguration;
 import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
@@ -31,7 +31,7 @@ public class RegulationControllerTests{
 	ComplianceController controller;
 
 	@Configuration
-	@Import(RegulationControllerConfiguration.class)
+	@Import(ComplianceControllerConfiguration.class)
 	static class NestedConfiguration {
 		
 		@Bean

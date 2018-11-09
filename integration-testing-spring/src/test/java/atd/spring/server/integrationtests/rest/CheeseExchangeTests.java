@@ -73,7 +73,8 @@ public class CheeseExchangeTests {
 	
 	@Test
 	public void whenNoRatesAvailable_thenGetReturnsAnErrorCode() throws Exception {
-		this.mockMvc.perform(get("/rates/currency/?name=EUR"))
+		this.mockMvc
+		.perform(get("/rates/currency/?name=EUR"))
     	.andExpect(status().isNotFound());
 	}
 	

@@ -15,18 +15,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import atd.spring.server.compliance.ComplianceMonitor;
 import atd.spring.server.compliance.logging.Registrar;
-import atd.spring.server.configuration.RegulationControllerConfiguration;
+import atd.spring.server.configuration.ComplianceControllerConfiguration;
 import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = { RegulationControllerConfiguration.class })
-public class RegulationControllerTests{
+@ContextConfiguration(classes = { ComplianceControllerConfiguration.class })
+public class ComplianceControllerTests{
 
-	@Autowired
-	ComplianceController controller;
-	@MockBean
-	Registrar mockRegulator;
+	@Autowired ComplianceController controller;
+	@MockBean  Registrar mockRegulator;
 
 
 	@Test

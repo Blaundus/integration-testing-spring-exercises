@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import atd.spring.server.gateway.ComplianceController;
 
 @Configuration
-public class RegulationControllerConfiguration {
+public class ComplianceControllerConfiguration {
 
 	@Bean
 	public ComplianceController regulationController() {
