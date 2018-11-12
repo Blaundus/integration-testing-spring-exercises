@@ -1,6 +1,7 @@
 package atd.spring.server.exchange;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +13,7 @@ import atd.spring.server.exceptions.ParsingException;
 
 public class RateParser {
 	
-	
+
 	private static Pattern LINE_PATTERN = Pattern.compile("^(...)=(\\d+\\.?\\d*)$");
 
 	@Autowired public Exchange exchange;
@@ -26,7 +27,7 @@ public class RateParser {
 	}
 
 	public void setExchangeRate(String rateLine, Exchange exchange) {
-		Matcher m = LINE_PATTERN.matcher(rateLine);
+		Matcher m = getMatch(rateLine);
 		if (m.matches()) {
 			BigDecimal rate = new BigDecimal(m.group(getRateGroup()));
 			exchange.setRate(m.group(getCurrencyGroup()), rate);
@@ -34,6 +35,7 @@ public class RateParser {
 			throw new ParsingException("Unclear rate:" + rateLine);
 		}
 	}
+
 
 	public void setExchangeRate(String line) {
 		setExchangeRate(line, exchange);
@@ -46,5 +48,27 @@ public class RateParser {
 	protected int getRateGroup() {
 		return 2;
 	}
-
+	
+	// Exercise 1
+	// Add multi pattern support
+	List<Pattern> patterns = new ArrayList<Pattern> ();
+	public void addLineTemplate(String template) {
+		if (patterns.isEmpty()) {
+			patterns.add(LINE_PATTERN);
+		}
+		patterns.add(Pattern.compile(template));
+	}
+	
+	private Matcher getMatch(String rateLine) {
+		Matcher result = LINE_PATTERN.matcher(rateLine);
+		if (!patterns.isEmpty()) {
+			for (Pattern pattern : patterns) {
+				if (pattern.matcher(rateLine).matches())
+					return pattern.matcher(rateLine);
+			}
+		}
+		
+		return result;
+			
+	}
 }

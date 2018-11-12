@@ -25,6 +25,10 @@ public class ComplianceController {
 	@RequestMapping(method = RequestMethod.GET, value = "rules/log")
 	public String getTrafficLog() {
 		if (ComplianceMonitor.getRegulator().shouldMonitor()){
+			// e2 : add tempering check
+			if (trafficRegistrar.isTempered())
+				return "data was tempered";
+			// e2
 			return trafficRegistrar.getLog().getAllAsString();
 		}
 		else

@@ -2,6 +2,7 @@ package atd.spring.server.persistence.jdbc;
 
 import java.io.Console;
 import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,30 @@ public class RateRepository {
 				"INSERT INTO rates(currency, rateValue) VALUES(?,?)"
 				, currency, rateValue);
 	}
+ 
 
+	// e4
+	public List<String> getAllCurrenciesButBase() {
+		List<String> currencies = jdbcTemplate.queryForList(
+				"select currency from rates order by currency ASC", String.class);
+		if (currencies.size() == 0)
+			return null;
+					
+		int pos =-1;
+		for (int i = 0; i<currencies.size(); i++) {
+			if (currencies.get(i) == "EUR") {
+				pos = i;
+			}
+		}
+		if (pos != -1)
+			currencies.remove(pos);
+		
+		return currencies;  
+	}
+
+	// e6
+	public void deleteAllRates() {
+		jdbcTemplate.execute("delete * from rates");
+	}
 
 }

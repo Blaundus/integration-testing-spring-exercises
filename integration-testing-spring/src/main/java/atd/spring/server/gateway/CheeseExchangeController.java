@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,7 +40,7 @@ public class CheeseExchangeController {
  	@Autowired CheeseExchange exchange;
 	@Autowired ExchangeStatus monitor;
 	@Autowired Registrar trafficRegulator;
-	private boolean isFirstTime;
+	private boolean isFirstTime = true;
 	
 	@GetMapping(value ="/rates/currency")
 	public ResponseEntity<String> getRateByCurrency(
@@ -63,7 +64,6 @@ public class CheeseExchangeController {
 	
 	@PostMapping(value = "/rates/addmany")
 	public void addRates(@RequestParam List<String> rates) {
-		boolean isFirstTime = true;
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
 		}
@@ -106,5 +106,37 @@ public class CheeseExchangeController {
 	
 	public void Reset() {
 		this.monitor.stopMonitoring();
+		isFirstTime = true;
+	}
+
+	// e4
+	public String getCurrencies() {
+		StringBuilder result = new StringBuilder();
+		List<String> currencies = rateRepository.getAllCurrenciesButBase();
+		if (currencies == null )
+			return "No Rates Exist";
+		
+		currencies.forEach(currency -> {
+			if (currency != "EUR") {
+				result.append(currency);
+				result.append(",");
+			}
+		});
+		return result.toString();	
+	}
+	
+	// e6
+	@PostMapping(value = "/rates/updatebase")
+	public void updateBaseRate(@RequestBody String newRate) {
+		String nakedRate = removeQuotes(newRate);
+		
+		if (!isFirstTime) {
+			rateRepository.deleteAllRates();
+		}
+		rateLoader.setBaseRate(nakedRate);
+			
+	}
+	private String removeQuotes(String rate) {
+		return rate.substring(1, rate.length()-1);
 	}
 }

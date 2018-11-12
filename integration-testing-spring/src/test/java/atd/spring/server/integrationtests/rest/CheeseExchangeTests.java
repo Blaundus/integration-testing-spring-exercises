@@ -103,7 +103,8 @@ public class CheeseExchangeTests {
 				.contentType("application/json"))
 				.andExpect(status().isOk());
 
-	    MvcResult result =  mockMvc.perform(get("/rates/currency/?name=EUR"))
+	    MvcResult result =  mockMvc.perform(
+	    		get("/rates/currency/?name=EUR"))
 	    	.andExpect(status().isOk())
 	    	.andReturn();
 	    assertEquals("EUR = 1.000000",result.getResponse().getContentAsString());

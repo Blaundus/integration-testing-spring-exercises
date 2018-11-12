@@ -64,4 +64,10 @@ public class TrafficRegistrar implements Registrar{
   public BillLog getLog() {
 	  return log;
   }
+
+  	// e2
+	@Override
+	public boolean isTempered() {
+		return false;
+	}
 }

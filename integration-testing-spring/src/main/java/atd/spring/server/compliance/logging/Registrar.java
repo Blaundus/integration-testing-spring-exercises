@@ -8,4 +8,7 @@ public interface Registrar {
   void documentLineItem(LineItem item);
   void start();
   BillLog getLog();
+  
+  // e2
+  boolean isTempered();
 }

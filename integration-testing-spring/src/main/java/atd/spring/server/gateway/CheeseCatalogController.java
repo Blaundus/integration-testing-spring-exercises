@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import atd.spring.server.entities.Cheese;
+import atd.spring.server.exceptions.BannedException;
 import atd.spring.server.exchange.Rate;
 import atd.spring.server.persistence.jpa.CheeseRepository;
 
@@ -32,5 +33,14 @@ public class CheeseCatalogController {
 		result.deleteCharAt(result.length()-1);
 		result.append("}");
 		return result.toString();
+	}
+
+	public void addCheese(String name, String origin) throws BannedException {
+		if (name.toLowerCase().contains("american") ||
+				origin.toLowerCase().contains("usa")) {
+			throw new BannedException();
+		}
+		else
+			cheeseRepository.save(new Cheese(name, origin));
 	}
 }

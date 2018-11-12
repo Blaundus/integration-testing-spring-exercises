@@ -18,6 +18,7 @@ import atd.spring.server.persistence.jdbc.RateRepository;
 
 @Configuration
 public class JdbcDataConfiguration {
+	
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource datasource ) {
 		return new JdbcTemplate(dataSource());

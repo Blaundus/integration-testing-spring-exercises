@@ -23,7 +23,6 @@ import atd.spring.server.exchange.Rate;
 import atd.spring.server.gateway.CheeseCatalogController;
 import atd.spring.server.gateway.CheeseExchangeController;
 
-
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= {CheeseControllerConfiguration.class })
 @DataJpaTest

@@ -26,12 +26,13 @@ import atd.spring.server.gateway.ComplianceController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+
 public class RegulationControllerTests{
 	@Autowired
 	ComplianceController controller;
 
 	@Configuration
-	@Import(ComplianceControllerConfiguration.class)
+	@Import(ComplianceControllerConfiguration.class)	
 	static class NestedConfiguration {
 		
 		@Bean

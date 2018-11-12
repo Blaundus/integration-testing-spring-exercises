@@ -11,10 +11,11 @@ import javax.validation.constraints.Size;
 @Table(name = "Cheeses")
 public class Cheese {
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+//	@Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
  
+	@Id
     @Size(min = 3, max = 20)
     private String name;
 	 
