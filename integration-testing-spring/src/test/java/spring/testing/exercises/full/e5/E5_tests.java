@@ -1,4 +1,4 @@
-package spring.testing.exercises.e5;
+package spring.testing.exercises.full.e5;
 
 import static org.junit.jupiter.api.Assertions.*;
 

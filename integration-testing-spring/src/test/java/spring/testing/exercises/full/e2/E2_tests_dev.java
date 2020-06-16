@@ -1,4 +1,4 @@
-package spring.testing.exercises.e2;
+package spring.testing.exercises.full.e2;
 
 import static org.mockito.Mockito.reset;
 
