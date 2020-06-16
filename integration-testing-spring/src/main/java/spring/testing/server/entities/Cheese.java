@@ -1,20 +1,24 @@
 package spring.testing.server.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Cheeses")
 public class Cheese {
 	
-//	@Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private Long id;
- 
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+ 
+    @Size(min = 3, max = 20)
     private String name;
 	 
+    @Size(min = 3, max = 20)
     private String countryOfOrigin;
 	
     public Cheese() {}

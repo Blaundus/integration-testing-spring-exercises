@@ -37,9 +37,9 @@ public class RegulationControllerTests{
 	@Test
 	public void whenSettingMonitoring_LogContentChange() {
 		if (monitoringStatus == "on") {
-			ComplianceMonitor.getRegulator().StartMonitoring();
+			ComplianceMonitor.instance().StartMonitoring();
 		} else
-			ComplianceMonitor.getRegulator().StopMonitoring();
+			ComplianceMonitor.instance().StopMonitoring();
 		String log = controller.getTrafficLog();
 		if (monitoringStatus == "on") {
 			assertTrue(!log.contains("offline"));

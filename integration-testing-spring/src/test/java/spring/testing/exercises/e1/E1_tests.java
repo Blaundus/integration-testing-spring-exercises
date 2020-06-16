@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e1;
+package spring.testing.exercises.e1;
 
 import static org.mockito.Mockito.verify;
 

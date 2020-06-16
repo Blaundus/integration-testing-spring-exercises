@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e3;
+package spring.testing.exercises.e3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -32,12 +32,12 @@ public class E3_tests {
 	
 	@BeforeEach
 	public void setup() {
-		ComplianceMonitor.getRegulator().StartMonitoring();
+		ComplianceMonitor.instance().StartMonitoring();
 	}
 	
 	@AfterEach
 	public void teardown() {
-		ComplianceMonitor.getRegulator().StopMonitoring();
+		ComplianceMonitor.instance().StopMonitoring();
 	}
 	
 	@Disabled

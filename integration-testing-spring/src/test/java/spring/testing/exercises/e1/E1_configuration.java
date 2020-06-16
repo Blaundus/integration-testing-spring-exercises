@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e1;
+package spring.testing.exercises.e1;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;

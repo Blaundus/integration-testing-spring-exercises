@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e2;
+package spring.testing.exercises.e2;
 
 import static org.mockito.Mockito.reset;
 
@@ -27,13 +27,13 @@ public class E2_tests_dev {
 	
 	@BeforeEach
 	public void setup() {
-		ComplianceMonitor.getRegulator().StartMonitoring();
+		ComplianceMonitor.instance().StartMonitoring();
 		reset(registrar);
 	}
 	
 	@AfterEach
 	public void teardown() {
-		ComplianceMonitor.getRegulator().StopMonitoring();
+		ComplianceMonitor.instance().StopMonitoring();
 	}
 	
 	@Test

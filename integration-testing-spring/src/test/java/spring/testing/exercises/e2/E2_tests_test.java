@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e2;
+package spring.testing.exercises.e2;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -23,12 +23,12 @@ public class E2_tests_test {
 	
 	@BeforeEach
 	public void setup() {
-		ComplianceMonitor.getRegulator().StartMonitoring();
+		ComplianceMonitor.instance().StartMonitoring();
 	}
 	
 	@AfterEach
 	public void teardown() {
-		ComplianceMonitor.getRegulator().StopMonitoring();
+		ComplianceMonitor.instance().StopMonitoring();
 	}
 	
 	@Test

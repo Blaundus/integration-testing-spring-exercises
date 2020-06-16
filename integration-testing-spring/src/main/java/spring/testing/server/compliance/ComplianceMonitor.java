@@ -5,7 +5,7 @@ public class ComplianceMonitor {
 	private boolean shouldMonitor;
 	private static ComplianceMonitor theMonitor;
 	
-	public static ComplianceMonitor getRegulator() {
+	public static ComplianceMonitor instance() {
 		if (theMonitor == null) {
 			theMonitor = new ComplianceMonitor(true);
 		}

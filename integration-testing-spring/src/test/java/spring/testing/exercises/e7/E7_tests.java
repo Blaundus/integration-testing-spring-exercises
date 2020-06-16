@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e7;
+package spring.testing.exercises.e7;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;

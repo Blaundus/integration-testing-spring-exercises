@@ -24,14 +24,14 @@ public class ComplianceControllerTests{
 
 	@Test
 	public void whenMonitorIsOn_RulesAreApplied() {
-		ComplianceMonitor.getRegulator().StartMonitoring();
+		ComplianceMonitor.instance().StartMonitoring();
 		controller.applyComplianceRules();
 		verify(mockRegulator).start();
 	}
 
 	@Test
 	public void whenMonitorIsOff_RulesAreNotApplied() {
-		ComplianceMonitor.getRegulator().StopMonitoring();
+		ComplianceMonitor.instance().StopMonitoring();
 		controller.applyComplianceRules();
 		verify(mockRegulator, never()).start();
 	}

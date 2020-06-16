@@ -17,14 +17,14 @@ public class ComplianceController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "rules/apply")
 	public void applyComplianceRules() {
-		if (ComplianceMonitor.getRegulator().shouldMonitor()) {
+		if (ComplianceMonitor.instance().shouldMonitor()) {
 			trafficRegistrar.start();
 		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "rules/log")
 	public String getTrafficLog() {
-		if (ComplianceMonitor.getRegulator().shouldMonitor()){
+		if (ComplianceMonitor.instance().shouldMonitor()){
 			// e2 : add tempering check
 			if (trafficRegistrar.isTempered())
 				return "data was tempered";

@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.exercises.e4;
+package spring.testing.exercises.e4;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
