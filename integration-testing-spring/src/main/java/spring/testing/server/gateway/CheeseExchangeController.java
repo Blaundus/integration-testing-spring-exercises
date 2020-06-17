@@ -1,31 +1,18 @@
 package spring.testing.server.gateway;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import spring.testing.server.bills.Bill;
-import spring.testing.server.bills.BillParser;
-import spring.testing.server.bills.Money;
-import spring.testing.server.compliance.ComplianceRuledBasedBillParser;
 import spring.testing.server.compliance.logging.Registrar;
-import spring.testing.server.compliance.logging.TrafficRegistrar;
 import spring.testing.server.exchange.CheeseExchange;
-import spring.testing.server.exchange.Rate;
 import spring.testing.server.exchange.RateParser;
 import spring.testing.server.exchange.Rates;
 import spring.testing.server.persistence.jdbc.RateRepository;

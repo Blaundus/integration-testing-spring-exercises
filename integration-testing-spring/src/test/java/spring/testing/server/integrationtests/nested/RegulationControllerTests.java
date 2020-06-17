@@ -17,6 +17,9 @@ import spring.testing.server.gateway.ComplianceController;
 
 @SpringBootTest
 public class RegulationControllerTests{
+	@Value(value = "${monitoring.status}")
+	String monitoringStatus;
+
 	@Autowired
 	ComplianceController controller;
 
@@ -31,8 +34,6 @@ public class RegulationControllerTests{
 	}
 
 	
-	@Value(value = "${monitoring.status}")
-	String monitoringStatus;
 
 	@Test
 	public void whenSettingMonitoring_LogContentChange() {
