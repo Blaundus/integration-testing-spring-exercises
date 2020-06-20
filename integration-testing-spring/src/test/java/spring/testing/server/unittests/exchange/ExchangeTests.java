@@ -8,17 +8,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import spring.testing.server.bills.MoneyConstants;
-import spring.testing.server.exchange.CheeseExchange;
+import spring.testing.server.exchange.ProductExchange;
 import spring.testing.server.unittests.mocks.MockRateRepository;
-public class CheeseExchangeTests {
+public class ExchangeTests {
   
-  private CheeseExchange exchange;
+  private ProductExchange exchange;
   private MockRateRepository mockRepository;
 
   @BeforeEach
   public void setUp() {
 	mockRepository = new MockRateRepository();
-    exchange=new CheeseExchange(mockRepository);
+    exchange=new ProductExchange(mockRepository);
     exchange.setBaseRate("ILS");
     exchange.setRate("USD", BigDecimal.valueOf(3.8));
     exchange.setRate("CHF", BigDecimal.valueOf(7.6));

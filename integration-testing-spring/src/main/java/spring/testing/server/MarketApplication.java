@@ -8,10 +8,10 @@ import spring.testing.server.configuration.AppConfiguration;
 
 @SpringBootApplication
 @Import({AppConfiguration.class})
-public class CheeseMarketApplication {
+public class MarketApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CheeseMarketApplication.class, args);
+		SpringApplication.run(MarketApplication.class, args);
  	}
 
 	private static void testMethod(String[] args) {

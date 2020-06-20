@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Primary;
 
 import spring.testing.server.configuration.AppConfiguration;
 import spring.testing.server.configuration.JdbcDataConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
-import spring.testing.server.gateway.ExchangeStatus;
+import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.controllers.ExchangeStatus;
 import spring.testing.server.helpers.LoggingMonitor;
 
 
@@ -18,8 +18,8 @@ import spring.testing.server.helpers.LoggingMonitor;
 public class ExchangeControllerConfiguration {
 	
 	@Bean
-	public CheeseExchangeController exchangeController() {
-		return new CheeseExchangeController();
+	public ProductExchangeController exchangeController() {
+		return new ProductExchangeController();
 	}
 	
 	@Primary

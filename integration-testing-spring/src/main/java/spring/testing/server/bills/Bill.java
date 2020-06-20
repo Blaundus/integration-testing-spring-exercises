@@ -5,20 +5,20 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import spring.testing.server.exchange.CheeseExchange;
+import spring.testing.server.exchange.ProductExchange;
 
 public class Bill {
   Set<LineItem> items = new HashSet<>();
 
   @Autowired
-  CheeseExchange exchange;
+  ProductExchange exchange;
   
   public void addItem(LineItem item) {
     items.add(item);
   }
   
   //TODO: Replace with overload
-  public Money getTotal(CheeseExchange exchange, String currency) {
+  public Money getTotal(ProductExchange exchange, String currency) {
     Money runningTotal = new Money(currency);
     for (LineItem item : items) {
       runningTotal = runningTotal.add(item.getTotalAmount(), exchange);

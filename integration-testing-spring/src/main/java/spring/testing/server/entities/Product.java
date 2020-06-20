@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Cheeses")
-public class Cheese {
+@Table(name = "Products")
+public class Product {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,9 +21,9 @@ public class Cheese {
     @Size(min = 3, max = 20)
     private String countryOfOrigin;
 	
-    public Cheese() {}
+    public Product() {}
     
-    public Cheese(String name, String country) {
+    public Product(String name, String country) {
     	this.name = name;
     	this.countryOfOrigin = country;
     }

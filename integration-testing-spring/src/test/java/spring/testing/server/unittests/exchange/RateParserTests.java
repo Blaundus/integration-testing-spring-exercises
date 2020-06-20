@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.MockitoAnnotations;
 
 import spring.testing.server.exceptions.ParsingException;
-import spring.testing.server.exchange.CheeseExchange;
+import spring.testing.server.exchange.ProductExchange;
 import spring.testing.server.exchange.RateParser;
 public class RateParserTests {
   private RateParser parser;
-  @Mock private CheeseExchange mockExchange;  
+  @Mock private ProductExchange mockExchange;  
   
   @BeforeEach
   public void setUp() {

@@ -3,7 +3,7 @@ package spring.testing.server.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import spring.testing.server.gateway.ComplianceController;
+import spring.testing.server.controllers.ComplianceController;
 
 @Configuration
 public class ComplianceControllerConfiguration {

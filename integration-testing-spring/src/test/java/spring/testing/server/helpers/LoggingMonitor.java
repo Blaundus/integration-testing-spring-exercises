@@ -1,6 +1,6 @@
 package spring.testing.server.helpers;
 
-import spring.testing.server.gateway.ExchangeStatus;
+import spring.testing.server.controllers.ExchangeStatus;
 
 public class LoggingMonitor extends ExchangeStatus {
 

@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import spring.testing.server.bills.LineItem;
 import spring.testing.server.compliance.logging.Registrar;
 import spring.testing.server.compliance.logging.TrafficRegistrar;
-import spring.testing.server.exchange.CheeseExchange;
+import spring.testing.server.controllers.ExchangeStatus;
+import spring.testing.server.exchange.ProductExchange;
 import spring.testing.server.exchange.Exchange;
 import spring.testing.server.exchange.RateParser;
-import spring.testing.server.gateway.ExchangeStatus;
 import spring.testing.server.persistence.jdbc.RateRepository;
 import spring.testing.server.rules.CalculationRule;
 import spring.testing.server.rules.CompositeLineItemRule;
@@ -46,7 +46,7 @@ public class AppConfiguration {
 	
 	@Bean 
 	public Exchange exchange() {
-		return new CheeseExchange(rateRepository());
+		return new ProductExchange(rateRepository());
 		
 	}
 	

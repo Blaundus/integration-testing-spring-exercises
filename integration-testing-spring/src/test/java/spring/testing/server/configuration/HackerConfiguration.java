@@ -5,8 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
-import spring.testing.server.gateway.CheeseExchangeController;
-import spring.testing.server.gateway.ExchangeStatus;
+import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.controllers.ExchangeStatus;
 import spring.testing.server.helpers.FaultyStatus;
 
 @Profile("hacker")
@@ -20,8 +20,8 @@ public class HackerConfiguration {
 	}
 	
 	@Bean
-	public CheeseExchangeController exchangeController() {
-		return new CheeseExchangeController();
+	public ProductExchangeController exchangeController() {
+		return new ProductExchangeController();
 	}
 	
 

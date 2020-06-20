@@ -13,17 +13,17 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 
 import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
+import spring.testing.server.controllers.ProductExchangeController;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes = { ExchangeControllerConfiguration.class })
 @Sql(scripts = "classpath:CreateSchema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchangeControllerTests {
+public class ExchangeControllerTests {
 
 	@Autowired
-	CheeseExchangeController controller;
+	ProductExchangeController controller;
 	@Autowired
 	RateRepository repository;
 

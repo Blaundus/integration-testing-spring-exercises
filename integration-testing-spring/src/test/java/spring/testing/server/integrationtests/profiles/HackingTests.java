@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import spring.testing.server.configuration.AppConfiguration;
 import spring.testing.server.configuration.HackerConfiguration;
 import spring.testing.server.configuration.JdbcDataConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
+import spring.testing.server.controllers.ProductExchangeController;
 
 @SpringBootTest
 @ContextConfiguration(classes= {HackerConfiguration.class, 
@@ -23,7 +23,7 @@ import spring.testing.server.gateway.CheeseExchangeController;
 @ActiveProfiles("hacker")
 public class HackingTests {
 	
-	@Autowired CheeseExchangeController controller;
+	@Autowired ProductExchangeController controller;
 	
 	@BeforeEach
 	public void setup() {

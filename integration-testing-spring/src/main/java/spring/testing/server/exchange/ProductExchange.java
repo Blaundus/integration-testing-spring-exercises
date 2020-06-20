@@ -8,13 +8,13 @@ import spring.testing.server.bills.MoneyConstants;
 import spring.testing.server.exceptions.UnknownCurrencyException;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
-public class CheeseExchange implements Exchange {
+public class ProductExchange implements Exchange {
 	private Rate baseRate;
 	private String baseCurrency;
 
 	RateRepository rates;
 
-	public CheeseExchange(RateRepository rates)
+	public ProductExchange(RateRepository rates)
 	{
 		this.rates = rates;
 	}

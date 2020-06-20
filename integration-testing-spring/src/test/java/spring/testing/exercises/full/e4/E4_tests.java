@@ -11,7 +11,7 @@ import org.springframework.test.context.jdbc.Sql;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
+import spring.testing.server.controllers.ProductExchangeController;
 
 @SpringBootTest
 @ContextConfiguration(classes= {ExchangeControllerConfiguration.class })
@@ -21,7 +21,7 @@ executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class E4_tests {
 	
-	@Autowired CheeseExchangeController controller;
+	@Autowired ProductExchangeController controller;
 	
 	@Test
 	public void returnCurrencyWithoutEUR_whenRatesExist() {

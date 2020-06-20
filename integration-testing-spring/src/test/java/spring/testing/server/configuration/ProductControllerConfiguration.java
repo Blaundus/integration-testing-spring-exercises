@@ -5,15 +5,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import spring.testing.server.configuration.JpaDataConfiguration;
-import spring.testing.server.gateway.CheeseCatalogController;
+import spring.testing.server.controllers.ProductCatalogController;
 
 
 @Configuration
 @Import(JpaDataConfiguration.class)
-public class CheeseControllerConfiguration {
+public class ProductControllerConfiguration {
 
 	@Bean 
-	CheeseCatalogController cheeseController() {
-		return new CheeseCatalogController();
+	ProductCatalogController productCatalogController() {
+		return new ProductCatalogController();
 	}
 }

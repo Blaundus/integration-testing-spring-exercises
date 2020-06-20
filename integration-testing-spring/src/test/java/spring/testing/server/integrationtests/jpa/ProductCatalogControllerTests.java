@@ -8,26 +8,26 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 
-import spring.testing.server.configuration.CheeseControllerConfiguration;
-import spring.testing.server.entities.Cheese;
-import spring.testing.server.gateway.CheeseCatalogController;
+import spring.testing.server.configuration.ProductControllerConfiguration;
+import spring.testing.server.controllers.ProductCatalogController;
+import spring.testing.server.entities.Product;
 
-@ContextConfiguration(classes= {CheeseControllerConfiguration.class })
+@ContextConfiguration(classes= {ProductControllerConfiguration.class })
 @DataJpaTest
-public class CheeseCatalogControllerTests{
+public class ProductCatalogControllerTests{
 	
-	@Autowired CheeseCatalogController controller;
+	@Autowired ProductCatalogController controller;
 	@Autowired TestEntityManager entityManager;
 
 	@Test
 	public void zeroRatesRetrieved_onCreation() {
-		assertEquals("{}", controller.getAllCheeses());
+		assertEquals("{}", controller.getAllProducts());
 	}
 		
 	@Test
 	public void twoRatesRetrieved_afterAddingTwo() {
-		Cheese product1 = new Cheese("Brie", "France");
-		Cheese product2 = new Cheese("Parmigiano", "Italy");
+		Product product1 = new Product("Brie", "France");
+		Product product2 = new Product("Parmigiano", "Italy");
 		
 		entityManager.persist(product1);
 		entityManager.persist(product2);
@@ -35,7 +35,7 @@ public class CheeseCatalogControllerTests{
 		
 		
 		assertEquals("{Brie from France,Parmigiano from Italy}", 
-				controller.getAllCheeses());
+				controller.getAllProducts());
 	}
 	
 	

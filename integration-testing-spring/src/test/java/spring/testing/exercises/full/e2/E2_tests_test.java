@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 import spring.testing.server.compliance.ComplianceMonitor;
 import spring.testing.server.compliance.logging.Registrar;
-import spring.testing.server.gateway.ComplianceController;
+import spring.testing.server.controllers.ComplianceController;
 
 @SpringBootTest
 @ContextConfiguration(classes= {E2_configuration.class })

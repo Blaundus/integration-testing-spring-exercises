@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
+import spring.testing.server.controllers.ProductExchangeController;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
@@ -30,7 +30,7 @@ executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class E6_tests {
 	
-	@Autowired CheeseExchangeController controller;
+	@Autowired ProductExchangeController controller;
 	@Autowired RateRepository rateRepository;
 	@Autowired WebApplicationContext wac;
 	private MockMvc mockMvc;

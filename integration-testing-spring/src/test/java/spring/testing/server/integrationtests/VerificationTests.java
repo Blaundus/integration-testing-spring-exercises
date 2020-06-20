@@ -12,8 +12,7 @@ import spring.testing.server.configuration.AppConfiguration;
 import spring.testing.server.configuration.JdbcDataConfiguration;
 import spring.testing.server.configuration.JpaDataConfiguration;
 import spring.testing.server.persistence.jdbc.RateRepository;
-import spring.testing.server.persistence.jpa.CheeseRepository;
-
+import spring.testing.server.persistence.jpa.ProductRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes= {
@@ -24,13 +23,13 @@ public class VerificationTests {
 
 	@Autowired JdbcTemplate jdbcTemplate;
 	@Autowired RateRepository rates;
-	@Autowired CheeseRepository cheeses;
+	@Autowired ProductRepository products;
 	
 	@Test
 	public void canRunIntegrationTests() {
 		assertNotNull(rates); 
 		assertNotNull(jdbcTemplate);
-		assertNotNull(cheeses);
+		assertNotNull(products);
 	}
 
 }

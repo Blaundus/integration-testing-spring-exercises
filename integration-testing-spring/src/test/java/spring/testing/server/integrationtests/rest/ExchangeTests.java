@@ -24,7 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.gateway.CheeseExchangeController;
+import spring.testing.server.controllers.ProductExchangeController;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
@@ -33,9 +33,9 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class CheeseExchangeTests {
+public class ExchangeTests {
 	
-	@Autowired CheeseExchangeController controller;
+	@Autowired ProductExchangeController controller;
 	@Autowired RateRepository repository;
 	@Autowired WebApplicationContext wac;
 	

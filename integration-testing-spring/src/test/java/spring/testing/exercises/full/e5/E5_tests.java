@@ -8,38 +8,38 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 
-import spring.testing.server.configuration.CheeseControllerConfiguration;
+import spring.testing.server.configuration.ProductControllerConfiguration;
+import spring.testing.server.controllers.ProductCatalogController;
 import spring.testing.server.exceptions.BannedException;
-import spring.testing.server.gateway.CheeseCatalogController;
 
-@ContextConfiguration(classes = { CheeseControllerConfiguration.class })
+@ContextConfiguration(classes = { ProductControllerConfiguration.class })
 @DataJpaTest
 public class E5_tests {
 
 	@Autowired
-	CheeseCatalogController controller;
+	ProductCatalogController controller;
 	@Autowired
 	TestEntityManager entityManager;
 
 	@Test
-	public void addingAmericanCheese_throws(){
+	public void addingInvalidCountry_throws(){
 		assertThrows(BannedException.class, () -> {
-			controller.addCheese("American cheese", "USA");
+			controller.addProduct("Cheese", "");
 		});
 	}
 
 	@Test
-	public void addingCheeseFromUSA_throws() {
+	public void addingInvalidProduct_throws() {
 		assertThrows(BannedException.class, () -> {
-			controller.addCheese("Fromage", "USA");
+			controller.addProduct("", "France");
 		});
 	}
 
 	@Test
-	public void addindCheeseFromEurope_ok() throws BannedException {
+	public void addindValidCountryAndProduct_ok() throws BannedException {
 		boolean exceptionThrown = false;
 		try {
-			controller.addCheese("gouda", "Italy");
+			controller.addProduct("Cheese", "France");
 		} catch (BannedException e) {
 			exceptionThrown = true;
 		}

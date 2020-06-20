@@ -1,4 +1,4 @@
-package spring.testing.server.gateway;
+package spring.testing.server.controllers;
 
 public class ExchangeStatus {
 	boolean isInitalized = false;
