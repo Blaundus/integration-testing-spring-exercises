@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.rest;
+package spring.testing.server.integrationtests.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -47,7 +47,7 @@ public class ExchangeTests {
 				.build();
 		controller.Reset();
 	}
-
+		
 	@Test
 	public void canRunIntegrationTests() {
 		assertNotNull(controller);
@@ -59,6 +59,7 @@ public class ExchangeTests {
 		assertNotNull(wac.getBean("exchangeController"));
 	}
 	
+
 	@Test
 	public void whenNoRatesAvailable_thenGetReturnsAnErrorCode() throws Exception {
 		this.mockMvc
