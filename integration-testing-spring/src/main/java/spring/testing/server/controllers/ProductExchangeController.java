@@ -43,10 +43,10 @@ public class ProductExchangeController {
 
 	@GetMapping(value ="/rates/all")
 	public ResponseEntity<String> getAllRates() {
-		if (!monitor.isOk())
-			return new ResponseEntity("Error", HttpStatus.SERVICE_UNAVAILABLE);
-		else
+		if (monitor.isOk())
 			return new ResponseEntity<String> ("Not implemented yet",HttpStatus.NOT_IMPLEMENTED);
+		else
+			return new ResponseEntity("Error", HttpStatus.SERVICE_UNAVAILABLE);
 	}
 	
 	@PostMapping(value = "/rates/addmany")

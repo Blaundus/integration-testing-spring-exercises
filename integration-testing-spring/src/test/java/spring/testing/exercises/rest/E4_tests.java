@@ -1,4 +1,4 @@
-package spring.testing.exercises.intro.e4;
+package spring.testing.exercises.rest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -13,6 +13,7 @@ import javax.servlet.ServletContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockServletContext;
@@ -31,21 +32,15 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes= {ExchangeControllerConfiguration_WithMocks.class })
+@AutoConfigureMockMvc
 public class E4_tests {
 
 	@MockBean RateRepository mockRepository;
 	@MockBean ExchangeStatus mockMonitor;
-	@Autowired WebApplicationContext wac;
-	
-	private MockMvc mockMvc;
-	@BeforeEach
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
-				.build();
-	}
+	@Autowired MockMvc mockMvc;
 	
 	@Test
-	public void returnError_whenNoRates() throws Exception {
+	public void getAllRates_whenMonitored_returnsNotImplemented() throws Exception {
 		when(mockMonitor.isOk()).thenReturn(true);
 		
 		MvcResult result = 

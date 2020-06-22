@@ -32,9 +32,7 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 public class ExchangeTests_WithMocks {
 	
 	@MockBean RateRepository mockRepository;
-	@Autowired WebApplicationContext wac;
-	@Autowired
-	private MockMvc mockMvc;
+	@Autowired MockMvc mockMvc;
 	
 
 	@Test
