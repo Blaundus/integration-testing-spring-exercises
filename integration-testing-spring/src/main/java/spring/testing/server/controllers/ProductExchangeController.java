@@ -46,7 +46,7 @@ public class ProductExchangeController {
 		if (!monitor.isOk())
 			return new ResponseEntity("Error", HttpStatus.SERVICE_UNAVAILABLE);
 		else
-			return new ResponseEntity<String> ("Not implemented",HttpStatus.NOT_IMPLEMENTED);
+			return new ResponseEntity<String> ("Not implemented yet",HttpStatus.NOT_IMPLEMENTED);
 	}
 	
 	@PostMapping(value = "/rates/addmany")
@@ -96,7 +96,6 @@ public class ProductExchangeController {
 		isFirstTime = true;
 	}
 
-	// e4
 	public String getCurrencies() {
 		StringBuilder result = new StringBuilder();
 		List<String> currencies = rateRepository.getAllCurrenciesButBase();
@@ -112,7 +111,6 @@ public class ProductExchangeController {
 		return result.toString();	
 	}
 	
-	// e6
 	@PostMapping(value = "/rates/updatebase")
 	public void updateBaseRate(@RequestBody String newRate) {
 		String nakedRate = removeQuotes(newRate);
