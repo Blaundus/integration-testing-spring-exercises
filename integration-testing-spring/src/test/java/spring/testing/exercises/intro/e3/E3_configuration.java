@@ -1,7 +1,6 @@
 package spring.testing.exercises.intro.e3;
 
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-import static org.mockito.Mockito.mock;
 
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
