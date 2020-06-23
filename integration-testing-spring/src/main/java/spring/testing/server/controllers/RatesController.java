@@ -51,7 +51,7 @@ public class RatesController {
 	}
 	
 	@PostMapping(value = "/rates/addmany")
-	public void addRates(@RequestParam List<String> rates) {
+	public ResponseEntity<?>  addRates(@RequestParam List<String> rates) {
 		if (monitor.isInitialized()) {
 			isFirstTime = false;
 		}
@@ -65,6 +65,7 @@ public class RatesController {
 				rateLoader.setBaseRate("EUR");
 			rateLoader.parse(rates);
 		}
+		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	
@@ -113,15 +114,17 @@ public class RatesController {
 	}
 	
 	@PostMapping(value = "/rates/updatebase")
-	public void updateBaseRate(@RequestBody String newRate) {
+	public ResponseEntity<?> updateBaseRate(@RequestBody String newRate) {
 		String nakedRate = removeQuotes(newRate);
 		
 		if (!isFirstTime) {
 			rateRepository.deleteAllRates();
 		}
 		rateLoader.setBaseRate(nakedRate);
+		return new ResponseEntity(HttpStatus.OK);
 			
 	}
+	
 	private String removeQuotes(String rate) {
 		return rate.substring(1, rate.length()-1);
 	}

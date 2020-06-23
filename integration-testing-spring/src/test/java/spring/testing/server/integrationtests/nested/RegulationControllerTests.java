@@ -28,7 +28,7 @@ public class RegulationControllerTests{
 	static class NestedConfiguration {
 		
 		@Bean
-		public Registrar trafficRegulator() {
+		public Registrar trafficRegistrar() {
 			return Mockito.mock(Registrar.class);
 		}
 	}

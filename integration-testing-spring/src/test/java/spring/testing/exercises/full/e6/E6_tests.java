@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.RatesControllerConfiguration;
 import spring.testing.server.controllers.RatesController;
+import spring.testing.server.helpers.JsonHelper;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
@@ -46,7 +47,7 @@ public class E6_tests {
 	@Test
 	public void whenChangingBaseRate_andNoRateAdded_RateIsAddedAsBase() throws Exception {
 		mockMvc.perform(post("/rates/updatebase")
-				.content(asJsonString("USD"))
+				.content(JsonHelper.asJsonString("USD"))
 				.contentType("application/json"))
 	    		.andExpect(status().isOk());
 
@@ -63,12 +64,12 @@ public class E6_tests {
 	public void whenChangingBaseRate_andRateWasAdded_OnlyTheBaseRateExists() throws Exception {
 		mockMvc.perform(
 				post("/rates/add")
-				.content(asJsonString("ILS=2.5"))
+				.content(JsonHelper.asJsonString("ILS=2.5"))
 				.contentType("application/json"))
 	    		.andExpect(status().isOk());
 
 		mockMvc.perform(post("/rates/updatebase")
-				.content(asJsonString("USD"))
+				.content(JsonHelper.asJsonString("USD"))
 				.contentType("application/json"))
 	    		.andExpect(status().isOk());
 
@@ -79,11 +80,4 @@ public class E6_tests {
 
 	}
 	
-	private String asJsonString(Object obj) {
-	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
-	}
 }

@@ -25,11 +25,6 @@ public class HackingTests {
 	
 	@Autowired RatesController controller;
 	
-	@BeforeEach
-	public void setup() {
-		controller.Reset();
-	}
-	
 	@Test
 	public void CannotAddRates_withFaultyMonitor() {
 		List<String> rates = List.of("ILS=2.5", "USD=3.8");

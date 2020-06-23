@@ -19,21 +19,21 @@ import spring.testing.server.controllers.ComplianceController;
 public class ComplianceControllerTests{
 
 	@Autowired ComplianceController controller;
-	@MockBean  Registrar mockRegulator;
+	@MockBean  Registrar mockRegistrar;
 
 
 	@Test
 	public void whenMonitorIsOn_RulesAreApplied() {
 		ComplianceMonitor.instance().StartMonitoring();
 		controller.applyComplianceRules();
-		verify(mockRegulator).start();
+		verify(mockRegistrar).start();
 	}
 
 	@Test
 	public void whenMonitorIsOff_RulesAreNotApplied() {
 		ComplianceMonitor.instance().StopMonitoring();
 		controller.applyComplianceRules();
-		verify(mockRegulator, never()).start();
+		verify(mockRegistrar, never()).start();
 	}
 
 }

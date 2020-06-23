@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,6 +26,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.RatesControllerConfiguration;
 import spring.testing.server.controllers.RatesController;
+import spring.testing.server.helpers.JsonHelper;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
@@ -33,18 +35,15 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+@AutoConfigureMockMvc
 public class RatesTests {
 	
 	@Autowired RatesController controller;
 	@Autowired RateRepository repository;
-	@Autowired WebApplicationContext wac;
-	
-	private MockMvc mockMvc;
+	@Autowired MockMvc mockMvc;
 	
 	@BeforeEach
 	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
-				.build();
 		controller.Reset();
 	}
 		
@@ -53,10 +52,6 @@ public class RatesTests {
 		assertNotNull(controller);
 		assertNotNull(repository);
 
-		ServletContext servletContext = wac.getServletContext();
-		assertNotNull(servletContext);
-		assertTrue(servletContext instanceof MockServletContext);
-		assertNotNull(wac.getBean("ratesController"));
 	}
 	
 
@@ -69,7 +64,7 @@ public class RatesTests {
 	
 	@Test
 	public void whenRateIsAdded_thenReturnsOk() throws Exception {
-		String jsonRates = asJsonString("ILS=2.5");
+		String jsonRates = JsonHelper.asJsonString("ILS=2.5");
 
 	    this.mockMvc.perform(post("/rates/add")
 	    					.content(jsonRates)
@@ -83,12 +78,12 @@ public class RatesTests {
 		
 		mockMvc.perform(
 				post("/rates/add")
-				.content(asJsonString("ILS=2.5"))
+				.content(JsonHelper.asJsonString("ILS=2.5"))
 				.contentType("application/json"))
 	    		.andExpect(status().isOk());
 	    mockMvc.perform(
 	    		post("/rates/add")
-	    		.content(asJsonString("USD=3.8"))
+	    		.content(JsonHelper.asJsonString("USD=3.8"))
 				.contentType("application/json"))
 				.andExpect(status().isOk());
 
@@ -107,14 +102,6 @@ public class RatesTests {
 	    	.andExpect(status().isOk())
 	        .andReturn();
 	    assertEquals("USD = 3.800000",result.getResponse().getContentAsString());
-	}
-
-	private String asJsonString(Object obj) {
-	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
 	}
 
 }

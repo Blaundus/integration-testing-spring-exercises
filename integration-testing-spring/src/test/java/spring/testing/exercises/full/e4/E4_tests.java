@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.RatesControllerConfiguration;
 import spring.testing.server.controllers.RatesController;
+import spring.testing.server.helpers.JsonHelper;
 
 @SpringBootTest
 @ContextConfiguration(classes= {RatesControllerConfiguration.class })
@@ -25,7 +26,7 @@ public class E4_tests {
 	
 	@Test
 	public void returnCurrencyWithoutEUR_whenRatesExist() {
-		controller.addRate(asJsonString("ILS=2.5"));
+		controller.addRate(JsonHelper.asJsonString("ILS=2.5"));
 		assertEquals("ILS,", controller.getCurrencies());
 	}
 	
@@ -34,11 +35,4 @@ public class E4_tests {
 		assertEquals("No Rates Exist", controller.getCurrencies());
 	}
 	
-	private String asJsonString(Object obj) {
-	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
-	}
 }

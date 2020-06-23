@@ -19,13 +19,14 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.RatesControllerConfiguration;
+import spring.testing.server.helpers.JsonHelper;
 
 @SpringBootTest
 @ContextConfiguration(classes = { RatesControllerConfiguration.class })
 @Sql(scripts = "classpath:CreateSchema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @AutoConfigureMockMvc
-public class JDBC_ExchangeControllerTests {
+public class JDBC_RatesControllerTests {
 
 	@Autowired MockMvc mockMvc;
 	
@@ -45,7 +46,7 @@ public class JDBC_ExchangeControllerTests {
 		rates.forEach((rate) ->{
 			try {
 				mockMvc.perform(post("/rates/add")
-						.content(asJsonString(rate)))
+						.content(JsonHelper.asJsonString(rate)))
 						.andExpect(status().isOk());
 			} catch (Exception e) {
 			}
@@ -62,11 +63,4 @@ public class JDBC_ExchangeControllerTests {
 		return result.getResponse().getContentAsString();
 	}
 
-	private String asJsonString(Object obj) {
-	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
-	}	
 }

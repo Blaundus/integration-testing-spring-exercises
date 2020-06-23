@@ -25,7 +25,7 @@ import spring.testing.server.entities.Product;
 @ContextConfiguration(classes = { ProductControllerConfiguration.class, JPA_ControllerConfiguration.class })
 @SpringBootTest
 @AutoConfigureMockMvc
-public class JPA_ProductCatalogControllerTests {
+public class JPA_ProductControllerTests {
 
 	@Autowired
 	ProductController controller;

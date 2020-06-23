@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import spring.testing.server.configuration.RatesControllerConfiguration_WithMocks;
 import spring.testing.server.exchange.Monitor;
+import spring.testing.server.helpers.JsonHelper;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
@@ -47,18 +48,11 @@ public class E4_tests {
 	@Test
 	public void addNewRate() throws Exception {
 		mockMvc.perform(post("/rates/add")
-			.content(asJsonString("ILS=2.5"))
+			.content(JsonHelper.asJsonString("ILS=2.5"))
 			.contentType("application/json"))
 			.andExpect(status().isOk());
 		
 	}
 	
 	
-	private String asJsonString(Object obj) {
-	    try {
-	        return new ObjectMapper().writeValueAsString(obj);
-	    } catch (Exception e) {
-	        throw new RuntimeException(e);
-	    }
-	}
 }
