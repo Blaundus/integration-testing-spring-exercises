@@ -1,5 +1,6 @@
 package spring.testing.server.unittests.exchange;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 import java.math.BigDecimal;
@@ -7,7 +8,6 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.MockitoAnnotations;
 
 import spring.testing.server.exceptions.ParsingException;

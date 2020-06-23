@@ -9,16 +9,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 
 import spring.testing.server.configuration.AppConfiguration;
-import spring.testing.server.configuration.JdbcDataConfiguration;
-import spring.testing.server.configuration.JpaDataConfiguration;
+import spring.testing.server.configuration.JDBC_DataConfiguration;
+import spring.testing.server.configuration.JPA_DataConfiguration;
 import spring.testing.server.persistence.jdbc.RateRepository;
 import spring.testing.server.persistence.jpa.ProductRepository;
 
 @SpringBootTest
 @ContextConfiguration(classes= {
 		AppConfiguration.class, 
-		JdbcDataConfiguration.class,
-		JpaDataConfiguration.class})
+		JDBC_DataConfiguration.class,
+		JPA_DataConfiguration.class})
 public class VerificationTests {
 
 	@Autowired JdbcTemplate jdbcTemplate;

@@ -23,19 +23,19 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.configuration.RatesControllerConfiguration;
+import spring.testing.server.controllers.RatesController;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
-@ContextConfiguration(classes= {ExchangeControllerConfiguration.class})
+@ContextConfiguration(classes= {RatesControllerConfiguration.class})
 @Sql(scripts = "classpath:CreateSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class ExchangeTests {
+public class RatesTests {
 	
-	@Autowired ProductExchangeController controller;
+	@Autowired RatesController controller;
 	@Autowired RateRepository repository;
 	@Autowired WebApplicationContext wac;
 	
@@ -56,7 +56,7 @@ public class ExchangeTests {
 		ServletContext servletContext = wac.getServletContext();
 		assertNotNull(servletContext);
 		assertTrue(servletContext instanceof MockServletContext);
-		assertNotNull(wac.getBean("exchangeController"));
+		assertNotNull(wac.getBean("ratesController"));
 	}
 	
 
@@ -116,7 +116,5 @@ public class ExchangeTests {
 	        throw new RuntimeException(e);
 	    }
 	}
-	
-
 
 }

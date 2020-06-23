@@ -1,8 +1,8 @@
 package spring.testing.exercises.full.e4;
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,18 +10,18 @@ import org.springframework.test.context.jdbc.Sql;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.configuration.RatesControllerConfiguration;
+import spring.testing.server.controllers.RatesController;
 
 @SpringBootTest
-@ContextConfiguration(classes= {ExchangeControllerConfiguration.class })
+@ContextConfiguration(classes= {RatesControllerConfiguration.class })
 @Sql(scripts = "classpath:CreateSchema.sql", 
 executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class E4_tests {
 	
-	@Autowired ProductExchangeController controller;
+	@Autowired RatesController controller;
 	
 	@Test
 	public void returnCurrencyWithoutEUR_whenRatesExist() {

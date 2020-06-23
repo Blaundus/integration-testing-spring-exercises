@@ -2,8 +2,6 @@ package spring.testing.server.exchange;
 
 import java.math.BigDecimal;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import spring.testing.server.bills.MoneyConstants;
 import spring.testing.server.exceptions.UnknownCurrencyException;
 import spring.testing.server.persistence.jdbc.RateRepository;

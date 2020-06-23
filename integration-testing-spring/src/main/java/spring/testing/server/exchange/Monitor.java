@@ -1,6 +1,6 @@
-package spring.testing.server.controllers;
+package spring.testing.server.exchange;
 
-public class ExchangeStatus {
+public class Monitor {
 	boolean isInitalized = false;
 	boolean isOk = true;
 	

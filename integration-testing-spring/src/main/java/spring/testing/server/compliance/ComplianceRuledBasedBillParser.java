@@ -1,13 +1,10 @@
 package spring.testing.server.compliance;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 
-import spring.testing.server.bills.Bill;
 import spring.testing.server.bills.LineItem;
 import spring.testing.server.bills.RuleBasedBillParser;
 import spring.testing.server.compliance.logging.Registrar;
-import spring.testing.server.rules.CalculationRule;
 import spring.testing.server.rules.CompositeLineItemRule;
 
 public class ComplianceRuledBasedBillParser  extends RuleBasedBillParser{

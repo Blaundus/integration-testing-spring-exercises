@@ -13,17 +13,17 @@ import org.springframework.test.context.ContextConfiguration;
 
 import spring.testing.server.configuration.AppConfiguration;
 import spring.testing.server.configuration.HackerConfiguration;
-import spring.testing.server.configuration.JdbcDataConfiguration;
-import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.configuration.JDBC_DataConfiguration;
+import spring.testing.server.controllers.RatesController;
 
 @SpringBootTest
 @ContextConfiguration(classes= {HackerConfiguration.class, 
 		AppConfiguration.class,
-		JdbcDataConfiguration.class})
+		JDBC_DataConfiguration.class})
 @ActiveProfiles("hacker")
 public class HackingTests {
 	
-	@Autowired ProductExchangeController controller;
+	@Autowired RatesController controller;
 	
 	@BeforeEach
 	public void setup() {

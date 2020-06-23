@@ -3,39 +3,39 @@ package spring.testing.server.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.testing.server.entities.Product;
 import spring.testing.server.exceptions.BannedException;
-import spring.testing.server.exchange.Rate;
 import spring.testing.server.persistence.jpa.ProductRepository;
 
 @Controller
-public class ProductCatalogController {
+public class ProductController {
 
 	@Autowired ProductRepository productRepository;
 	
-	@GetMapping(value ="products/all")
-	public String getAllProducts() {
+	@GetMapping(value ="/products/all")
+	public ResponseEntity<String> getAllProducts() {
 		List<Product> products = productRepository.findAll();
-		if (products.size() == 0)
-			return ("{}");
-		
-		return createProductString(products);
+		String result = "No Products Found";
+		if (products.size() != 0)
+			result = createProductString(products);
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 
-	@PostMapping(value ="products/add")
-	public void addProduct(String name, String origin) throws BannedException {
+	@PostMapping(value ="/products/add")
+	public ResponseEntity addProduct(String name, String origin) throws BannedException {
 		if (name.equals("") ||
 				origin.equals("")) {
 			throw new BannedException();
 		}
 		else
 			productRepository.save(new Product(name, origin));
+		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	private String createProductString(List<Product> products) {

@@ -8,24 +8,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 
+import spring.testing.server.configuration.JPA_DataConfiguration;
 import spring.testing.server.configuration.ProductControllerConfiguration;
-import spring.testing.server.controllers.ProductCatalogController;
+import spring.testing.server.controllers.ProductController;
 import spring.testing.server.entities.Product;
+import spring.testing.server.persistence.jpa.ProductRepository;
 
-@ContextConfiguration(classes= {ProductControllerConfiguration.class })
+@ContextConfiguration(classes= {JPA_DataConfiguration.class })
 @DataJpaTest
-public class ProductCatalogControllerTests{
-	
-	@Autowired ProductCatalogController controller;
+public class ProductRepositoryTests{
+	@Autowired ProductRepository productRepository;
 	@Autowired TestEntityManager entityManager;
 
 	@Test
-	public void zeroRatesRetrieved_onCreation() {
-		assertEquals("{}", controller.getAllProducts());
+	public void zeroProductsRetrieved_onCreation() {
+		assertEquals(0, productRepository.findAll().size());
 	}
 		
 	@Test
-	public void twoRatesRetrieved_afterAddingTwo() {
+	public void twoProductsRetrieved_afterAddingTwo() {
 		Product product1 = new Product("Brie", "France");
 		Product product2 = new Product("Parmigiano", "Italy");
 		
@@ -34,8 +35,7 @@ public class ProductCatalogControllerTests{
 		entityManager.flush();
 		
 		
-		assertEquals("{Brie from France,Parmigiano from Italy}", 
-				controller.getAllProducts());
+		assertEquals(2, productRepository.findAll().size());
 	}
 	
 	

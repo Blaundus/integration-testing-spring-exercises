@@ -1,6 +1,7 @@
 package spring.testing.exercises.full.e5;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +9,17 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 
+import spring.testing.server.configuration.JPA_DataConfiguration;
 import spring.testing.server.configuration.ProductControllerConfiguration;
-import spring.testing.server.controllers.ProductCatalogController;
+import spring.testing.server.controllers.ProductController;
 import spring.testing.server.exceptions.BannedException;
 
-@ContextConfiguration(classes = { ProductControllerConfiguration.class })
+@ContextConfiguration(classes = { ProductControllerConfiguration.class, JPA_DataConfiguration.class })
 @DataJpaTest
 public class E5_tests {
 
 	@Autowired
-	ProductCatalogController controller;
+	ProductController controller;
 	@Autowired
 	TestEntityManager entityManager;
 

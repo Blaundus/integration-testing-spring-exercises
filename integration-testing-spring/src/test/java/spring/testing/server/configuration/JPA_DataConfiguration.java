@@ -4,8 +4,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -15,7 +13,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
 @EnableJpaRepositories(basePackages ="spring.testing")
-public class JpaDataConfiguration {
+public class JPA_DataConfiguration {
 
 	@Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory   (DataSource dataSource, Environment env) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.testing.server.compliance.logging.Registrar;
+import spring.testing.server.exchange.Monitor;
 import spring.testing.server.exchange.ProductExchange;
 import spring.testing.server.exchange.RateParser;
 import spring.testing.server.exchange.Rates;
@@ -19,13 +20,13 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 import spring.testing.server.rules.CompositeLineItemRule;
 
 @RestController()
-public class ProductExchangeController {
+public class RatesController {
 
 	@Autowired CompositeLineItemRule ruleManager;
 	@Autowired RateParser rateLoader;
 	@Autowired RateRepository rateRepository;
  	@Autowired ProductExchange exchange;
-	@Autowired ExchangeStatus monitor;
+	@Autowired Monitor monitor;
 	@Autowired Registrar trafficRegulator;
 	private boolean isFirstTime = true;
 	

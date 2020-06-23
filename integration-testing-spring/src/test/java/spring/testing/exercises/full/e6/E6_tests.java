@@ -18,19 +18,19 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import spring.testing.server.configuration.ExchangeControllerConfiguration;
-import spring.testing.server.controllers.ProductExchangeController;
+import spring.testing.server.configuration.RatesControllerConfiguration;
+import spring.testing.server.controllers.RatesController;
 import spring.testing.server.persistence.jdbc.RateRepository;
 
 @SpringBootTest
-@ContextConfiguration(classes= {ExchangeControllerConfiguration.class })
+@ContextConfiguration(classes= {RatesControllerConfiguration.class })
 @Sql(scripts = "classpath:CreateSchema.sql", 
 executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class E6_tests {
 	
-	@Autowired ProductExchangeController controller;
+	@Autowired RatesController controller;
 	@Autowired RateRepository rateRepository;
 	@Autowired WebApplicationContext wac;
 	private MockMvc mockMvc;
