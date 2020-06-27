@@ -6,9 +6,13 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withBadRequest;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureMockRestServiceServer;
+import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
+import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,17 +26,22 @@ import spring.testing.client.configuration.ClientConfiguration;
 @ContextConfiguration(classes= {ClientConfiguration.class})
 public class ClientTests {
 	
-	@Autowired RestTemplate template;
 	@Autowired ClientApp	client;
-	
+	@Autowired RestTemplate restTemplate;
 	MockRestServiceServer mockServer;
 	
 	
 	@BeforeEach
 	public void setup() {
-		mockServer = MockRestServiceServer.createServer(template);
+		mockServer = MockRestServiceServer.createServer(restTemplate);
+		mockServer.reset();
 	}
 	
+	@AfterEach 
+	public void tearDown() {
+		mockServer.verify();
+	}
+
 	@Test
 	public void get_ServerCalledCorrectly() {
 		mockServer
@@ -40,7 +49,6 @@ public class ClientTests {
 				.andRespond(
 						withSuccess("EUR = 1.000000", MediaType.TEXT_PLAIN));
 		client.getRateByName("EUR");
-		mockServer.verify();
 	}
 	
 	@Test 
