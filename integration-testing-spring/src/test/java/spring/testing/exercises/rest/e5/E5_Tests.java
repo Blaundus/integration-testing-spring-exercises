@@ -1,4 +1,4 @@
-package spring.testing.server.integrationtests.controllers;
+package spring.testing.exercises.rest.e5;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -25,7 +25,7 @@ import spring.testing.server.entities.Product;
 @ContextConfiguration(classes = { ProductControllerConfiguration.class, JPA_ControllerConfiguration.class })
 @SpringBootTest
 @AutoConfigureMockMvc
-public class JPA_ProductControllerTests {
+public class E5_Tests {
 
 	@Autowired
 	MockMvc mockMvc;
@@ -34,14 +34,21 @@ public class JPA_ProductControllerTests {
 	private EntityManager entityManager;
 
 	@Test
-	@Transactional
-	public void singleRateRetrieved_afterAdding() throws Exception {
-		Product product = new Product("Brie", "France");
+	public void zeroRatesRetrieved_onCreation() throws Exception {
+		assertEquals("No Products Found", getAllProducts());
+	}
 
-		entityManager.persist(product);
+	@Test
+	@Transactional
+	public void twoRatesRetrieved_afterAddingTwo() throws Exception {
+		Product product1 = new Product("Brie", "France");
+		Product product2 = new Product("Parmigiano", "Italy");
+
+		entityManager.persist(product1);
+		entityManager.persist(product2);
 		entityManager.flush();
 
-		assertEquals("{Brie from France}", getAllProducts());
+		assertEquals("{Brie from France,Parmigiano from Italy}", getAllProducts());
 	}
 
 	private String getAllProducts() throws Exception {

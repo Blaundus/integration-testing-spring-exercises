@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.ServletContext;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,51 +38,21 @@ import spring.testing.server.persistence.jdbc.RateRepository;
 @Sql(scripts = "classpath:DeleteSchema.sql", 
 	executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @AutoConfigureMockMvc
-public class RatesTests {
+public class RatesTests_Refactoring {
 	
 	@Autowired RatesController controller;
-	@Autowired RateRepository repository;
 	@Autowired MockMvc mockMvc;
 	
 	@BeforeEach
 	public void setup() {
 		controller.Reset();
 	}
-		
-	@Test
-	public void canRunIntegrationTests() {
-		assertNotNull(controller);
-		assertNotNull(repository);
-
-	}
 	
 
-	@Test
-	public void whenNoRatesAvailable_thenGetReturnsAnErrorCode() throws Exception {
-		this.mockMvc
-		.perform(get("/rates/currency/?name=EUR"))
-    	.andExpect(status().isNotFound());
-	}
-	
-	@Test
-	public void whenRateIsAdded_thenReturnsOk() throws Exception {
-		String jsonRates = JsonHelper.asJsonString("ILS=2.5");
-
-	    this.mockMvc.perform(post("/rates/add")
-	    					.content(jsonRates)
-	    					.contentType("application/json")
-	    					.characterEncoding("UTF-8"))
-	    		.andExpect(status().isOk());
-	}
-	
 	@Test
 	public void ratesAreAddedOneByOne_withBaseRate() throws Exception {
 		
-		mockMvc.perform(
-				post("/rates/add")
-				.content(JsonHelper.asJsonString("ILS=2.5"))
-				.contentType("application/json"))
-	    		.andExpect(status().isOk());
+		addRate("ILS=2.5");
 	    mockMvc.perform(
 	    		post("/rates/add")
 	    		.content(JsonHelper.asJsonString("USD=3.8"))
@@ -102,6 +74,36 @@ public class RatesTests {
 	    	.andExpect(status().isOk())
 	        .andReturn();
 	    assertEquals("USD = 3.800000",result.getResponse().getContentAsString());
+	}
+
+	@Test
+	public void ratesAreAddedOneByOne_withBaseRate_refactored() throws Exception {
+		
+		addRate("ILS=2.5");
+		addRate("USD=3.8");
+
+		assertEquals("EUR = 1.000000",getRateFor("EUR"));
+	    assertEquals("ILS = 2.500000",getRateFor("ILS"));
+	    assertEquals("USD = 3.800000",getRateFor("USD"));
+	}
+
+
+	private String getRateFor(String currency) throws Exception, UnsupportedEncodingException {
+		String url = "/rates/currency/?name=" + currency;
+		MvcResult result =  mockMvc.perform(
+	    		get(url))
+	    	.andExpect(status().isOk())
+	    	.andReturn();
+	    return result.getResponse().getContentAsString();
+	}
+
+
+	private void addRate(String rate) throws Exception {
+		mockMvc.perform(
+				post("/rates/add")
+				.content(JsonHelper.asJsonString(rate))
+				.contentType("application/json"))
+	    		.andExpect(status().isOk());
 	}
 
 }

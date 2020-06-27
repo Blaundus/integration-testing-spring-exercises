@@ -1,4 +1,4 @@
-package spring.testing.exercises.rest;
+package spring.testing.exercises.rest.e4;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
